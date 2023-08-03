@@ -1,25 +1,23 @@
+import {StyleSheet, Text, View, Platform, Image} from 'react-native';
 import React from 'react';
-import {View, StyleSheet, Platform, Image, Text} from 'react-native';
 
-const LoginScreen = () => {
+type PropType = {
+  children: React.ReactNode;
+};
+
+const AuthWrapper = ({children}: PropType) => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.container}>
-        <Image
-          style={styles.monkey}
-          source={require('../assets/happyMonkey.png')}
-        />
-        <Image style={styles.logo} source={require('../assets/logo.png')} />
-        <Text>
-          By signing in you are agreeing our{' '}
-          <Text>Terms and privacy policy</Text>
-        </Text>
+        <Image style={styles.monkey} source={require('../../assets/monkey.png')} />
+        <Image style={styles.logo} source={require('../../assets/logo.png')} />
+        {children}
       </View>
     </View>
   );
 };
 
-export default LoginScreen;
+export default AuthWrapper;
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -34,16 +32,14 @@ const styles = StyleSheet.create({
     width: 1000,
     borderBottomEndRadius: 100000,
     borderBottomStartRadius: 100000,
-    position: 'relative',
   },
   monkey: {
-    width: 200,
+    width: 140,
     objectFit: 'contain',
-    position: 'absolute',
-    bottom: -30,
+    marginTop: -30,
   },
   logo: {
-    width: 100,
+    width: 140,
     objectFit: 'contain',
   },
 });
