@@ -8,7 +8,9 @@ type PropType = {
 const AuthInitPage = ({onClick}: PropType) => {
   return (
     <View style={styles.wrapper}>
-      <TouchableOpacity style={styles.registerBtn}>
+      <TouchableOpacity
+        style={styles.registerBtn}
+        onPress={() => onClick('Register')}>
         <Text style={styles.btnTxt}>Register</Text>
       </TouchableOpacity>
       <TouchableOpacity
