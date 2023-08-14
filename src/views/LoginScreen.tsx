@@ -15,6 +15,10 @@ import {RootStackParamList} from '../routes';
 type PropType = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
 const LoginScreen = ({navigation}: PropType) => {
+  const handleLogin = () => {
+    navigation.navigate('Home');
+  };
+
   return (
     <View style={styles.wrapper}>
       <View style={styles.container}>
@@ -61,7 +65,7 @@ const LoginScreen = ({navigation}: PropType) => {
             </View>
           </View>
 
-          <TouchableOpacity style={styles.login}>
+          <TouchableOpacity style={styles.login} onPress={handleLogin}>
             <Text style={styles.loginTxt}>Login</Text>
           </TouchableOpacity>
         </View>
