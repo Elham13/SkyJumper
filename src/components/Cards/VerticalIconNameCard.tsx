@@ -1,17 +1,18 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 
 type PropTypes = {
   iconUrl: any;
   text: string;
+  onClick: () => void;
 };
 
-const VerticalIconNameCard = ({iconUrl, text}: PropTypes) => {
+const VerticalIconNameCard = ({iconUrl, text, onClick}: PropTypes) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onClick}>
       <Image source={iconUrl} style={styles.icon} />
       <Text style={styles.text}>{text}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -26,11 +27,11 @@ const styles = StyleSheet.create({
   },
   icon: {
     width: 34,
-    objectFit: 'contain'
+    objectFit: 'contain',
   },
   text: {
     fontSize: 12,
     textAlign: 'center',
-    color: 'black'
+    color: 'black',
   },
 });

@@ -146,18 +146,22 @@ const HomeScreen = () => {
           <VerticalIconNameCard
             iconUrl={require('../assets/icons/jumping-rope.png')}
             text="Trampoline Jump"
+            onClick={handleClick}
           />
           <VerticalIconNameCard
             iconUrl={require('../assets/icons/jump-across.png')}
             text="Sky Jumper Carnival"
+            onClick={handleClick}
           />
           <VerticalIconNameCard
             iconUrl={require('../assets/icons/crossed-pistols.png')}
             text="Sky Laser Tag"
+            onClick={handleClick}
           />
           <VerticalIconNameCard
             iconUrl={require('../assets/icons/disc-icon.png')}
             text="GenZ The Teen Disco"
+            onClick={handleClick}
           />
         </View>
 
@@ -165,18 +169,22 @@ const HomeScreen = () => {
           <VerticalIconNameCard
             iconUrl={require('../assets/icons/cake.png')}
             text="Birthday Party"
+            onClick={handleClick}
           />
           <VerticalIconNameCard
             iconUrl={require('../assets/icons/party-popper.png')}
             text="Corporate Event"
+            onClick={handleClick}
           />
           <VerticalIconNameCard
             iconUrl={require('../assets/icons/bus-school.png')}
             text="School Trips"
+            onClick={handleClick}
           />
           <VerticalIconNameCard
             iconUrl={require('../assets/icons/celebrate-emoji.png')}
             text="Active Kitty Party"
+            onClick={handleClick}
           />
         </View>
 
