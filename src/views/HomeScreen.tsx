@@ -7,14 +7,13 @@ import Header from '../components/Home/Header';
 import VerticalIconNameCard from '../components/Cards/VerticalIconNameCard';
 import AdvertisementCard from '../components/Cards/AdvertisementCard';
 import ImageAndTextCard from '../components/Cards/ImageAndTextCard';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {NavigationContainer} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import Register from '../components/Auth/Register';
-import Screen1 from './Screen1';
-import Screen2 from './Screen2';
-import Screen3 from './Screen3';
+import ActivitiesScreen from "./ActivitiesScreen";
+
 
 type PropType = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
@@ -86,58 +85,11 @@ const Item = ({title}: {title: string}) => (
     <Text>{title}</Text>
   </View>
 );
-function MyTabs() {
-  return (
-    <Tab.Navigator
-      initialRouteName="Screen1"
-      screenOptions={{tabBarActiveTintColor :"#e91e63"}}
-      sceneContainerStyle={{
-        height: 100,
-        paddingBottom: 50,
-        paddingTop: 0,
-        backgroundColor: 'rgba(34,36,40,1)',
-        position: 'absolute',
-        borderTopWidth: 0,
-            }}
-      // tabBarOptions={{
-      //   activeTintColor: '#e91e63',
-      // }}
-    >
-      <Tab.Screen
-        name="Screen1"
-        component={Screen1}
-        options={{
-          tabBarLabel: 'Home',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" color={'rgba(34,36,40,1)'} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Screen2"
-        component={Screen2}
-        options={{
-          tabBarLabel: 'Updates',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="man" color={'rgba(34,36,40,1)'} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Screen3"
-        component={Screen3}
-        options={{
-          tabBarLabel: 'Profile',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="settings" color={'rgba(34,36,40,1)'} size={size} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
-  );
-}
+
 const HomeScreen = () => {
-// const HomeScreen = (props: PropType) => {
+  // const HomeScreen = (props: PropType) => {
+
+  const handleClick = () => {};
   return (
     <View>
       <Header />
@@ -219,36 +171,7 @@ const HomeScreen = () => {
         {/* <TouchableOpacity onPress={() => props.navigation.navigate('Login')}>
           <Text>Go to Login</Text>
         </TouchableOpacity> */}
-{/*       
-        <Tab.Navigator 
-          screenOptions = {({route}) => ({
-            tabBarIcon: ({color, size}) => {
-              let iconName;
-              if (route.name === 'Screen1') {
-                iconName = 'home';
-              } else if (route.name === 'Screen2') {
-                iconName = 'man';
-              } else {
-                iconName = 'settings';
-              }
-              return <Ionicons name={iconName} size={size} color={color} />;
-            },tabBarActiveTintColor: 'green',
-            tabBarInactiveTintColor: 'gray',
-            tabBarStyle: {
-              height: 100,
-              paddingBottom: 50,
-              paddingTop: 0,
-              backgroundColor: 'rgba(34,36,40,1)',
-              position: 'absolute',
-              borderTopWidth: 0,
-          },
-          })}>
-        <Tab.Screen name="Screen1" component={Screen1} />
-        <Tab.Screen name="Screen2" component={Screen2} />
-        <Tab.Screen name="Screen3" component={Screen3} />
-        </Tab.Navigator> */}
-
-        </ScrollView>
+      </ScrollView>
     </View>
   );
 };

@@ -8,7 +8,7 @@ import InitialScreen from '../views/InitialScreen';
 import LoginScreen from '../views/LoginScreen';
 import HomeScreen from '../views/HomeScreen';
 import RegisterScreen from '../views/RegisterScreen';
-import Screen1 from '../views/Screen1';
+import ActivitiesScreen from '../views/ActivitiesScreen';
 import Screen2 from '../views/Screen2';
 import Screen3 from '../views/Screen3';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -18,7 +18,7 @@ export type RootStackParamList = {
   Home: undefined;
   Login: undefined;
   Register: undefined;
-  Screen1: undefined;
+  Activities:undefined;
   Screen2: undefined;
   Screen3: undefined;
 };
@@ -51,8 +51,8 @@ const AppNavigator = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="Screen1"
-          component={Screen1}
+          name="Activities"
+          component={ActivitiesScreen}
           options={{headerShown: false}}
         />
         <Stack.Screen

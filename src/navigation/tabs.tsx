@@ -7,7 +7,7 @@ import {
 import {RootStackParamList} from '../routes';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import HomeScreen from '../views/HomeScreen';
-import Screen1 from '../views/Screen1';
+import ActivitiesScreen from '../views/ActivitiesScreen';
 import Screen2 from '../views/Screen2';
 import Screen3 from '../views/Screen3';
 import Icon from 'react-native-vector-icons/Octicons';
@@ -15,7 +15,6 @@ import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
-const monkey = require('../assets/hanging-monkey.png');
 
 type PropType = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
@@ -33,6 +32,7 @@ const Tabs = () => {
         tabBarStyle: {
           backgroundColor: '#F69131',
           height:50,
+
         },
       }}>
       <Tab.Screen
@@ -45,29 +45,26 @@ const Tabs = () => {
           ),
           tabBarIcon: ({focused}) => (
             <Icon
+             
               name="home"
               size={25}
               style={{
                 color: focused ? '#ffffff' : '#2D2C2C',
+                marginTop:6
               }}
             />
           ),
-          // tabBarButton: (props) => (
-          //     <TabBarCustomButton
-          //         {...props}
-          // color: focused ? '#ffffff' : '#2D2C2C'
-          //     />
-          // )
+          
         }}
       />
 
       <Tab.Screen
-        name="Screen1"
-        component={Screen1}
+        name="Activities"
+        component={ActivitiesScreen}
         options={{
-          tabBarShowLabel: false,
+          tabBarShowLabel: true,
           tabBarLabel: ({focused, color,}) => (
-            <Text style={{color: focused ? '#ffffff' : '#2D2C2C',fontSize:14,fontWeight:'700'}}>Home</Text>
+            <Text style={{color: focused ? '#ffffff' : '#2D2C2C',fontSize:14,fontWeight:'700'}}>Activities</Text>
           ),
           tabBarIcon: ({focused}) => (
             <IonIcon
@@ -75,14 +72,11 @@ const Tabs = () => {
               size={25}
               style={{
                 color: focused ? '#ffffff' : '#2D2C2C',
+                marginTop:6
               }}
             />
           ),
-          // tabBarButton: (props) => (
-          //     <TabBarCustomButton
-          //         {...props}
-          //     />
-          // )
+          
         }}
       />
 
@@ -90,21 +84,21 @@ const Tabs = () => {
         name="Order"
         component={Screen2}
         options={{
-          tabBarShowLabel: false,
+          tabBarShowLabel: true,
+          tabBarLabel: ({focused, color,}) => (
+            <Text style={{color: focused ? '#ffffff' : '#2D2C2C',fontSize:14,fontWeight:'700'}}>Memberships</Text>
+          ),
           tabBarIcon: ({focused}) => (
             <MaterialIcon
               name="wallet-membership"
               size={28}
               style={{
                 color: focused ? '#ffffff' : '#2D2C2C',
+                marginTop:6
               }}
             />
           ),
-          // tabBarButton: (props) => (
-          //     <TabBarCustomButton
-          //         {...props}
-          //     />
-          // )
+          
         }}
       />
 
@@ -112,13 +106,17 @@ const Tabs = () => {
         name="Store"
         component={Screen3}
         options={{
-          tabBarShowLabel: false,
+          tabBarShowLabel: true,
+          tabBarLabel: ({focused, color,}) => (
+            <Text style={{color: focused ? '#ffffff' : '#2D2C2C',fontSize:14,fontWeight:'700'}}>Hot Offers</Text>
+          ),
           tabBarIcon: ({focused}) => (
             <MaterialIcon
               name="brightness-percent"
               size={28}
               style={{
                 color: focused ? '#ffffff' : '#2D2C2C',
+                marginTop:6
               }}
             />
           ),
