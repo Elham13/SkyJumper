@@ -1,14 +1,19 @@
 import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 
 type PropType = {
   title: string;
 };
 
 const PageHeader = ({title}: PropType) => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.iconWrapper}>
+      <TouchableOpacity
+        style={styles.iconWrapper}
+        onPress={() => navigation.goBack()}>
         <Image
           source={require('../assets/icons/go-back-icon.png')}
           style={styles.icon}
@@ -30,7 +35,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     paddingVertical: 18,
     borderBottomColor: 'lightgray',
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
     // shadowColor: 'gray',
     // shadowOffset: {width: 10, height: 10},
   },
