@@ -6,12 +6,14 @@ import InitialScreen from '../views/InitialScreen';
 import LoginScreen from '../views/LoginScreen';
 import HomeScreen from '../views/HomeScreen';
 import RegisterScreen from '../views/RegisterScreen';
+import ActivitiesScreen from '../views/ActivitiesScreen';
 
 export type RootStackParamList = {
   InitialScreen: undefined;
   Home: undefined;
   Login: undefined;
   Register: undefined;
+  Activities: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -38,6 +40,11 @@ const AppNavigator = () => {
         <Stack.Screen
           name="Register"
           component={RegisterScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Activities"
+          component={ActivitiesScreen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
