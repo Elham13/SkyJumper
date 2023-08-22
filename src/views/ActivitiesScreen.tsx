@@ -7,35 +7,30 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import {TouchableOpacity} from 'react-native';
 import moment from 'moment';
 
+const today = moment().format('YYYY-MM-DD');
+
 const ActivitiesScreen = () => {
   const [dateVisible, setDateVisible] = useState<boolean>(false);
-  const [dateToAttend, setDateToAttend] = useState(moment().format(''));
+  const [dateToAttend, setDateToAttend] = useState(
+    moment().format('YYYY-MM-DD'),
+  );
   const [datesArr, setDatesArr] = useState<string[]>([]);
 
   const onDateChange = (date: any) => {
-    setDateToAttend(date);
+    setDateToAttend(moment(date).format('YYYY-MM-DD'));
   };
 
   useEffect(() => {
-    const selectedDate = moment(dateToAttend || new Date()); // Get the current date
-
+    const selectedDate = moment(dateToAttend); // Get the current date
     const datesArray = [];
-
     for (let i = 0; i <= 3; i++) {
-      datesArray.push(selectedDate.format('YYYY-MM-DD'));
+      datesArray.push(moment(selectedDate).format('YYYY-MM-DD'));
       selectedDate.add(1, 'day'); // Move to the next day
     }
-
     setDatesArr(datesArray);
   }, [dateToAttend]);
 
-  useEffect(() => {
-    console.log(
-      'dateToAttend: ',
-      moment(new Date()).isSame(moment(dateToAttend)),
-    );
-    console.log(datesArr, dateToAttend);
-  }, [datesArr, dateToAttend]);
+  useEffect(() => {}, [datesArr, dateToAttend]);
 
   return (
     <View>
@@ -73,25 +68,30 @@ const ActivitiesScreen = () => {
         </Text>
         <View style={styles.weekDaysWrapper}>
           {datesArr?.map((date, id) => {
+            const isToday = moment(today).isSame(moment(date));
             return (
               <TouchableOpacity
                 key={id}
                 style={[
                   styles.weekDay,
                   {
-                    backgroundColor: moment(new Date()).isSame(
-                      moment(dateToAttend),
-                    )
-                      ? '#F99417'
-                      : '#FEC868',
+                    backgroundColor: id === 0 ? '#F99417' : '#FEC868',
                   },
                 ]}>
-                <Text style={{fontWeight: '700', color: 'black'}}>
-                  {moment(date).format('ddd')}
+                <Text
+                  style={{
+                    fontWeight: '700',
+                    color: 'black',
+                    fontSize: isToday ? 18 : 12,
+                  }}>
+                  {isToday ? 'Today' : moment(date).format('ddd')}
                 </Text>
-                <Text style={{fontWeight: '700', fontSize: 20, color: 'black'}}>
-                  {moment(date).format('d')}
-                </Text>
+                {!isToday && (
+                  <Text
+                    style={{fontWeight: '700', fontSize: 20, color: 'black'}}>
+                    {moment(date).format('D')}
+                  </Text>
+                )}
               </TouchableOpacity>
             );
           })}
