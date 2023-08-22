@@ -1,30 +1,26 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import Tabs from '../navigation/tabs';
 
 import InitialScreen from '../views/InitialScreen';
 import LoginScreen from '../views/LoginScreen';
-import HomeScreen from '../views/HomeScreen';
 import RegisterScreen from '../views/RegisterScreen';
 import ActivitiesScreen from '../views/ActivitiesScreen';
-import Screen2 from '../views/Screen2';
+import MembershipScreen from '../views/MembershipScreen';
 import Screen3 from '../views/Screen3';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 export type RootStackParamList = {
   InitialScreen: undefined;
   Home: undefined;
   Login: undefined;
   Register: undefined;
-  Activities:undefined;
-  Screen2: undefined;
+  Activities: undefined;
+  Membership: undefined;
   Screen3: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
-const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => {
   return (
@@ -35,11 +31,6 @@ const AppNavigator = () => {
           component={InitialScreen}
           options={{headerShown: false}}
         />
-        {/* <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{headerShown: false}}
-        /> */}
         <Stack.Screen
           name="Login"
           component={LoginScreen}
@@ -56,8 +47,8 @@ const AppNavigator = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="Screen2"
-          component={Screen2}
+          name="Membership"
+          component={MembershipScreen}
           options={{headerShown: false}}
         />
         <Stack.Screen
@@ -65,9 +56,12 @@ const AppNavigator = () => {
           component={Screen3}
           options={{headerShown: false}}
         />
-      <Stack.Screen name='Home' component={Tabs} options={{headerShown: false}} />
+        <Stack.Screen
+          name="Home"
+          component={Tabs}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
-      
     </NavigationContainer>
   );
 };

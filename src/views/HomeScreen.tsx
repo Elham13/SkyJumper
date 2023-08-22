@@ -2,17 +2,12 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, FlatList, ScrollView} from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../routes';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import Header from '../components/Home/Header';
 import VerticalIconNameCard from '../components/Cards/VerticalIconNameCard';
 import AdvertisementCard from '../components/Cards/AdvertisementCard';
 import ImageAndTextCard from '../components/Cards/ImageAndTextCard';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {NavigationContainer} from '@react-navigation/native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import Register from '../components/Auth/Register';
-import ActivitiesScreen from "./ActivitiesScreen";
 
 
 type PropType = NativeStackScreenProps<RootStackParamList, 'Home'>;

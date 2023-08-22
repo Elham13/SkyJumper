@@ -1,12 +1,12 @@
 import {Text, View} from 'react-native';
 import React from 'react';
 
-const Screen1 = () => {
+const MembershipScreen = () => {
   return (
     <View style={{flex:1}}>
-      <Text>screen1</Text>
+      <Text>screen2</Text>
     </View>
   );
 };
 
-export default Screen1;
+export default MembershipScreen;

@@ -1,27 +1,17 @@
 import React from 'react';
-import {View, Image, TouchableOpacity, Text} from 'react-native';
-import {
-  createBottomTabNavigator,
-  BottomTabBar,
-} from '@react-navigation/bottom-tabs';
-import {RootStackParamList} from '../routes';
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {Text} from 'react-native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
 import HomeScreen from '../views/HomeScreen';
 import ActivitiesScreen from '../views/ActivitiesScreen';
-import Screen2 from '../views/Screen2';
+
+import MembershipScreen from '../views/MembershipScreen';
 import Screen3 from '../views/Screen3';
 import Icon from 'react-native-vector-icons/Octicons';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
-
-type PropType = NativeStackScreenProps<RootStackParamList, 'Home'>;
-
-
-const homeIcon = () => {
-  return <Icon name="home" />;
-};
 
 const Tabs = () => {
   return (
@@ -31,30 +21,34 @@ const Tabs = () => {
         tabBarShowLabel: true,
         tabBarStyle: {
           backgroundColor: '#F69131',
-          height:50,
-
+          height: 50,
         },
       }}>
       <Tab.Screen
-        name="Home"
+        name="Main"
         component={HomeScreen}
         options={{
           headerShown: false,
-          tabBarLabel: ({focused, color,}) => (
-            <Text style={{color: focused ? '#ffffff' : '#2D2C2C',fontSize:14,fontWeight:'700'}}>Home</Text>
+          tabBarLabel: ({focused, color}) => (
+            <Text
+              style={{
+                color: focused ? '#ffffff' : '#2D2C2C',
+                fontSize: 14,
+                fontWeight: '700',
+              }}>
+              Home
+            </Text>
           ),
           tabBarIcon: ({focused}) => (
             <Icon
-             
               name="home"
               size={25}
               style={{
                 color: focused ? '#ffffff' : '#2D2C2C',
-                marginTop:6
+                marginTop: 6,
               }}
             />
           ),
-          
         }}
       />
 
@@ -63,8 +57,15 @@ const Tabs = () => {
         component={ActivitiesScreen}
         options={{
           tabBarShowLabel: true,
-          tabBarLabel: ({focused, color,}) => (
-            <Text style={{color: focused ? '#ffffff' : '#2D2C2C',fontSize:14,fontWeight:'700'}}>Activities</Text>
+          tabBarLabel: ({focused, color}) => (
+            <Text
+              style={{
+                color: focused ? '#ffffff' : '#2D2C2C',
+                fontSize: 14,
+                fontWeight: '700',
+              }}>
+              Activities
+            </Text>
           ),
           tabBarIcon: ({focused}) => (
             <IonIcon
@@ -72,21 +73,27 @@ const Tabs = () => {
               size={25}
               style={{
                 color: focused ? '#ffffff' : '#2D2C2C',
-                marginTop:6
+                marginTop: 6,
               }}
             />
           ),
-          
         }}
       />
 
       <Tab.Screen
-        name="Order"
-        component={Screen2}
+        name="Membership"
+        component={MembershipScreen}
         options={{
           tabBarShowLabel: true,
-          tabBarLabel: ({focused, color,}) => (
-            <Text style={{color: focused ? '#ffffff' : '#2D2C2C',fontSize:14,fontWeight:'700'}}>Memberships</Text>
+          tabBarLabel: ({focused, color}) => (
+            <Text
+              style={{
+                color: focused ? '#ffffff' : '#2D2C2C',
+                fontSize: 14,
+                fontWeight: '700',
+              }}>
+              Memberships
+            </Text>
           ),
           tabBarIcon: ({focused}) => (
             <MaterialIcon
@@ -94,11 +101,10 @@ const Tabs = () => {
               size={28}
               style={{
                 color: focused ? '#ffffff' : '#2D2C2C',
-                marginTop:6
+                marginTop: 6,
               }}
             />
           ),
-          
         }}
       />
 
@@ -107,8 +113,15 @@ const Tabs = () => {
         component={Screen3}
         options={{
           tabBarShowLabel: true,
-          tabBarLabel: ({focused, color,}) => (
-            <Text style={{color: focused ? '#ffffff' : '#2D2C2C',fontSize:14,fontWeight:'700'}}>Hot Offers</Text>
+          tabBarLabel: ({focused, color}) => (
+            <Text
+              style={{
+                color: focused ? '#ffffff' : '#2D2C2C',
+                fontSize: 14,
+                fontWeight: '700',
+              }}>
+              Hot Offers
+            </Text>
           ),
           tabBarIcon: ({focused}) => (
             <MaterialIcon
@@ -116,11 +129,10 @@ const Tabs = () => {
               size={28}
               style={{
                 color: focused ? '#ffffff' : '#2D2C2C',
-                marginTop:6
+                marginTop: 6,
               }}
             />
           ),
-          
         }}
       />
     </Tab.Navigator>
