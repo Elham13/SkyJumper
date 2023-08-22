@@ -2,11 +2,13 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, FlatList, ScrollView} from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../routes';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import Header from '../components/Home/Header';
 import VerticalIconNameCard from '../components/Cards/VerticalIconNameCard';
 import AdvertisementCard from '../components/Cards/AdvertisementCard';
 import ImageAndTextCard from '../components/Cards/ImageAndTextCard';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
+
 
 type PropType = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
@@ -65,6 +67,7 @@ const data2 = [
     img: require('../assets/kids-play.jpg'),
   },
 ];
+const Tab = createBottomTabNavigator();
 
 const Item = ({title}: {title: string}) => (
   <View
@@ -78,11 +81,10 @@ const Item = ({title}: {title: string}) => (
   </View>
 );
 
-const HomeScreen = (props: PropType) => {
-  const handleClick = () => {
-    props.navigation.navigate('Activities');
-  };
+const HomeScreen = () => {
+  // const HomeScreen = (props: PropType) => {
 
+  const handleClick = () => {};
   return (
     <View>
       <Header />
@@ -161,9 +163,9 @@ const HomeScreen = (props: PropType) => {
           ItemSeparatorComponent={() => <View style={{marginHorizontal: 10}} />}
         />
 
-        <TouchableOpacity onPress={() => props.navigation.navigate('Login')}>
+        {/* <TouchableOpacity onPress={() => props.navigation.navigate('Login')}>
           <Text>Go to Login</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </ScrollView>
     </View>
   );
