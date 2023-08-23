@@ -6,6 +6,8 @@ import HomeScreen from '../views/HomeScreen';
 import ActivitiesScreen from '../views/ActivitiesScreen';
 
 import MembershipScreen from '../views/MembershipScreen';
+import MembershipDetails from '../views/MembershipDetails';
+
 import Screen3 from '../views/Screen3';
 import Icon from 'react-native-vector-icons/Octicons';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';

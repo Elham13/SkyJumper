@@ -87,7 +87,7 @@ const HomeScreen = () => {
   const handleClick = () => {};
   return (
     <View>
-      <Header />
+      <Header  />
       <ScrollView style={styles.homeContentsWraper}>
         <View style={styles.cardsWrapper}>
           <VerticalIconNameCard

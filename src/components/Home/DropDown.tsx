@@ -28,8 +28,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
+
   },
   dropdownButton: {
+    paddingRight:10,
     flexDirection: 'row',
     backgroundColor: 'red',
     height: '100%',
@@ -37,9 +39,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
   },
   dropdown: {
-    width: '100%',
+    width: '80%',
     position: 'absolute',
-    backgroundColor: 'white',
+    backgroundColor: 'orange',
     top: 52,
   },
   option: {
