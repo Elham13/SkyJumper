@@ -85,7 +85,7 @@ const HomeScreen = () => {
 
   return (
     <View>
-      <Header />
+      <Header  />
       <ScrollView style={styles.homeContentsWraper}>
         <View style={styles.cardsWrapper}>
           <VerticalIconNameCard
