@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-import AdvertisementCard from './AdvertisementCard';
 
 type PropTypes = {
   title: string;
@@ -56,7 +55,7 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 35,
     backgroundColor: '#FDE9D6',
-    borderRadius: 5,
+    borderRadius: 2,
     overflow: 'hidden',
     position: 'relative',
     display: 'flex',
@@ -101,7 +100,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   layer: {
-    height: 60,
+    height: 70,
     width: 150,
     top: 0,
     left: 0,
@@ -110,7 +109,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   bgImg: {
-    height: 60,
+    height: 70,
     width: 150,
     objectFit: 'cover',
   },

@@ -25,7 +25,7 @@ const MembershipScreen = () => {
   };
 
   const goToDetailsPage = () => {
-    navigation.navigate("MembershipDetails" as never);
+    navigation.navigate('MembershipDetails' as never);
   };
 
   useEffect(() => {
@@ -37,7 +37,9 @@ const MembershipScreen = () => {
     }
     setDatesArr(datesArray);
   }, [dateToAttend]);
-
+  const handleClick = (screen: never) => {
+    navigation.navigate(screen);
+  };
   return (
     <View style={{flex: 1}}>
       <PageHeader title="Membership" />
