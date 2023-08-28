@@ -1,16 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, FlatList, ScrollView} from 'react-native';
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../routes';
 import Header from '../components/Home/Header';
 import VerticalIconNameCard from '../components/Cards/VerticalIconNameCard';
 import AdvertisementCard from '../components/Cards/AdvertisementCard';
 import ImageAndTextCard from '../components/Cards/ImageAndTextCard';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
-
-
-type PropType = NativeStackScreenProps<RootStackParamList, 'Home'>;
+import {useNavigation} from '@react-navigation/native';
 
 const DATA = [
   {
@@ -82,9 +77,12 @@ const Item = ({title}: {title: string}) => (
 );
 
 const HomeScreen = () => {
-  // const HomeScreen = (props: PropType) => {
+  const navigation = useNavigation();
 
-  const handleClick = () => {};
+  const handleClick = () => {
+    navigation.navigate('Activities' as never);
+  };
+
   return (
     <View>
       <Header />
