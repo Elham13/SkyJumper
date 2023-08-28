@@ -7,11 +7,13 @@ import CalendarPicker from 'react-native-calendar-picker';
 import moment from 'moment';
 import MembershipCard from '../components/Cards/MembershipCard';
 import {Card} from '@rneui/base';
+import {useNavigation} from '@react-navigation/native';
 
 const today = moment().format('YYYY-MM-DD');
 
 const MembershipScreen = () => {
-  const [dateVisible, setDateVisible] = useState<Boolean>(false);
+  const navigation = useNavigation();
+  const [dateVisible, setDateVisible] = useState<boolean>(false);
   const [dateToAttend, setDateToAttend] = useState(
     moment().format('YYYY-MM-DD'),
   );
@@ -20,6 +22,10 @@ const MembershipScreen = () => {
 
   const onDateChange = (date: any) => {
     setDateToAttend(moment(date).format('YYYY-MM-DD'));
+  };
+
+  const goToDetailsPage = () => {
+    navigation.navigate("MembershipDetails" as never);
   };
 
   useEffect(() => {
@@ -97,21 +103,15 @@ const MembershipScreen = () => {
         <View style={styles.membershipView}>
           <MembershipCard
             title="Monthly Membership"
-            subTitle="Hello Subtitle"
             price="Rs 1000/Month"
             discountText="With 10% discount All Activities"
-            imgUrl={
-              'https://www.ciuspress.com/wp-content/uploads/2020/05/test-product.png'
-            }
+            onClick={goToDetailsPage}
           />
           <MembershipCard
             title="Yearly Membership"
-            subTitle="Corporate Party"
             price="Rs 18000/Month"
             discountText="With 10% discount All Activities"
-            imgUrl={
-              'https://www.ciuspress.com/wp-content/uploads/2020/05/test-product.png'
-            }
+            onClick={goToDetailsPage}
           />
         </View>
       </ScrollView>

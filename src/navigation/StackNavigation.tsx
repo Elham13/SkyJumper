@@ -7,6 +7,7 @@ import RegisterScreen from '../views/RegisterScreen';
 import DrawerNavigation from './DrawerNavigation';
 import MainScreen from '../views/MainScreen';
 import MyProfileScreen from '../views/MyProfileScreen';
+import MembershipDetails from '../views/MembershipDetails';
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,11 @@ const MainStack = () => {
       <Stack.Screen
         name="Register"
         component={RegisterScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="MembershipDetails"
+        component={MembershipDetails}
         options={{headerShown: false}}
       />
       <Stack.Screen

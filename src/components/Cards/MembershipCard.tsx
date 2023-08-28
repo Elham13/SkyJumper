@@ -1,60 +1,51 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image,TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import AdvertisementCard from './AdvertisementCard';
 
 type PropTypes = {
-  imgUrl: any;
   title: string;
-  subTitle: string;
   price: string;
   discountText: string;
-  onClick: (screen: any) => void;
+  onClick: () => void;
 };
-const handleClick = () => {};
 
-const MembershipCard = ({
-  imgUrl,
-  title,
-  subTitle,
-  price,
-  discountText,
-  onClick
-}: PropTypes) => {
+const MembershipCard = ({title, price, discountText, onClick}: PropTypes) => {
   return (
-    <TouchableOpacity onPress={() => onClick('Register')}>
-    <View style={styles.container}>
-      <View style={styles.details}>
-        <Text style={styles.title}>{title}</Text>
-        {/* <Text style={styles.subtitle}>{subTitle}</Text> */}
-        <Text>
-          <Text style={styles.subtitle1}>Monthly </Text>
-          <Text style={styles.subtitle2}>Membership</Text>
-        </Text>
-        <Text>
-          <Text style={styles.priceHeading}>Price </Text> {price}
-        </Text>
-        <Text style={styles.discountText}>{discountText}</Text>
-      </View>
-      <View style={styles.containerRight}>
-        <Image
-          source={require('../../assets/TrampolinPark.jpg')}
-          style={styles.bgImg}
-        />
-        <View style={styles.layer}>
-          <Image
-            source={require('../../assets/logo.png')}
-            style={styles.monkey}
-          />
+    <TouchableOpacity onPress={onClick}>
+      <View style={styles.container}>
+        <View style={styles.details}>
+          <Text style={styles.title}>{title}</Text>
+          {/* <Text style={styles.subtitle}>{subTitle}</Text> */}
+          <Text>
+            <Text style={styles.subtitle1}>Monthly </Text>
+            <Text style={styles.subtitle2}>Membership</Text>
+          </Text>
+          <Text>
+            <Text style={styles.priceHeading}>Price </Text> {price}
+          </Text>
+          <Text style={styles.discountText}>{discountText}</Text>
         </View>
-        <View style={styles.bottom}>
-          <View style={styles.titleWrapper}>
-            <Text style={{...styles.txt, color: 'black', textAlign: 'center'}}>
-              {title}
-            </Text>
+        <View style={styles.containerRight}>
+          <Image
+            source={require('../../assets/TrampolinPark.jpg')}
+            style={styles.bgImg}
+          />
+          <View style={styles.layer}>
+            <Image
+              source={require('../../assets/logo.png')}
+              style={styles.monkey}
+            />
+          </View>
+          <View style={styles.bottom}>
+            <View style={styles.titleWrapper}>
+              <Text
+                style={{...styles.txt, color: 'black', textAlign: 'center'}}>
+                {title}
+              </Text>
+            </View>
           </View>
         </View>
       </View>
-    </View>
     </TouchableOpacity>
   );
 };
