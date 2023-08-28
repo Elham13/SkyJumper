@@ -1,6 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image,TouchableOpacity} from 'react-native';
 import AdvertisementCard from './AdvertisementCard';
+import { useNavigation } from '@react-navigation/native';
+import MembershipDetails from '../../views/MembershipDetails';
+
 
 type PropTypes = {
   imgUrl: any;
@@ -8,9 +11,7 @@ type PropTypes = {
   subTitle: string;
   price: string;
   discountText: string;
-  onClick: (screen: any) => void;
 };
-const handleClick = () => {};
 
 const MembershipCard = ({
   imgUrl,
@@ -18,10 +19,13 @@ const MembershipCard = ({
   subTitle,
   price,
   discountText,
-  onClick
 }: PropTypes) => {
+  const onClick = (screen:never) => {
+    const navigation = useNavigation()
+    navigation.navigate(screen)
+  }
   return (
-    <TouchableOpacity onPress={() => onClick('Register')}>
+    <TouchableOpacity onPress={() => onClick('MembershipDetails')}>
     <View style={styles.container}>
       <View style={styles.details}>
         <Text style={styles.title}>{title}</Text>
@@ -65,7 +69,7 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 35,
     backgroundColor: '#FDE9D6',
-    borderRadius: 5,
+    borderRadius: 2,
     overflow: 'hidden',
     position: 'relative',
     display: 'flex',
@@ -110,7 +114,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   layer: {
-    height: 60,
+    height: 70,
     width: 150,
     top: 0,
     left: 0,
@@ -119,7 +123,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   bgImg: {
-    height: 60,
+    height: 70,
     width: 150,
     objectFit: 'cover',
   },

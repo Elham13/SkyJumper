@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import Tabs from '../navigation/Tabs';
+import Tabs from '../navigation/tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import InitialScreen from '../views/InitialScreen';
 import LoginScreen from '../views/LoginScreen';
@@ -70,6 +70,7 @@ const AppNavigator = () => {
           component={Tabs}
           options={{headerShown: false}}
         />
+        
       </Stack.Navigator>
 
     </NavigationContainer>

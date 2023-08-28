@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
     paddingVertical: 18,
     borderBottomColor: 'lightgray',
     borderBottomWidth: 1,
-    // shadowColor: 'gray',
-    // shadowOffset: {width: 10, height: 10},
+    shadowColor: 'gray',
+    shadowOffset: {width: 10, height: 10},
   },
   iconWrapper: {
     flex: 1,

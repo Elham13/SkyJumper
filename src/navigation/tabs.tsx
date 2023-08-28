@@ -84,7 +84,7 @@ const Tabs = () => {
 
       <Tab.Screen
         name="Membership"
-        component={MembershipScreen}
+        component={MembershipDetails}
         options={{
           tabBarShowLabel: true,
           tabBarLabel: ({focused, color}) => (

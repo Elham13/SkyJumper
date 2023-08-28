@@ -7,11 +7,13 @@ import CalendarPicker from 'react-native-calendar-picker';
 import moment from 'moment';
 import MembershipCard from '../components/Cards/MembershipCard';
 import {Card} from '@rneui/base';
+import { useNavigation } from '@react-navigation/native';
 
 const today = moment().format('YYYY-MM-DD');
 
 const MembershipScreen = () => {
-  const [dateVisible, setDateVisible] = useState<Boolean>(false);
+  const navigation = useNavigation()
+  const [dateVisible, setDateVisible] = useState<boolean>(false);
   const [dateToAttend, setDateToAttend] = useState(
     moment().format('YYYY-MM-DD'),
   );
@@ -31,7 +33,9 @@ const MembershipScreen = () => {
     }
     setDatesArr(datesArray);
   }, [dateToAttend]);
-
+  const handleClick = (screen:never) => {
+    navigation.navigate(screen)
+  }
   return (
     <View style={{flex: 1}}>
       <PageHeader title="Membership" />
@@ -96,6 +100,7 @@ const MembershipScreen = () => {
         </View>
         <View style={styles.membershipView}>
           <MembershipCard
+          onClick={handleClick}
             title="Monthly Membership"
             subTitle="Hello Subtitle"
             price="Rs 1000/Month"
