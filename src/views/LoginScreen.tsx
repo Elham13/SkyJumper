@@ -1,4 +1,4 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {
   View,
@@ -10,13 +10,11 @@ import {
   TextInput,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {RootStackParamList} from '../routes';
 
-type PropType = NativeStackScreenProps<RootStackParamList, 'Login'>;
-
-const LoginScreen = ({navigation}: PropType) => {
+const LoginScreen = () => {
+  const navigation = useNavigation();
   const handleLogin = () => {
-    navigation.navigate('Home');
+    navigation.navigate('Home' as never);
   };
 
   return (
@@ -46,7 +44,7 @@ const LoginScreen = ({navigation}: PropType) => {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.switchBtn}
-              onPress={() => navigation.navigate('Register')}>
+              onPress={() => navigation.navigate('Register' as never)}>
               <Text style={styles.switchBtnTxt}>Register</Text>
             </TouchableOpacity>
           </View>

@@ -1,10 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, FlatList, ScrollView} from 'react-native';
+import React from 'react';
+import {View, StyleSheet, FlatList, ScrollView} from 'react-native';
 import Header from '../components/Home/Header';
 import VerticalIconNameCard from '../components/Cards/VerticalIconNameCard';
 import AdvertisementCard from '../components/Cards/AdvertisementCard';
 import ImageAndTextCard from '../components/Cards/ImageAndTextCard';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useNavigation} from '@react-navigation/native';
 
 const DATA = [
@@ -62,19 +61,6 @@ const data2 = [
     img: require('../assets/kids-play.jpg'),
   },
 ];
-const Tab = createBottomTabNavigator();
-
-const Item = ({title}: {title: string}) => (
-  <View
-    style={{
-      backgroundColor: 'orange',
-      gap: 8,
-      padding: 50,
-      width: '100%',
-    }}>
-    <Text>{title}</Text>
-  </View>
-);
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -85,7 +71,7 @@ const HomeScreen = () => {
 
   return (
     <View>
-      <Header  />
+      <Header />
       <ScrollView style={styles.homeContentsWraper}>
         <View style={styles.cardsWrapper}>
           <VerticalIconNameCard
@@ -160,10 +146,6 @@ const HomeScreen = () => {
           )}
           ItemSeparatorComponent={() => <View style={{marginHorizontal: 10}} />}
         />
-
-        {/* <TouchableOpacity onPress={() => props.navigation.navigate('Login')}>
-          <Text>Go to Login</Text>
-        </TouchableOpacity> */}
       </ScrollView>
     </View>
   );

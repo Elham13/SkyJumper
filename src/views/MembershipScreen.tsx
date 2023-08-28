@@ -6,7 +6,6 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import CalendarPicker from 'react-native-calendar-picker';
 import moment from 'moment';
 import MembershipCard from '../components/Cards/MembershipCard';
-import {Card} from '@rneui/base';
 import {useNavigation} from '@react-navigation/native';
 
 const today = moment().format('YYYY-MM-DD');
