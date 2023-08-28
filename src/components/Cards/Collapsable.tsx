@@ -10,9 +10,6 @@ import Animated, {
 import IonIcon from 'react-native-vector-icons/Ionicons';
 const width=Dimensions.get("screen").width
 type PropTypes = {
-    imgUrl: any;
-    title: string;
-    subTitle: string;
     price: string;
     discountText: string;
   };
@@ -94,7 +91,7 @@ const Collapsible = ({price,discountText}:PropTypes) => {
               </Text>
             </View>
           </View>
-          <Text style={styles.discountText}>hello</Text>
+          <Text style={styles.discountText}>{discountText}</Text>
         </View>
       </Animated.View>
     </View>

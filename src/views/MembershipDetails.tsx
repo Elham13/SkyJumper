@@ -15,7 +15,7 @@ const width=Dimensions.get("screen").width
       <PageHeader title="Membership Details" />
       <ScrollView>
       <SafeAreaView style={styles.container}>
-      <Collapsible />
+      <Collapsible discountText='Discount Text'   price=''/>
     </SafeAreaView>
         {/* <View style={styles.container}> */}
         {/* <AdvertisementCard title={'title'} imgUrl={require('../assets/TrampolinPark.jpg')} /> */}
