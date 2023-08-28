@@ -20,6 +20,7 @@ const Header = () => {
         <Image
           style={styles.menuIcon}
           source={require('../../assets/icons/menu.png')}
+          
         />
       </TouchableOpacity>
       <View style={styles.menuWraper}>

@@ -11,6 +11,7 @@ const MyDropdown = () => {
   ]);
 
   return (
+    <View style={styles.container}>
     <DropDownPicker
       open={open}
       value={value}
@@ -18,16 +19,21 @@ const MyDropdown = () => {
       setOpen={setOpen}
       setValue={setValue}
       setItems={setItems}
+      dropDownContainerStyle={styles.dropdown}
+      
     />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 0,
     justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
+    backgroundColor: '#ecf0f1',
+    paddingLeft:25,
+    paddingRight:25,
+    paddingTop:15,
   },
   dropdownButton: {
     flexDirection: 'row',
@@ -39,8 +45,8 @@ const styles = StyleSheet.create({
   dropdown: {
     width: '100%',
     position: 'absolute',
-    backgroundColor: 'white',
-    top: 52,
+    backgroundColor: 'orange',
+    top: 50,
   },
   option: {
     paddingHorizontal: 16,
