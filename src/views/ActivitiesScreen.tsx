@@ -6,10 +6,13 @@ import CalendarPicker from 'react-native-calendar-picker';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {TouchableOpacity} from 'react-native';
 import moment from 'moment';
+import MembershipCard from '../components/Cards/MembershipCard';
+import {useNavigation} from '@react-navigation/native';
 
 const today = moment().format('YYYY-MM-DD');
 
 const ActivitiesScreen = () => {
+  const navigation = useNavigation();
   const [dateVisible, setDateVisible] = useState<boolean>(false);
   const [dateToAttend, setDateToAttend] = useState(
     moment().format('YYYY-MM-DD'),
@@ -18,6 +21,10 @@ const ActivitiesScreen = () => {
 
   const onDateChange = (date: any) => {
     setDateToAttend(moment(date).format('YYYY-MM-DD'));
+  };
+
+  const goToDetailsPage = () => {
+    navigation.navigate('ActivityDetails' as never);
   };
 
   useEffect(() => {
@@ -96,6 +103,25 @@ const ActivitiesScreen = () => {
             );
           })}
         </View>
+
+        <View style={styles.membershipView}>
+          <MembershipCard
+            title="Trampoline Jump"
+            subtitle={['Open', 'Jump']}
+            price="Rs 700/Hr"
+            discountText="1 Child for ₹700 add-on additional children ₹500 per child"
+            imageTitle="Open Jump"
+            onClick={goToDetailsPage}
+          />
+          <MembershipCard
+            title="Sky Laser Tag"
+            subtitle={['Laser Tag', 'Gaming']}
+            price="Rs 1000.00/Hr"
+            discountText="1 Children for ₹1000 - add on additional children ₹500 per child"
+            imageTitle="Laser Tag Gaming"
+            onClick={goToDetailsPage}
+          />
+        </View>
       </ScrollView>
     </View>
   );
@@ -138,6 +164,9 @@ const styles = StyleSheet.create({
   },
   closeIcon: {
     color: 'red',
+  },
+  membershipView: {
+    paddingBottom: 30,
   },
   modalHeader: {
     padding: 16,

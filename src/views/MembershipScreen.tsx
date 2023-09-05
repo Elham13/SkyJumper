@@ -104,14 +104,18 @@ const MembershipScreen = () => {
         <View style={styles.membershipView}>
           <MembershipCard
             title="Monthly Membership"
+            subtitle={['Monthly', 'Membership']}
             price="Rs 1000/Month"
             discountText="With 10% discount All Activities"
+            imageTitle="Membership"
             onClick={goToDetailsPage}
           />
           <MembershipCard
             title="Yearly Membership"
+            subtitle={['Monthly', 'Membership']}
             price="Rs 18000/Month"
             discountText="With 10% discount All Activities"
+            imageTitle="Membership"
             onClick={goToDetailsPage}
           />
         </View>
