@@ -1,5 +1,13 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  ViewStyle,
+  StyleProp,
+} from 'react-native';
 
 type PropTypes = {
   title: string;
@@ -8,6 +16,7 @@ type PropTypes = {
   discountText: string;
   imageTitle: string;
   onClick: () => void;
+  style?: StyleProp<ViewStyle>;
 };
 
 const MembershipCard = ({
@@ -17,10 +26,11 @@ const MembershipCard = ({
   discountText,
   imageTitle,
   onClick,
+  style,
 }: PropTypes) => {
   return (
     <TouchableOpacity onPress={onClick}>
-      <View style={styles.container}>
+      <View style={[styles.container, style]}>
         <View style={styles.details}>
           <Text style={styles.title}>{title}</Text>
           <Text>
