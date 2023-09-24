@@ -1,15 +1,13 @@
 import React from 'react';
 import AuthWrapper from '../components/Auth/AuthWrapper';
 import AuthInitPage from '../components/Auth/AuthInitPage';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../routes';
+import {useNavigation} from '@react-navigation/native';
 
-type PropType = NativeStackScreenProps<RootStackParamList, 'InitialScreen'>;
-
-const InitialScreen = ({navigation}: PropType) => {
+const InitialScreen = () => {
+  const navigation = useNavigation();
   return (
     <AuthWrapper>
-      <AuthInitPage onClick={screen => navigation.navigate(screen)} />
+      <AuthInitPage onClick={screen => navigation.navigate(screen as never)} />
     </AuthWrapper>
   );
 };

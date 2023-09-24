@@ -1,23 +1,41 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  ViewStyle,
+  StyleProp,
+} from 'react-native';
 
 type PropTypes = {
   title: string;
+  subtitle: string[];
   price: string;
   discountText: string;
+  imageTitle: string;
   onClick: () => void;
+  style?: StyleProp<ViewStyle>;
 };
 
-const MembershipCard = ({title, price, discountText, onClick}: PropTypes) => {
+const MembershipCard = ({
+  title,
+  subtitle,
+  price,
+  discountText,
+  imageTitle,
+  onClick,
+  style,
+}: PropTypes) => {
   return (
     <TouchableOpacity onPress={onClick}>
-      <View style={styles.container}>
+      <View style={[styles.container, style]}>
         <View style={styles.details}>
           <Text style={styles.title}>{title}</Text>
-          {/* <Text style={styles.subtitle}>{subTitle}</Text> */}
           <Text>
-            <Text style={styles.subtitle1}>Monthly </Text>
-            <Text style={styles.subtitle2}>Membership</Text>
+            <Text style={styles.subtitle1}>{subtitle[0]} </Text>
+            <Text style={styles.subtitle2}>{subtitle[1]}</Text>
           </Text>
           <Text>
             <Text style={styles.priceHeading}>Price </Text> {price}
@@ -39,7 +57,7 @@ const MembershipCard = ({title, price, discountText, onClick}: PropTypes) => {
             <View style={styles.titleWrapper}>
               <Text
                 style={{...styles.txt, color: 'black', textAlign: 'center'}}>
-                {title}
+                {imageTitle}
               </Text>
             </View>
           </View>

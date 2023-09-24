@@ -1,18 +1,18 @@
-import {StyleSheet, View, SafeAreaView, ScrollView} from 'react-native';
+import {StyleSheet, View, ScrollView, SafeAreaView} from 'react-native';
 import React from 'react';
 import PageHeader from '../components/PageHeader';
 import Collapsible from '../components/Cards/Collapsable';
-import MembershipDetailsCollapsContent from '../components/Membership/MembershipDetailsCollapsContent';
+import ActivityDetailsCollapseContents from '../components/Activity/ActivityDetailsCollapseContents';
 
-const MembershipDetails = () => {
+const ActivityDetails = () => {
   return (
     <View style={{flex: 1}}>
-      <PageHeader title="Membership Details" />
+      <PageHeader title="Activity Details" />
       <ScrollView>
         <SafeAreaView style={styles.container}>
           <Collapsible
-            title="Monthly Membership"
-            content={<MembershipDetailsCollapsContent />}
+            title="Trampoline Jump"
+            content={<ActivityDetailsCollapseContents />}
           />
         </SafeAreaView>
       </ScrollView>
@@ -20,7 +20,7 @@ const MembershipDetails = () => {
   );
 };
 
-export default MembershipDetails;
+export default ActivityDetails;
 
 const styles = StyleSheet.create({
   container: {

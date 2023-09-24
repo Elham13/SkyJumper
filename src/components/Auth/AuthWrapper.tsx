@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, Platform, Image} from 'react-native';
+import {StyleSheet, View, Platform, Image, Dimensions} from 'react-native';
 import React from 'react';
 
 type PropType = {
@@ -6,10 +6,14 @@ type PropType = {
 };
 
 const AuthWrapper = ({children}: PropType) => {
+  const {height} = Dimensions.get('screen');
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.container}>
-        <Image style={styles.monkey} source={require('../../assets/monkey.png')} />
+    <View style={[styles.wrapper, {height}]}>
+      <View style={[styles.container, {height: height / 1.2}]}>
+        <Image
+          style={styles.monkey}
+          source={require('../../assets/monkey.png')}
+        />
         <Image style={styles.logo} source={require('../../assets/logo.png')} />
         {children}
       </View>
@@ -21,14 +25,12 @@ export default AuthWrapper;
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: Platform.OS === 'ios' ? '90%' : '100%',
     backgroundColor: 'orange',
     alignItems: 'center',
   },
   container: {
     alignItems: 'center',
     backgroundColor: '#fff',
-    height: '90%',
     width: 1000,
     borderBottomEndRadius: 100000,
     borderBottomStartRadius: 100000,

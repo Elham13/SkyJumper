@@ -8,20 +8,22 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
+  Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const LoginScreen = () => {
+  const {height, width} = Dimensions.get('screen');
   const navigation = useNavigation();
   const handleLogin = () => {
     navigation.navigate('Home' as never);
   };
 
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.container}>
+    <View style={[styles.wrapper, {height}]}>
+      <View style={[styles.container, {height: height / 1.2}]}>
         <Image
-          style={styles.monkey}
+          style={[styles.monkey, {width: width/2.5, bottom: -40}]}
           source={require('../assets/happyMonkey.png')}
         />
         <Image style={styles.logo} source={require('../assets/logo.png')} />
@@ -76,14 +78,12 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: Platform.OS === 'ios' ? '90%' : '100%',
     backgroundColor: 'orange',
     alignItems: 'center',
   },
   container: {
     alignItems: 'center',
     backgroundColor: '#fff',
-    height: '90%',
     width: 1000,
     borderBottomEndRadius: 100000,
     borderBottomStartRadius: 100000,
@@ -101,10 +101,8 @@ const styles = StyleSheet.create({
     color: '#2E90C0',
   },
   monkey: {
-    width: 200,
     objectFit: 'contain',
     position: 'absolute',
-    bottom: -30,
   },
   logo: {
     width: 100,

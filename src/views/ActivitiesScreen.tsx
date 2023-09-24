@@ -6,18 +6,27 @@ import CalendarPicker from 'react-native-calendar-picker';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {TouchableOpacity} from 'react-native';
 import moment from 'moment';
+import MembershipCard from '../components/Cards/MembershipCard';
+import {useNavigation} from '@react-navigation/native';
+import {insertOrRemoveFromArray} from '../utils/helpers';
 
 const today = moment().format('YYYY-MM-DD');
 
 const ActivitiesScreen = () => {
+  const navigation = useNavigation();
   const [dateVisible, setDateVisible] = useState<boolean>(false);
   const [dateToAttend, setDateToAttend] = useState(
     moment().format('YYYY-MM-DD'),
   );
   const [datesArr, setDatesArr] = useState<string[]>([]);
+  const [selected, setSelected] = useState<string[]>([]);
 
   const onDateChange = (date: any) => {
     setDateToAttend(moment(date).format('YYYY-MM-DD'));
+  };
+
+  const goToDetailsPage = () => {
+    navigation.navigate('ActivityDetails' as never);
   };
 
   useEffect(() => {
@@ -30,7 +39,9 @@ const ActivitiesScreen = () => {
     setDatesArr(datesArray);
   }, [dateToAttend]);
 
-  useEffect(() => {}, [datesArr, dateToAttend]);
+  useEffect(() => {
+    console.log('selected: ', selected);
+  }, [selected]);
 
   return (
     <View>
@@ -96,6 +107,37 @@ const ActivitiesScreen = () => {
             );
           })}
         </View>
+
+        <View style={styles.membershipView}>
+          <MembershipCard
+            title="Trampoline Jump"
+            subtitle={['Open', 'Jump']}
+            price="Rs 700/Hr"
+            discountText="1 Child for ₹700 add-on additional children ₹500 per child"
+            imageTitle="Open Jump"
+            onClick={() =>
+              setSelected([...insertOrRemoveFromArray(selected, 'trampoline')])
+            }
+            style={{
+              backgroundColor: selected.includes('trampoline')
+                ? '#FFDAB9'
+                : '#FDE9D6',
+            }}
+          />
+          <MembershipCard
+            title="Sky Laser Tag"
+            subtitle={['Laser Tag', 'Gaming']}
+            price="Rs 1000.00/Hr"
+            discountText="1 Children for ₹1000 - add on additional children ₹500 per child"
+            imageTitle="Laser Tag Gaming"
+            onClick={goToDetailsPage}
+            style={{}}
+          />
+        </View>
+        <TouchableOpacity style={styles.proceedBtn} activeOpacity={0.6}>
+          <Text style={styles.proceedBtnText}>Proceed</Text>
+          <Icon name="shoppingcart" size={24} style={styles.proceedBtnIcon} />
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );
@@ -104,6 +146,24 @@ const ActivitiesScreen = () => {
 export default ActivitiesScreen;
 
 const styles = StyleSheet.create({
+  proceedBtn: {
+    flexDirection: 'row',
+    backgroundColor: 'orange',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 10,
+    padding: 10,
+    borderRadius: 4,
+  },
+  proceedBtnText: {
+    fontWeight: '700',
+    fontSize: 20,
+    color: '#000',
+  },
+  proceedBtnIcon: {
+    fontWeight: '800',
+    color: '#000',
+  },
   selectedDate: {
     fontWeight: '800',
     fontSize: 18,
@@ -138,6 +198,9 @@ const styles = StyleSheet.create({
   },
   closeIcon: {
     color: 'red',
+  },
+  membershipView: {
+    paddingBottom: 30,
   },
   modalHeader: {
     padding: 16,

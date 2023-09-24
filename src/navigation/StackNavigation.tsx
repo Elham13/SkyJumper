@@ -8,6 +8,7 @@ import DrawerNavigation from './DrawerNavigation';
 import MainScreen from '../views/MainScreen';
 import MyProfileScreen from '../views/MyProfileScreen';
 import MembershipDetails from '../views/MembershipDetails';
+import ActivityDetails from '../views/ActivityDetails';
 
 const Stack = createStackNavigator();
 
@@ -42,6 +43,11 @@ const MainStack = () => {
       <Stack.Screen
         name="Home"
         component={MainScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ActivityDetails"
+        component={ActivityDetails}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
