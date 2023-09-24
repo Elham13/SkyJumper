@@ -5,14 +5,18 @@ import store from './src/redux/store';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
 import DrawerNavigation from './src/navigation/DrawerNavigation';
+import * as eva from '@eva-design/eva';
+import {ApplicationProvider} from '@ui-kitten/components';
 
 function App(): JSX.Element {
   return (
     <Provider store={store}>
       <SafeAreaProvider>
-        <NavigationContainer>
-          <DrawerNavigation />
-        </NavigationContainer>
+        <ApplicationProvider {...eva} theme={eva.light}>
+          <NavigationContainer>
+            <DrawerNavigation />
+          </NavigationContainer>
+        </ApplicationProvider>
       </SafeAreaProvider>
     </Provider>
   );

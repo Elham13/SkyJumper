@@ -10,26 +10,29 @@ import ReferAFriend from '../views/ReferAFriend';
 import FeedbackAndComplaints from '../views/FeedbackAndComplaints';
 import TermsAndConditions from '../views/TermsAndConditions';
 import {MainStack} from './StackNavigation';
+import DrawerContent from './DrawerContent';
+import MyProfileScreen from '../views/MyProfileScreen';
 
-const Drawer = createDrawerNavigator();
+const {Navigator,Screen} = createDrawerNavigator();
 
 const DrawerNavigation = () => {
   return (
-    <Drawer.Navigator screenOptions={{headerShown: false}}>
-      <Drawer.Screen name="Profile" component={MainStack} />
-      <Drawer.Screen name="Activities" component={ActivitiesScreen} />
-      <Drawer.Screen name="Wallet" component={MyWalletScreen} />
-      <Drawer.Screen name="Bookings" component={MyBookingsScreen} />
-      <Drawer.Screen name="WaiverForm" component={WaiverForm} />
-      <Drawer.Screen name="ContactUs" component={ContactUs} />
-      <Drawer.Screen name="SafetyVideo" component={SafetyVideo} />
-      <Drawer.Screen name="ReferFriend" component={ReferAFriend} />
-      <Drawer.Screen
+    <Navigator screenOptions={{headerShown: false}} drawerContent={props => <DrawerContent navigation={props.navigation} state={props.state} />}>
+      <Screen name="Home" component={MainStack} />
+      <Screen name="Profile" component={MyProfileScreen} />
+      <Screen name="Activities" component={ActivitiesScreen} />
+      <Screen name="Wallet" component={MyWalletScreen} />
+      <Screen name="Bookings" component={MyBookingsScreen} />
+      <Screen name="WaiverForm" component={WaiverForm} />
+      <Screen name="ContactUs" component={ContactUs} />
+      <Screen name="SafetyVideo" component={SafetyVideo} />
+      <Screen name="ReferFriend" component={ReferAFriend} />
+      <Screen
         name="FeedbackAndComplaint"
         component={FeedbackAndComplaints}
       />
-      <Drawer.Screen name="TermsAndConditions" component={TermsAndConditions} />
-    </Drawer.Navigator>
+      <Screen name="TermsAndConditions" component={TermsAndConditions} />
+    </Navigator>
   );
 };
 
