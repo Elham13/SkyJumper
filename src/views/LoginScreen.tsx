@@ -23,7 +23,7 @@ const LoginScreen = () => {
     <View style={[styles.wrapper, {height}]}>
       <View style={[styles.container, {height: height / 1.2}]}>
         <Image
-          style={[styles.monkey, {width: width/2.5, bottom: -40}]}
+          style={[styles.monkey, {width: width / 2.5, bottom: -40}]}
           source={require('../assets/happyMonkey.png')}
         />
         <Image style={styles.logo} source={require('../assets/logo.png')} />
@@ -54,11 +54,19 @@ const LoginScreen = () => {
           <View style={styles.inputsWrapper}>
             <View style={styles.inputWrapper}>
               <Icon name="phone" size={24} style={styles.icon} />
-              <TextInput style={styles.input} placeholder="Phone number" />
+              <TextInput
+                style={styles.input}
+                placeholder="Phone number"
+                placeholderTextColor="#aaa"
+              />
             </View>
             <View style={styles.inputWrapper}>
               <Icon name="lock" size={24} style={styles.icon} />
-              <TextInput style={styles.input} placeholder="OTP" />
+              <TextInput
+                style={styles.input}
+                placeholder="OTP"
+                placeholderTextColor="#aaa"
+              />
               <TouchableOpacity style={styles.send}>
                 <Text>Send</Text>
               </TouchableOpacity>
@@ -96,6 +104,7 @@ const styles = StyleSheet.create({
   headerTxt: {
     fontSize: 16,
     textAlign: 'center',
+    color: 'black',
   },
   headerTxt2: {
     color: '#2E90C0',
@@ -141,9 +150,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     fontSize: 16,
     flex: 1,
+    color: 'black',
   },
   send: {
-    backgroundColor: '#F7CD7',
+    backgroundColor: 'orange',
     borderRadius: 6,
     paddingVertical: 6,
     paddingHorizontal: 16,

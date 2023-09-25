@@ -40,5 +40,6 @@ const styles = StyleSheet.create({
   btnTxt: {
     fontSize: 16,
     fontWeight: 'bold',
+    color: 'black',
   },
 });

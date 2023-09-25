@@ -29,7 +29,7 @@ const MembershipCard = ({
   style,
 }: PropTypes) => {
   return (
-    <TouchableOpacity onPress={onClick}>
+    <TouchableOpacity activeOpacity={0.8} onPress={onClick}>
       <View style={[styles.container, style]}>
         <View style={styles.details}>
           <Text style={styles.title}>{title}</Text>
@@ -71,15 +71,16 @@ export default MembershipCard;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 35,
+    marginTop: 20,
     backgroundColor: '#FDE9D6',
-    borderRadius: 2,
+    borderRadius: 8,
     overflow: 'hidden',
     position: 'relative',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height: 150,
+    paddingVertical: 10,
+    paddingHorizontal: 5,
   },
   details: {
     marginLeft: 10,
