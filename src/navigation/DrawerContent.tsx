@@ -10,7 +10,7 @@ const DrawerContent = ({navigation, state}: DrawerContentProp) => (
   <Drawer
     selectedIndex={new IndexPath(state.index)}
     onSelect={index => navigation.navigate(state.routeNames[index.row])}>
-    <DrawerItem title="Profile" />
+    <DrawerItem title="Profile1" />
     <DrawerItem title="Activities" />
     <DrawerItem title="Wallet" />
     <DrawerItem title="Bookings" />
