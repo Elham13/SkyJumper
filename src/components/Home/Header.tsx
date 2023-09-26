@@ -5,8 +5,10 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {Badge} from '@rneui/themed';
 import {Picker} from '@react-native-picker/picker';
+import { DrawerActions, useNavigation } from '@react-navigation/native';
 
 const Header = () => {
+  const navigation = useNavigation()
   const [value, setValue] = useState('apple');
   const [items, setItems] = useState([
     {label: 'Delhi', value: 'delhi'},
@@ -14,9 +16,14 @@ const Header = () => {
     {label: 'Bangalore', value: 'Bangalore'},
   ]);
 
+  const openDrawer = () => {
+    navigation.dispatch(DrawerActions.openDrawer());
+  };
+
+
   return (
     <View style={styles.wrapper}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={openDrawer}>
         <Image
           style={styles.menuIcon}
           source={require('../../assets/icons/menu.png')}
