@@ -3,7 +3,6 @@ import React from 'react';
 import {
   View,
   StyleSheet,
-  Platform,
   Image,
   Text,
   TouchableOpacity,
@@ -12,8 +11,9 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+const {height, width} = Dimensions.get('screen');
+
 const LoginScreen = () => {
-  const {height, width} = Dimensions.get('screen');
   const navigation = useNavigation();
   const handleLogin = () => {
     navigation.navigate('Home' as never);
@@ -76,6 +76,25 @@ const LoginScreen = () => {
           <TouchableOpacity style={styles.login} onPress={handleLogin}>
             <Text style={styles.loginTxt}>Login</Text>
           </TouchableOpacity>
+
+          <View style={styles.autBtnWrapper}>
+            <TouchableOpacity>
+              <Image
+                source={require('../assets/facebook.png')}
+                width={20}
+                height={20}
+                style={styles.iconBtn}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Image
+                source={require('../assets/google.png')}
+                width={20}
+                height={20}
+                style={styles.iconBtn}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>
@@ -170,4 +189,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
   },
+  iconBtn: {width: width / 10, height: width / 10},
+  autBtnWrapper: {flexDirection: 'row', marginTop: 32, gap: 8},
 });

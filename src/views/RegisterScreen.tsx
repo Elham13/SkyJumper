@@ -4,11 +4,13 @@ import {
   View,
   Image,
   TextInput,
-  ScrollView,
+  Dimensions,
 } from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+
+const {width} = Dimensions.get('screen');
 
 const RegisterScreen = () => {
   return (
@@ -46,6 +48,25 @@ const RegisterScreen = () => {
             <TextInput style={styles.input} placeholder="Pin Code" />
             <Icon name="lock" size={24} style={styles.icon} />
           </View>
+        </View>
+
+        <View style={styles.autBtnWrapper}>
+          <TouchableOpacity>
+            <Image
+              source={require('../assets/facebook.png')}
+              width={20}
+              height={20}
+              style={styles.iconBtn}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Image
+              source={require('../assets/google.png')}
+              width={20}
+              height={20}
+              style={styles.iconBtn}
+            />
+          </TouchableOpacity>
         </View>
 
         <TouchableOpacity style={styles.alreadyBtn}>
@@ -122,11 +143,13 @@ const styles = StyleSheet.create({
     width: 280,
     backgroundColor: 'orange',
     borderRadius: 8,
-    padding: 10
+    padding: 10,
   },
   registerBtnTxt: {
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: 18
+    fontSize: 18,
   },
+  iconBtn: {width: width / 10, height: width / 10},
+  autBtnWrapper: {flexDirection: 'row', marginTop: 32, gap: 8},
 });
