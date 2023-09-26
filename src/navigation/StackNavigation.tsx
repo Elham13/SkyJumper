@@ -10,6 +10,7 @@ import MyProfileScreen from '../views/MyProfileScreen';
 import MembershipDetails from '../views/MembershipDetails';
 import ActivityDetails from '../views/ActivityDetails';
 import MyWalletScreen from '../views/MyWalletScreen';
+import NotificationsScreen from '../views/NotificationsScreen';
 
 const Stack = createStackNavigator();
 
@@ -42,11 +43,7 @@ const MainStack = () => {
         options={{headerShown: false}}
       />
       <Stack.Screen name="Wallet" component={MyWalletScreen} />
-      <Stack.Screen
-        name="Home"
-        component={MainScreen}
-        options={{headerShown: false}}
-      />
+      
       <Stack.Screen
         name="ActivityDetails"
         component={ActivityDetails}

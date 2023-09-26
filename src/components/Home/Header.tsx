@@ -39,7 +39,7 @@ const Header = () => {
           ))}
         </Picker>
       </View>
-      <TouchableOpacity style={styles.notificationBtn}>
+      <TouchableOpacity onPress={() => navigation.navigate('Notifications')} style={styles.notificationBtn}>
         <Icon name="bells" style={styles.notiIcon} />
         <Badge
           status="warning"
