@@ -26,6 +26,7 @@ const ActivityDetailsCollapseContents = ({data}: Props) => {
   const [dateToAttend, setDateToAttend] = useState(
     moment().format('YYYY-MM-DD'),
   );
+  const [timeToAttend, setTimeToAttend] = useState<string>('');
   const [datesArr, setDatesArr] = useState<string[]>([]);
 
   const onDateChange = (date: any) => {
@@ -88,10 +89,11 @@ const ActivityDetailsCollapseContents = ({data}: Props) => {
           return (
             <TouchableOpacity
               key={id}
+              onPress={() => setDateToAttend(date)}
               style={[
                 styles.weekDay,
                 {
-                  backgroundColor: id === 0 ? '#F99417' : '#FEC868',
+                  backgroundColor: id === 0 ? '#F97316' : '#FEC868',
                 },
               ]}
               activeOpacity={0.8}>
@@ -124,7 +126,14 @@ const ActivityDetailsCollapseContents = ({data}: Props) => {
           return (
             <TouchableOpacity
               key={id}
-              style={styles.weekDay}
+              onPress={() => setTimeToAttend(time)}
+              style={[
+                styles.weekDay,
+                {
+                  backgroundColor:
+                    timeToAttend === time ? '#F97316' : '#FEC868',
+                },
+              ]}
               activeOpacity={0.8}>
               <Text style={styles.timeText}>{time}</Text>
             </TouchableOpacity>
@@ -204,7 +213,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 2,
-    backgroundColor: '#FEC868',
   },
   timeText: {
     fontWeight: '700',

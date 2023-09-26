@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     marginTop: 20,
     justifyContent: 'space-between',
-    backgroundColor: '#F69131',
+    backgroundColor: '#F97316',
     width: width - 40,
     borderTopLeftRadius: 7,
     borderTopRightRadius: 7,
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
-  collapsTitle: {paddingLeft: 10, fontWeight: '700'},
+  collapsTitle: {paddingLeft: 10, fontWeight: '700', color: "#fff"},
   content: {
     width: width - 40,
     backgroundColor: '#FDE9D6',

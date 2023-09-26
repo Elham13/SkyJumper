@@ -84,11 +84,12 @@ const ActivitiesScreen = ({navigation}: Props) => {
             const isToday = moment(today).isSame(moment(date));
             return (
               <TouchableOpacity
+                onPress={() => setDateToAttend(date)}
                 key={id}
                 style={[
                   styles.weekDay,
                   {
-                    backgroundColor: id === 0 ? '#F99417' : '#FEC868',
+                    backgroundColor: id === 0 ? '#F97316' : '#FEC868',
                   },
                 ]}>
                 <Text
