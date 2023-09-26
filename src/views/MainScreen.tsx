@@ -6,7 +6,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import HomeScreen from './HomeScreen';
 import ActivitiesScreen from './ActivitiesScreen';
 import MembershipScreen from './MembershipScreen';
-import Screen3 from './Screen3';
+import HotOffers from './HotOffers';
 
 const Tab = createBottomTabNavigator();
 
@@ -67,7 +67,7 @@ const MainScreen = () => {
       <Tab.Screen name="Home1" component={HomeScreen} />
       <Tab.Screen name="Activities" component={ActivitiesScreen} />
       <Tab.Screen name="Membership" component={MembershipScreen} />
-      <Tab.Screen name="HotOffers" component={Screen3} />
+      <Tab.Screen name="HotOffers" component={HotOffers} />
     </Tab.Navigator>
   );
 };
