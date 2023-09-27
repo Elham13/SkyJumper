@@ -47,6 +47,12 @@ const AcctiveIcon = (props: IconProps): IconElement => (
     name='globe-outline'
   />
 );
+const BookingIcon = (props: IconProps): IconElement => (
+  <Icon
+    {...props}
+    name='shopping-cart-outline'
+  />
+);
 
 const Header = (props: ViewProps): React.ReactElement => (
   <>
@@ -73,7 +79,7 @@ const DrawerContent = ({navigation, state}: DrawerContentProp) => (
     <DrawerItem title="Profile" accessoryLeft={PersonIcon} accessoryRight={ForwardIcon} />
     <DrawerItem title="Activities" accessoryLeft={AcctiveIcon} accessoryRight={ForwardIcon} />
     <DrawerItem title="Wallet" accessoryLeft={WalletIcon} accessoryRight={ForwardIcon} />
-    <DrawerItem title="Bookings" accessoryRight={ForwardIcon} />
+    <DrawerItem title="Bookings" accessoryLeft={BookingIcon} accessoryRight={ForwardIcon} />
     <DrawerItem title="WaiverForm" accessoryRight={ForwardIcon} />
     <DrawerItem title="ContactUs" accessoryRight={ForwardIcon} />
     <DrawerItem title="SafetyVideo" accessoryRight={ForwardIcon} />

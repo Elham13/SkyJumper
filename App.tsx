@@ -8,13 +8,15 @@ import DrawerNavigation from './src/navigation/DrawerNavigation';
 import * as eva from '@eva-design/eva';
 import {ApplicationProvider, IconRegistry} from '@ui-kitten/components';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import { myTheme } from './custom-theme';
+
 
 function App(): JSX.Element {
   return (
     <Provider store={store}>
       <SafeAreaProvider>
         <IconRegistry icons={EvaIconsPack} />
-        <ApplicationProvider {...eva} theme={eva.light}>
+        <ApplicationProvider {...eva} theme={{...eva.light,...myTheme}}>
           <NavigationContainer>
             <DrawerNavigation />
           </NavigationContainer>
