@@ -5,6 +5,8 @@ import VerticalIconNameCard from '../components/Cards/VerticalIconNameCard';
 import AdvertisementCard from '../components/Cards/AdvertisementCard';
 import ImageAndTextCard from '../components/Cards/ImageAndTextCard';
 import {useNavigation} from '@react-navigation/native';
+import { ViewPagerLazyLoadingShowcase } from '../components/ImageCarousel';
+import HorizontalFlatListWithButtons from '../components/HorizontalFlatListWithButtons';
 
 const DATA = [
   {
@@ -119,7 +121,7 @@ const HomeScreen = () => {
           />
         </View>
 
-        <FlatList
+        {/* <FlatList
           data={DATA}
           keyExtractor={item => item.id}
           horizontal
@@ -129,9 +131,10 @@ const HomeScreen = () => {
             <AdvertisementCard title={item.title} imgUrl={item.img} />
           )}
           ItemSeparatorComponent={() => <View style={{marginHorizontal: 10}} />}
-        />
-
-        <FlatList
+        /> */}
+        <ViewPagerLazyLoadingShowcase images={DATA} />
+        <HorizontalFlatListWithButtons data={data2} />
+        {/* <FlatList
           data={data2}
           keyExtractor={item => item.id}
           horizontal
@@ -145,7 +148,7 @@ const HomeScreen = () => {
             />
           )}
           ItemSeparatorComponent={() => <View style={{marginHorizontal: 10}} />}
-        />
+        /> */}
       </ScrollView>
     </View>
   );
