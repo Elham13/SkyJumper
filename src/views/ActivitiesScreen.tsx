@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View, Modal} from 'react-native';
-import React, {useState, useEffect, useMemo} from 'react';
+import {StyleSheet, Text, View, Modal, SafeAreaView} from 'react-native';
+import React, {useState, useEffect} from 'react';
 import PageHeader from '../components/PageHeader';
 import {ScrollView} from 'react-native';
 import CalendarPicker from 'react-native-calendar-picker';
@@ -7,13 +7,15 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import {TouchableOpacity} from 'react-native';
 import moment from 'moment';
 import MembershipCard from '../components/Cards/MembershipCard';
-import {useNavigation} from '@react-navigation/native';
 import {insertOrRemoveFromArray} from '../utils/helpers';
 
 const today = moment().format('YYYY-MM-DD');
 
-const ActivitiesScreen = () => {
-  const navigation = useNavigation();
+type Props = {
+  navigation: any;
+};
+
+const ActivitiesScreen = ({navigation}: Props) => {
   const [dateVisible, setDateVisible] = useState<boolean>(false);
   const [dateToAttend, setDateToAttend] = useState(
     moment().format('YYYY-MM-DD'),
@@ -25,8 +27,8 @@ const ActivitiesScreen = () => {
     setDateToAttend(moment(date).format('YYYY-MM-DD'));
   };
 
-  const goToDetailsPage = () => {
-    navigation.navigate('ActivityDetails' as never);
+  const handleProceed = () => {
+    navigation.navigate('ActivityDetails', {data: selected});
   };
 
   useEffect(() => {
@@ -39,12 +41,12 @@ const ActivitiesScreen = () => {
     setDatesArr(datesArray);
   }, [dateToAttend]);
 
-  useEffect(() => {
-    console.log('selected: ', selected);
-  }, [selected]);
+  // useEffect(() => {
+  //   console.log('selected: ', selected);
+  // }, [selected]);
 
   return (
-    <View>
+    <SafeAreaView style={{flex: 1}}>
       <PageHeader title="Activities" />
       <ScrollView style={styles.contentsWrapper}>
         <View style={styles.whenAttend}>
@@ -82,11 +84,12 @@ const ActivitiesScreen = () => {
             const isToday = moment(today).isSame(moment(date));
             return (
               <TouchableOpacity
+                onPress={() => setDateToAttend(date)}
                 key={id}
                 style={[
                   styles.weekDay,
                   {
-                    backgroundColor: id === 0 ? '#F99417' : '#FEC868',
+                    backgroundColor: id === 0 ? '#F97316' : '#FEC868',
                   },
                 ]}>
                 <Text
@@ -120,7 +123,7 @@ const ActivitiesScreen = () => {
             }
             style={{
               backgroundColor: selected.includes('trampoline')
-                ? '#FFDAB9'
+                ? '#FFABC9'
                 : '#FDE9D6',
             }}
           />
@@ -130,16 +133,27 @@ const ActivitiesScreen = () => {
             price="Rs 1000.00/Hr"
             discountText="1 Children for ₹1000 - add on additional children ₹500 per child"
             imageTitle="Laser Tag Gaming"
-            onClick={goToDetailsPage}
-            style={{}}
+            onClick={() =>
+              setSelected([...insertOrRemoveFromArray(selected, 'laser tag')])
+            }
+            style={{
+              backgroundColor: selected.includes('laser tag')
+                ? '#FFABC9'
+                : '#FDE9D6',
+            }}
           />
         </View>
-        <TouchableOpacity style={styles.proceedBtn} activeOpacity={0.6}>
-          <Text style={styles.proceedBtnText}>Proceed</Text>
-          <Icon name="shoppingcart" size={24} style={styles.proceedBtnIcon} />
-        </TouchableOpacity>
+        {selected?.length > 0 && (
+          <TouchableOpacity
+            style={styles.proceedBtn}
+            activeOpacity={0.6}
+            onPress={handleProceed}>
+            <Text style={styles.proceedBtnText}>Proceed</Text>
+            <Icon name="shoppingcart" size={24} style={styles.proceedBtnIcon} />
+          </TouchableOpacity>
+        )}
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -154,6 +168,7 @@ const styles = StyleSheet.create({
     gap: 10,
     padding: 10,
     borderRadius: 4,
+    marginBottom: 20,
   },
   proceedBtnText: {
     fontWeight: '700',
@@ -184,7 +199,6 @@ const styles = StyleSheet.create({
   },
   contentsWrapper: {
     padding: 12,
-    backgroundColor: '#fff',
   },
   whenAttend: {
     flexDirection: 'row',

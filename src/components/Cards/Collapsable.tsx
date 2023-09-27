@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {Dimensions} from 'react-native';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {Text, StyleSheet, Dimensions, SafeAreaView, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Animated, {
   useSharedValue,
@@ -8,6 +7,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 const width = Dimensions.get('screen').width;
+
 type PropTypes = {
   title: string;
   content: JSX.Element;
@@ -27,47 +27,38 @@ const Collapsible = ({title, content}: PropTypes) => {
     if (isOpen) {
       height.value = 0;
     } else {
-      height.value = 330;
+      height.value = 500;
     }
-    console.log(isOpen);
     setIsOpen(!isOpen);
   };
 
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <View style={{flex: 1}}>
       <TouchableOpacity
-        style={{
-          display: 'flex',
-          marginTop: 20,
-          justifyContent: 'space-between',
-          backgroundColor: '#F69131',
-          width: width - 40,
-          borderTopLeftRadius: 7,
-          borderTopRightRadius: 7,
-          height: 40,
-          alignItems: 'center',
-          flexDirection: 'row',
-        }}
-        onPress={toggleView}>
-        <Text style={{paddingLeft: 10, fontWeight: '700'}}>{title}</Text>
-        <IonIcon
-          name="caret-down-outline"
-          style={{paddingRight: 10}}
-          size={22}
-        />
+        style={styles.collapsBtn}
+        onPress={toggleView}
+        activeOpacity={0.8}>
+        <Text style={styles.collapsTitle}>{title}</Text>
+        {isOpen ? (
+          <IonIcon
+            name="caret-up-outline"
+            style={{paddingRight: 10}}
+            size={22}
+          />
+        ) : (
+          <IonIcon
+            name="caret-down-outline"
+            style={{paddingRight: 10}}
+            size={22}
+          />
+        )}
       </TouchableOpacity>
-      <Animated.View
-        style={[
-          {
-            width: width - 40,
-            backgroundColor: '#FDE9D6',
-            borderBottomLeftRadius: 5,
-            borderBottomRightRadius: 5,
-          },
-          animatedStyles,
-        ]}>
-        {content}
-      </Animated.View>
+
+      <SafeAreaView style={{flex: 1}}>
+        <Animated.ScrollView style={[styles.content, animatedStyles]}>
+          {content}
+        </Animated.ScrollView>
+      </SafeAreaView>
     </View>
   );
 };
@@ -75,12 +66,28 @@ const Collapsible = ({title, content}: PropTypes) => {
 export default Collapsible;
 
 const styles = StyleSheet.create({
-  // container: {
-  //   alignSelf: 'center',
-  // },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  collapsBtn: {
+    display: 'flex',
+    marginTop: 20,
+    justifyContent: 'space-between',
+    backgroundColor: '#F97316',
+    width: width - 40,
+    borderTopLeftRadius: 7,
+    borderTopRightRadius: 7,
+    height: 40,
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  collapsTitle: {paddingLeft: 10, fontWeight: '700', color: "#fff"},
+  content: {
+    width: width - 40,
+    backgroundColor: '#FDE9D6',
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
   },
 });

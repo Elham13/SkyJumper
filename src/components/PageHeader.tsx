@@ -1,6 +1,15 @@
-import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
+
+const {width} = Dimensions.get('screen');
 
 type PropType = {
   title: string;
@@ -19,8 +28,7 @@ const PageHeader = ({title}: PropType) => {
           style={styles.icon}
         />
       </TouchableOpacity>
-      <Text style={styles.title}>{title}</Text>
-      <View style={{flex: 1}}></View>
+      <Text style={[styles.title]}>{title}</Text>
       <Image source={require('../assets/monkey.png')} style={styles.monkey} />
     </View>
   );
@@ -36,11 +44,10 @@ const styles = StyleSheet.create({
     paddingVertical: 18,
     borderBottomColor: 'lightgray',
     borderBottomWidth: 1,
-    shadowColor: 'gray',
-    shadowOffset: {width: 10, height: 10},
+    elevation: 10,
+    position: 'relative',
   },
   iconWrapper: {
-    flex: 1,
     paddingLeft: 8,
   },
   icon: {
@@ -50,9 +57,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: '700',
-    flex: 1,
     textAlign: 'center',
     fontSize: 20,
+    position: 'absolute',
+    alignSelf: 'center',
+    width,
+    zIndex: -1,
   },
   monkey: {
     position: 'absolute',

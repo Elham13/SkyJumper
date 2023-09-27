@@ -1,4 +1,9 @@
-import {SafeAreaView, StyleSheet, TouchableOpacity,ImageBackground} from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  TouchableOpacity,
+  ImageBackground,
+} from 'react-native';
 import React, {useState} from 'react';
 import {Text} from '@ui-kitten/components';
 import {
@@ -31,7 +36,7 @@ const MyProfileScreen = ({}) => {
   return (
     <SafeAreaView>
       <StyleView className="w-full h-full" level="3">
-        <PageHeader title='Profile' />
+        <PageHeader title="Profile" />
         <StyleView
           className="w-full h-32 flex justify-center items-center p-3"
           level="3">
@@ -39,10 +44,10 @@ const MyProfileScreen = ({}) => {
             {/* blob div start */}
             <StyleView className="absolute -top-20 -left-10 w-40 h-40  rounded-full bg-white opacity-10"></StyleView>
             <StyleView className="absolute -bottom-20 -right-10 w-40 h-40  rounded-full bg-white opacity-25">
-            <ImageBackground
-      style={styles.backgroundImage}
-      source={require('../assets/happyMonkey.png')}
-    />
+              <ImageBackground
+                style={styles.backgroundImage}
+                source={require('../assets/happyMonkey.png')}
+              />
             </StyleView>
             {/* blob div end */}
             <StyleView className="w-full h-full z-50 flex flex-row justify-start items-center p-3 bg-transparent">
@@ -105,9 +110,7 @@ const MyProfileScreen = ({}) => {
               className="w-full h-10 flex justify-center items-center self-end"
               level="3">
               <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('Home')
-                }
+                onPress={() => navigation.navigate('Home' as never)}
                 style={styles.logout}>
                 <Text category="label" appearance="hint">
                   SIGN OUT
@@ -137,7 +140,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     objectFit: 'cover',
-    marginVertical: 3
-    
+    marginVertical: 3,
   },
 });

@@ -81,7 +81,7 @@ const MembershipScreen = () => {
                 key={id}
                 style={[
                   styles.weekDay,
-                  {backgroundColor: id === 0 ? '#F99417' : '#FEC868'},
+                  {backgroundColor: id === 0 ? '#F97316' : '#FEC868'},
                 ]}>
                 <Text
                   style={{
