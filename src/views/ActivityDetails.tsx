@@ -24,7 +24,7 @@ type Props = {
 
 const ActivityDetails = ({route}: Props) => {
   return (
-    <View style={{flex: 1}}>
+    <StyleView className='w-full h-full' level='1'>
       <PageHeader title="Activity Details" />
       <ScrollView>
         <View style={styles.container}>
@@ -39,20 +39,19 @@ const ActivityDetails = ({route}: Props) => {
             : ''}
         </View>
       </ScrollView>
-      <StyleView className="bg-orange-500 p-2 flex-row gap-2">
-        <TouchableOpacity activeOpacity={0.7} style={styles.bottomBtn}>
-          <StyleText className="text-slate-100 text-center py-2">
+      <StyleView className="w-full h-20 flex flex-row justify-center items-center space-x-2 bg-orange-500">
+        <StyleButton className='w-5/12' accessoryRight={<Icon fill="#ffffff" name="arrow-ios-upward-outline" />} status='control' appearance='outline'>
+          <StyleText  category='label'>
             View (RS 00.00/-)
           </StyleText>
-        </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.7} style={styles.bottomBtn}>
-          <StyleText className="text-slate-100 text-center p-2">
+        </StyleButton>
+        <StyleButton accessoryRight={<Icon fill="#ffffff" name="shopping-cart-outline" />} className='w-5/12 ' status='control' appearance='outline' >
+          <StyleText category='label'>
             Checkout
           </StyleText>
-          <Icon fill="#8F9BB3" name="star" />
-        </TouchableOpacity>
+        </StyleButton>
       </StyleView>
-    </View>
+    </StyleView>
   );
 };
 

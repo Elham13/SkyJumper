@@ -6,9 +6,12 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import {Badge} from '@rneui/themed';
 import {Picker} from '@react-native-picker/picker';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
+import { StyleSelect } from '../../utils/TailwindAndUIkiteCombination';
+import { IndexPath, SelectItem } from '@ui-kitten/components';
 
 const Header = () => {
   const navigation = useNavigation()
+  const [selectedIndex, setSelectedIndex] = React.useState<IndexPath | IndexPath[]>(new IndexPath(0));
   const [value, setValue] = useState('apple');
   const [items, setItems] = useState([
     {label: 'Delhi', value: 'delhi'},
@@ -30,7 +33,7 @@ const Header = () => {
           
         />
       </TouchableOpacity>
-      <View style={styles.menuWraper}>
+      {/* <View style={styles.menuWraper}>
         <Picker
           selectedValue={value}
           onValueChange={(itemValue, itemIndex) => setValue(itemValue)}>
@@ -38,7 +41,16 @@ const Header = () => {
             <Picker.Item key={index} label={item.label} value={item.value} />
           ))}
         </Picker>
-      </View>
+      </View> */}
+      <StyleSelect
+       className='w-40 border-non'
+        selectedIndex={selectedIndex}
+        onSelect={index => setSelectedIndex(index)}
+      >
+        <SelectItem title='Option 1' />
+        <SelectItem title='Option 2' />
+        <SelectItem title='Option 3' />
+      </StyleSelect>
       <TouchableOpacity onPress={() => navigation.navigate('Notifications')} style={styles.notificationBtn}>
         <Icon name="bells" style={styles.notiIcon} />
         <Badge

@@ -44,11 +44,7 @@ const MainStack = () => {
       />
       <Stack.Screen name="Wallet" component={MyWalletScreen} />
       
-      <Stack.Screen
-        name="ActivityDetails"
-        component={ActivityDetails}
-        options={{headerShown: false}}
-      />
+      
     </Stack.Navigator>
   );
 };

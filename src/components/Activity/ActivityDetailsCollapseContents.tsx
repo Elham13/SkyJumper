@@ -3,10 +3,33 @@ import React, {useState, useEffect} from 'react';
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/AntDesign';
 import CalendarPicker from 'react-native-calendar-picker';
+import { StyleView } from '../../utils/TailwindAndUIkiteCombination';
+import PersonSelection from './PersonSelection';
+import ProductsList from './ProductsList';
 
 type Props = {
   data: string;
 };
+
+export interface SelectionProps{
+  type: string,
+    price: Number,
+    count: Number
+}
+
+export interface PersonSelectionProps {
+  Age5: SelectionProps,
+  OneAdult: SelectionProps,
+  TwoAdult: SelectionProps
+}
+export interface ProductSelectionProps {
+  XXS: SelectionProps,
+  XS: SelectionProps,
+  Small: SelectionProps,
+  Medium: SelectionProps,
+  Large: SelectionProps,
+  XLarge: SelectionProps,
+}
 
 const timesArray = [
   '12:00 PM',
@@ -29,6 +52,63 @@ const ActivityDetailsCollapseContents = ({data}: Props) => {
   const [timeToAttend, setTimeToAttend] = useState<string>('');
   const [datesArr, setDatesArr] = useState<string[]>([]);
 
+  const [personSelectionData,setPersonSelectionData] = useState<PersonSelectionProps>({
+    Age5: {
+      type: 'Age 5+',
+      price: 415,
+      count: 0
+    },
+    OneAdult: {
+      type: 'Age 5+ with 1 adult',
+      price: 700,
+      count: 0
+    },
+    TwoAdult: {
+      type: "Age 5+ additional 2-4 year old's with 2 adult",
+      price: 1000,
+      count: 0
+    }
+
+  })
+  const [productSelectionData,setProductSelectionData] = useState<ProductSelectionProps>({
+    XXS: {
+      type: 'XXS Socks',
+      price: 100,
+      count: 0
+    },
+    XS: {
+      type: 'XS Socks(UK 9-10)',
+      price: 100,
+      count: 0
+    },
+    Small: {
+      type: "Small Socks(UK 11-1)",
+      price: 100,
+      count: 0
+    },
+    Medium: {
+      type: "Medium Socks(UK 2-5)",
+      price: 100,
+      count: 0
+    },
+    Large: {
+      type: "Large Socks(UK 6-9)(Adult)",
+      price: 100,
+      count: 0
+    },
+    XLarge: {
+      type: "X Large Socks(UK 9-12)(Adult)",
+      price: 100,
+      count: 0
+    },
+
+  })
+
+  const [productData,setProductData] = useState({
+    name: 'Stock',
+    details: 'All persons must wear jumps adventure trampoline socks when using the activity'
+  })
+
   const onDateChange = (date: any) => {
     setDateToAttend(moment(date).format('YYYY-MM-DD'));
   };
@@ -42,6 +122,7 @@ const ActivityDetailsCollapseContents = ({data}: Props) => {
     }
     setDatesArr(datesArray);
   }, [dateToAttend]);
+
 
   return (
     <View style={styles.container}>
@@ -140,6 +221,12 @@ const ActivityDetailsCollapseContents = ({data}: Props) => {
           );
         })}
       </View>
+      <StyleView className='w-full py-10 bg-transparent'>
+        <PersonSelection data={personSelectionData} handleChange={setPersonSelectionData} />
+      </StyleView>
+      <StyleView className='w-full py-10 bg-transparent'>
+        <ProductsList product={productData} data={productSelectionData} handleChange={setProductSelectionData} />
+      </StyleView>
     </View>
   );
 };
@@ -149,6 +236,7 @@ export default ActivityDetailsCollapseContents;
 const styles = StyleSheet.create({
   container: {
     padding: 12,
+    paddingBottom: 40
   },
   time: {
     backgroundColor: 'orange',

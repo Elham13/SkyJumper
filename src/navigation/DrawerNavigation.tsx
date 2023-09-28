@@ -15,6 +15,7 @@ import HomeScreen from '../views/HomeScreen';
 import MainScreen from '../views/MainScreen';
 import { MainStack } from './StackNavigation';
 import NotificationsScreen from '../views/NotificationsScreen';
+import ActivityDetails from '../views/ActivityDetails';
 
 const {Navigator,Screen} = createDrawerNavigator();
 
@@ -38,6 +39,11 @@ const DrawerNavigation = () => {
       <Screen
         name="Notifications"
         component={NotificationsScreen}
+        options={{headerShown: false}}
+      />
+      <Screen
+        name="ActivityDetails"
+        component={ActivityDetails}
         options={{headerShown: false}}
       />
       <Screen name='Tabs' component={MainScreen} />
