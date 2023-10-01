@@ -12,7 +12,7 @@ import { IndexPath, SelectItem } from '@ui-kitten/components';
 const Header = () => {
   const navigation = useNavigation()
   const [selectedIndex, setSelectedIndex] = React.useState<IndexPath | IndexPath[]>(new IndexPath(0));
-  const [value, setValue] = useState('apple');
+  const [value, setValue] = useState('Delhi');
   const [items, setItems] = useState([
     {label: 'Delhi', value: 'delhi'},
     {label: 'Channai', value: 'Channai'},
@@ -43,13 +43,14 @@ const Header = () => {
         </Picker>
       </View> */}
       <StyleSelect
-       className='w-40 border-non'
+       className='w-40'
         selectedIndex={selectedIndex}
-        onSelect={index => setSelectedIndex(index)}
+        onSelect={index => {setSelectedIndex(index); setValue(items[selectedIndex.row].label)}}
+        value={value}
       >
-        <SelectItem title='Option 1' />
-        <SelectItem title='Option 2' />
-        <SelectItem title='Option 3' />
+        {items.map((item,i) => (
+        <SelectItem key={i} className='bg-yellow-500 text-red-500' title={item.label} />
+        ))}
       </StyleSelect>
       <TouchableOpacity onPress={() => navigation.navigate('Notifications')} style={styles.notificationBtn}>
         <Icon name="bells" style={styles.notiIcon} />
@@ -93,5 +94,8 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     width: 36,
+  },
+  selectItem: {
+    color: '#000000', // Set text color to gray
   },
 });

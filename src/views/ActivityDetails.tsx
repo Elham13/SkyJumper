@@ -34,6 +34,7 @@ const ActivityDetails = ({route}: Props) => {
                   key={index}
                   title={camelCaseToProperCase(elem)}
                   content={<ActivityDetailsCollapseContents data={elem} />}
+                  defaultOpen={index === 0 ? true : false}
                 />
               ))
             : ''}

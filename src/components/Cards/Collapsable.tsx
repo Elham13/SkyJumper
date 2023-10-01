@@ -11,11 +11,12 @@ const width = Dimensions.get('screen').width;
 type PropTypes = {
   title: string;
   content: JSX.Element;
+  defaultOpen: boolean
 };
 
-const Collapsible = ({title, content}: PropTypes) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const height = useSharedValue(0);
+const Collapsible = ({title, content,defaultOpen}: PropTypes) => {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+  const height = useSharedValue(defaultOpen ? 500 : 0);
 
   const animatedStyles = useAnimatedStyle(() => {
     return {

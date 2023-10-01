@@ -37,21 +37,25 @@ const HorizontalFlatListWithButtons = ({data}: Item[]) => {
   const renderItem = ({item}: {item: Item}) => (
     <StyleView
       level="1"
-      className="relative w-80 flex justify-center items-center px-2 py-1">
+      className="relative w-96  justify-center items-center">
       <StyleImageBackground
         source={item.img}
-        className="w-full h-full object-contain"
-      />
-      <StyleView className="w-full h-full absolute  opacity-25 flex justify-center items-center"></StyleView>
-      <StyleView className="absolute p-2 w-10/12 min-h-20 bg-orange-200 rounded-lg flex justify-center items-center" level="1">
+        className="w-full h-full object-contain flex justify-center items-center"
+      >
+        
+      {/* <StyleView className="w-full h-full absolute  opacity-25 flex justify-center items-center"></StyleView> */}
+      <StyleView className="p-2 w-10/12 h-5/6 bg-orange-600 opacity-50 rounded-lg flex justify-center items-center" level="1">
+      <StyleView className="p-2 absolute w-full h-full bg-white rounded-lg flex justify-center items-center" level="1">
         <StyleText category='c1'>{item.text}</StyleText>
       </StyleView>
+      </StyleView>
+      </StyleImageBackground>
     </StyleView>
   );
 
   return (
-    <StyleView className="w-full h-60 flex flex-row justify-between items-center ">
-      <StyleTouchableOpacity
+    <StyleView className="w-full h-60 flex flex-row justify-between items-center rounded-xl overflow-hidden ">
+      {/* <StyleTouchableOpacity
         onPress={handleBack}
         disabled={currentIndex === 0}
         className="w-1/12">
@@ -59,7 +63,7 @@ const HorizontalFlatListWithButtons = ({data}: Item[]) => {
           className="w-8 h-8 text-gray-900"
           name="arrow-ios-back-outline"
         />
-      </StyleTouchableOpacity>
+      </StyleTouchableOpacity> */}
       <FlatList
         ref={flatListRef}
         data={data}
@@ -73,7 +77,7 @@ const HorizontalFlatListWithButtons = ({data}: Item[]) => {
           index,
         })}
       />
-      <StyleTouchableOpacity
+      {/* <StyleTouchableOpacity
         className="w-1/12"
         onPress={handleForward}
         disabled={currentIndex === data.length - 1}>
@@ -81,7 +85,7 @@ const HorizontalFlatListWithButtons = ({data}: Item[]) => {
           className="w-8 h-8 text-gray-100"
           name="arrow-ios-forward-outline"
         />
-      </StyleTouchableOpacity>
+      </StyleTouchableOpacity> */}
     </StyleView>
   );
 };
