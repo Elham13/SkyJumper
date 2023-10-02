@@ -14,6 +14,12 @@ const Header = () => {
   const [selectedIndex, setSelectedIndex] = React.useState<
     IndexPath | IndexPath[]
   >(new IndexPath(0));
+  const [value, setValue] = useState('Delhi');
+  const [items, setItems] = useState([
+    {label: 'Delhi', value: 'delhi'},
+    {label: 'Channai', value: 'Channai'},
+    {label: 'Bangalore', value: 'Bangalore'},
+  ]);
 
   const openDrawer = () => {
     navigation.dispatch(DrawerActions.openDrawer());
@@ -37,12 +43,20 @@ const Header = () => {
         </Picker>
       </View> */}
       <StyleSelect
-        className="w-40 border-non"
+        className="w-40"
         selectedIndex={selectedIndex}
-        onSelect={index => setSelectedIndex(index)}>
-        <SelectItem title="Option 1" />
-        <SelectItem title="Option 2" />
-        <SelectItem title="Option 3" />
+        onSelect={index => {
+          setSelectedIndex(index);
+          setValue(items[selectedIndex.row].label);
+        }}
+        value={value}>
+        {items.map((item, i) => (
+          <SelectItem
+            key={i}
+            className="bg-yellow-500 text-red-500"
+            title={item.label}
+          />
+        ))}
       </StyleSelect>
       <TouchableOpacity
         onPress={() => navigation.navigate('Notifications')}
@@ -88,5 +102,8 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     width: 36,
+  },
+  selectItem: {
+    color: '#000000', // Set text color to gray
   },
 });

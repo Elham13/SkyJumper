@@ -33,9 +33,9 @@ export const ViewPagerLazyLoadingShowcase = ({images}): React.ReactElement => {
       {images.map((image, index) => (
         <StyleView key={index} level='2' className='rounded-xl my-2 shadow-xl' style={styles.tab}>
           <ImageBackground source={image.img} style={styles.image} />
-          <StyleView className='absolute bottom-0 w-full h-20 space-y-1 flex justify-center items-center' level='1'>
-              <StyleText category='c1' appearance='hint'>Call us +918882288001</StyleText>
-              <StyleText category='c1' appearance='hint'>Email: enquirey@skyjumpertp.com</StyleText>
+          <StyleView className='absolute bottom-0 w-full h-20 space-y-1 flex justify-center items-center bg-orange-500' level='1'>
+              <StyleText category='c1' appearance='hint' className='text-black'>Call us +918882288001</StyleText>
+              <StyleText category='c1' appearance='hint' className='text-black'>Email: enquirey@skyjumpertp.com</StyleText>
               <StyleText category='label' appearance='hint' className='bg-black p-2 rounded-xl'>{image.title}</StyleText>
           </StyleView>
         </StyleView>
