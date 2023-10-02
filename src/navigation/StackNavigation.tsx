@@ -7,6 +7,7 @@ import RegisterScreen from '../views/RegisterScreen';
 import MyProfileScreen from '../views/MyProfileScreen';
 import MembershipDetails from '../views/MembershipDetails';
 import MyWalletScreen from '../views/MyWalletScreen';
+import MainScreen from '../views/MainScreen';
 
 const Stack = createStackNavigator();
 
@@ -28,7 +29,11 @@ const MainStack = () => {
         component={RegisterScreen}
         options={{headerShown: false}}
       />
-      <Stack.Screen name='Home' component={MainScreen} options={{headerShown: false}}  />
+      <Stack.Screen
+        name="Home"
+        component={MainScreen}
+        options={{headerShown: false}}
+      />
       <Stack.Screen
         name="MembershipDetails"
         component={MembershipDetails}

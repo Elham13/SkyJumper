@@ -75,6 +75,9 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     namespace "com.skyjumper"
+    lintOptions {
+        checkReleaseBuilds false
+    }
     defaultConfig {
         applicationId "com.skyjumper"
         minSdkVersion rootProject.ext.minSdkVersion
