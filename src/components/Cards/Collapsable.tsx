@@ -8,13 +8,13 @@ import Animated, {
 import IonIcon from 'react-native-vector-icons/Ionicons';
 const width = Dimensions.get('screen').width;
 
-type PropTypes = {
+type CollapsibleProps = {
   title: string;
   content: JSX.Element;
   defaultOpen: boolean
 };
 
-const Collapsible = ({title, content,defaultOpen}: PropTypes) => {
+const Collapsible = ({title, content,defaultOpen}: CollapsibleProps) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
   const height = useSharedValue(defaultOpen ? 500 : 0);
 

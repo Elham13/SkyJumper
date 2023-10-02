@@ -16,7 +16,7 @@ const Stack = createStackNavigator();
 
 const MainStack = () => {
   return (
-    <Stack.Navigator initialRouteName="InitialScreen">
+    <Stack.Navigator>
       <Stack.Screen
         name="InitialScreen"
         component={InitialScreen}
@@ -32,6 +32,7 @@ const MainStack = () => {
         component={RegisterScreen}
         options={{headerShown: false}}
       />
+      <Stack.Screen name='Home' component={MainScreen} options={{headerShown: false}}  />
       <Stack.Screen
         name="MembershipDetails"
         component={MembershipDetails}

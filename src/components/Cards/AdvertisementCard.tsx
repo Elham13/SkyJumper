@@ -1,12 +1,12 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 
-type PropTypes = {
+type AdvertisementCardProps = {
   imgUrl: any;
   title: string;
 };
 
-const AdvertisementCard = ({imgUrl, title}: PropTypes) => {
+const AdvertisementCard = ({imgUrl, title}: AdvertisementCardProps) => {
   return (
     <View style={styles.container}>
       <Image source={imgUrl} style={styles.bgImg} />

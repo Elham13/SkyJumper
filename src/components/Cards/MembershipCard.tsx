@@ -9,7 +9,7 @@ import {
   StyleProp,
 } from 'react-native';
 
-type PropTypes = {
+type MembershipCardProps = {
   title: string;
   subtitle: string[];
   price: string;
@@ -27,7 +27,7 @@ const MembershipCard = ({
   imageTitle,
   onClick,
   style,
-}: PropTypes) => {
+}: MembershipCardProps) => {
   return (
     <TouchableOpacity activeOpacity={0.8} onPress={onClick}>
       <View style={[styles.container, style]}>

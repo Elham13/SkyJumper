@@ -16,13 +16,16 @@ import MainScreen from '../views/MainScreen';
 import { MainStack } from './StackNavigation';
 import NotificationsScreen from '../views/NotificationsScreen';
 import ActivityDetails from '../views/ActivityDetails';
+import { useMyContext } from '../components/MyContext';
 
 const {Navigator,Screen} = createDrawerNavigator();
 
 const DrawerNavigation = () => {
+  const {data,setData} = useMyContext()
   return (
-    <Navigator initialRouteName='Home' screenOptions={{headerShown: false}} drawerContent={props => <DrawerContent navigation={props.navigation} state={props.state} />}>
-      <Screen name='Home' component={MainScreen} />
+    <Navigator initialRouteName={data ? 'Home' : 'InitialScreen'} screenOptions={{headerShown: false}} drawerContent={props => <DrawerContent navigation={props.navigation} state={props.state} />}>
+      <Screen name='InitialScreen' component={MainStack} />
+      {/* <Screen name='Home' component={MainScreen} /> */}
         <Screen name="My Profile" component={MyProfileScreen} />
       <Screen name="Activities" component={ActivitiesScreen} />
       <Screen name="My Wallet" component={MyWalletScreen} />
@@ -46,7 +49,7 @@ const DrawerNavigation = () => {
         component={ActivityDetails}
         options={{headerShown: false}}
       />
-      <Screen name='Tabs' component={MainScreen} />
+      {/* <Screen name='Tabs' component={MainScreen} /> */}
     </Navigator>
   );
 };
