@@ -17,7 +17,7 @@ const MainScreen = () => {
         headerShown: false,
         tabBarStyle: {backgroundColor: 'orange'},
         tabBarIcon: ({focused, color, size}) => {
-          if (route.name === 'Home1') {
+          if (route.name === 'Home') {
             return (
               <Icon
                 name="home"
@@ -64,7 +64,7 @@ const MainScreen = () => {
           }
         },
       })}>
-      <Tab.Screen name="Home1" component={HomeScreen} />
+      <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Activities" component={ActivitiesScreen} />
       <Tab.Screen name="Membership" component={MembershipScreen} />
       <Tab.Screen name="HotOffers" component={HotOffers} />

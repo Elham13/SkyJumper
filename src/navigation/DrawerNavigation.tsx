@@ -16,18 +16,22 @@ import MainScreen from '../views/MainScreen';
 import {MainStack} from './StackNavigation';
 import NotificationsScreen from '../views/NotificationsScreen';
 import ActivityDetails from '../views/ActivityDetails';
+import InitialScreen from '../views/InitialScreen';
+import LoginScreen from '../views/LoginScreen';
+import RegisterScreen from '../views/RegisterScreen';
 
 const {Navigator, Screen} = createDrawerNavigator();
 
 const DrawerNavigation = () => {
   return (
     <Navigator
-      initialRouteName="Home"
+      initialRouteName="InitialScreen"
       screenOptions={{headerShown: false}}
       drawerContent={props => (
         <DrawerContent navigation={props.navigation} state={props.state} />
       )}>
       <Screen name="Home" component={MainScreen} />
+      <Screen name="InitialScreen" component={InitialScreen} />
       <Screen name="My Profile" component={MyProfileScreen} />
       <Screen name="Activities" component={ActivitiesScreen} />
       <Screen name="My Wallet" component={MyWalletScreen} />
@@ -36,6 +40,8 @@ const DrawerNavigation = () => {
       <Screen name="Contact Us" component={ContactUs} />
       <Screen name="SkyJumper Safety Video" component={SafetyVideo} />
       <Screen name="Refer a Friend" component={ReferAFriend} />
+      <Screen name="Login" component={LoginScreen} />
+      <Screen name="Register" component={RegisterScreen} />
       <Screen
         name="Feedback And Complaints"
         component={FeedbackAndComplaints}
