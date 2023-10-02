@@ -1,13 +1,13 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 
-type PropTypes = {
+type VerticalIconNameCardProps = {
   iconUrl: any;
   text: string;
   onClick: () => void;
 };
 
-const VerticalIconNameCard = ({iconUrl, text, onClick}: PropTypes) => {
+const VerticalIconNameCard = ({iconUrl, text, onClick}: VerticalIconNameCardProps) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onClick}>
       <Image source={iconUrl} style={styles.icon} />

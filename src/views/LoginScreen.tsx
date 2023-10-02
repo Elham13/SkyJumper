@@ -10,12 +10,15 @@ import {
   Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useMyContext } from '../components/MyContext';
 
 const {height, width} = Dimensions.get('screen');
 
 const LoginScreen = () => {
+  const {data,setData} = useMyContext()
   const navigation = useNavigation();
   const handleLogin = () => {
+    setData(true)
     navigation.navigate('Home' as never);
   };
 

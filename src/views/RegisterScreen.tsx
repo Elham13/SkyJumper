@@ -5,6 +5,8 @@ import {
   Image,
   TextInput,
   Dimensions,
+  SafeAreaView,
+  ScrollView,
 } from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -14,69 +16,73 @@ const {width} = Dimensions.get('screen');
 
 const RegisterScreen = () => {
   return (
-    <View style={styles.container}>
-      <Image style={styles.logo} source={require('../assets/logo.png')} />
-      <View style={styles.contents}>
-        <Text style={styles.welcome}>Welcome</Text>
-        <Text style={styles.headerTxt}>
-          By signing up you are agreeing our{' '}
-          <Text style={styles.headerTxt2}>Terms and privacy policy</Text>
-        </Text>
+    <SafeAreaView>
+      <ScrollView>
+        <View style={styles.container}>
+          <Image style={styles.logo} source={require('../assets/logo.png')} />
+          <View style={styles.contents}>
+            <Text style={styles.welcome}>Welcome</Text>
+            <Text style={styles.headerTxt}>
+              By signing up you are agreeing our{' '}
+              <Text style={styles.headerTxt2}>Terms and privacy policy</Text>
+            </Text>
 
-        <View style={styles.inputsWrapper}>
-          <View style={styles.inputWrapper}>
-            <TextInput style={styles.input} placeholder="Your name" />
-            <Icon name="user" size={24} style={styles.icon} />
-          </View>
-          <View style={styles.inputWrapper}>
-            <TextInput style={styles.input} placeholder="Phone number" />
-            <Icon name="phone" size={24} style={styles.icon} />
-          </View>
-          <View style={styles.inputWrapper}>
-            <TextInput style={styles.input} placeholder="Email" />
-            <Icon name="at" size={24} style={styles.icon} />
-          </View>
-          <View style={styles.inputWrapper}>
-            <TextInput style={styles.input} placeholder="DOB" />
-            <Icon name="calendar" size={24} style={styles.icon} />
-          </View>
-          <View style={styles.inputWrapper}>
-            <TextInput style={styles.input} placeholder="City" />
-            <Icon name="map-pin" size={24} style={styles.icon} />
-          </View>
-          <View style={styles.inputWrapper}>
-            <TextInput style={styles.input} placeholder="Pin Code" />
-            <Icon name="lock" size={24} style={styles.icon} />
+            <View style={styles.inputsWrapper}>
+              <View style={styles.inputWrapper}>
+                <TextInput style={styles.input} placeholder="Your name" />
+                <Icon name="user" size={24} style={styles.icon} />
+              </View>
+              <View style={styles.inputWrapper}>
+                <TextInput style={styles.input} placeholder="Phone number" />
+                <Icon name="phone" size={24} style={styles.icon} />
+              </View>
+              <View style={styles.inputWrapper}>
+                <TextInput style={styles.input} placeholder="Email" />
+                <Icon name="at" size={24} style={styles.icon} />
+              </View>
+              <View style={styles.inputWrapper}>
+                <TextInput style={styles.input} placeholder="DOB" />
+                <Icon name="calendar" size={24} style={styles.icon} />
+              </View>
+              <View style={styles.inputWrapper}>
+                <TextInput style={styles.input} placeholder="City" />
+                <Icon name="map-pin" size={24} style={styles.icon} />
+              </View>
+              <View style={styles.inputWrapper}>
+                <TextInput style={styles.input} placeholder="Pin Code" />
+                <Icon name="lock" size={24} style={styles.icon} />
+              </View>
+            </View>
+
+            <View style={styles.autBtnWrapper}>
+              <TouchableOpacity>
+                <Image
+                  source={require('../assets/facebook.png')}
+                  width={20}
+                  height={20}
+                  style={styles.iconBtn}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Image
+                  source={require('../assets/google.png')}
+                  width={20}
+                  height={20}
+                  style={styles.iconBtn}
+                />
+              </TouchableOpacity>
+            </View>
+
+            <TouchableOpacity style={styles.alreadyBtn}>
+              <Text style={styles.alreadyBtnTxt}>Already have an account</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.registerBtn}>
+              <Text style={styles.registerBtnTxt}>Register</Text>
+            </TouchableOpacity>
           </View>
         </View>
-
-        <View style={styles.autBtnWrapper}>
-          <TouchableOpacity>
-            <Image
-              source={require('../assets/facebook.png')}
-              width={20}
-              height={20}
-              style={styles.iconBtn}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image
-              source={require('../assets/google.png')}
-              width={20}
-              height={20}
-              style={styles.iconBtn}
-            />
-          </TouchableOpacity>
-        </View>
-
-        <TouchableOpacity style={styles.alreadyBtn}>
-          <Text style={styles.alreadyBtnTxt}>Already have an account</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.registerBtn}>
-          <Text style={styles.registerBtnTxt}>Register</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

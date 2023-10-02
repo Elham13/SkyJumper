@@ -14,6 +14,7 @@ import {
 import ProfileForm from '../components/profile/ProfileForm';
 import {useNavigation} from '@react-navigation/native';
 import PageHeader from '../components/PageHeader';
+import { useMyContext } from '../components/MyContext';
 
 export interface ProfileFormDataProps {
   fullname: string;
@@ -23,6 +24,7 @@ export interface ProfileFormDataProps {
   address: string;
 }
 const MyProfileScreen = ({}) => {
+  const {data,setData} = useMyContext()
   const navigation = useNavigation();
   const [editable, setEditable] = useState<Boolean>(false);
   const [formData, setFormData] = useState<ProfileFormDataProps>({
@@ -33,6 +35,12 @@ const MyProfileScreen = ({}) => {
     address:
       'j2/42, krishnakeval nagar, kondhwa, pune, 110043, mahrashtra, india',
   });
+
+  const handleSignout = () => {
+    setData(false)
+    navigation.navigate('InitialScreen' as never)
+  }
+
   return (
     <SafeAreaView>
       <StyleView className="w-full h-full" level="3">
@@ -110,7 +118,7 @@ const MyProfileScreen = ({}) => {
               className="w-full h-10 flex justify-center items-center self-end"
               level="3">
               <TouchableOpacity
-                onPress={() => navigation.navigate('Home' as never)}
+                onPress={handleSignout}
                 style={styles.logout}>
                 <Text category="label" appearance="hint">
                   SIGN OUT
