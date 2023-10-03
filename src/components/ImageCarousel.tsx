@@ -1,18 +1,30 @@
-import React, { useEffect } from 'react';
-import { Image, ImageBackground, StyleSheet } from 'react-native';
-import { Layout, Text, ViewPager } from '@ui-kitten/components';
-import { StyleText, StyleView } from '../utils/TailwindAndUIkiteCombination';
+import React, {useEffect} from 'react';
+import {
+  ImageBackground,
+  ImageSourcePropType,
+  StyleSheet,
+  Dimensions,
+} from 'react-native';
+import {ViewPager} from '@ui-kitten/components';
+import {StyleText, StyleView} from '../utils/TailwindAndUIkiteCombination';
 
-export const ViewPagerLazyLoadingShowcase = ({images}): React.ReactElement => {
+type PropType = {
+  images: {id: string; title: string; img: ImageSourcePropType}[];
+};
 
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
+const {height} = Dimensions.get('screen');
 
-  const shouldLoadComponent = (index): boolean => index === selectedIndex;
+export const ViewPagerLazyLoadingShowcase = ({images}: PropType) => {
+  const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
+
+  const shouldLoadComponent = (index: number): boolean =>
+    index === selectedIndex;
+
   useEffect(() => {
     // Function to increment the selected index
     const incrementIndex = () => {
-      setSelectedIndex((prevIndex) =>
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      setSelectedIndex(prevIndex =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1,
       );
     };
 
@@ -28,48 +40,42 @@ export const ViewPagerLazyLoadingShowcase = ({images}): React.ReactElement => {
     <ViewPager
       selectedIndex={selectedIndex}
       shouldLoadComponent={shouldLoadComponent}
-      onSelect={setSelectedIndex}
-    >
+      onSelect={setSelectedIndex}>
       {images.map((image, index) => (
-        <StyleView key={index} level='2' className='rounded-xl my-2 shadow-xl' style={styles.tab}>
+        <StyleView
+          key={index}
+          level="2"
+          className="rounded-xl my-2 shadow-xl"
+          style={styles.tab}>
           <ImageBackground source={image.img} style={styles.image} />
-          <StyleView className='absolute bottom-0 w-full h-20 space-y-1 flex justify-center items-center bg-orange-500' level='1'>
-              <StyleText category='c1' appearance='hint' className='text-black'>Call us +918882288001</StyleText>
-              <StyleText category='c1' appearance='hint' className='text-black'>Email: enquirey@skyjumpertp.com</StyleText>
-              <StyleText category='label' appearance='hint' className='bg-black p-2 rounded-xl'>{image.title}</StyleText>
+          <StyleView
+            className="absolute bottom-0 w-full h-20 space-y-1 flex justify-center items-center bg-orange-500"
+            level="1">
+            <StyleText category="c1" appearance="hint" className="text-black">
+              Call us +918882288001
+            </StyleText>
+            <StyleText category="c1" appearance="hint" className="text-black">
+              Email: enquirey@skyjumpertp.com
+            </StyleText>
+            <StyleText
+              category="label"
+              appearance="hint"
+              className="bg-black p-2 rounded-xl">
+              {image.title}
+            </StyleText>
           </StyleView>
         </StyleView>
       ))}
-            {/* <Layout
-            level='2'
-            style={styles.tab}
-            >
-        <Image source={require('../assets/images/elham.jpg')} style={styles.image} />
-      </Layout>
-      <Layout
-        level='2'
-        style={styles.tab}
-      >
-        <Text category='h5'>
-Tab 2
-        </Text>
-      </Layout>
-      <Layout
-            level='2'
-            style={styles.tab}
-            >
-        <Image source={require('../assets/images/elham.jpg')} style={styles.image} />
-      </Layout> */}
     </ViewPager>
   );
 };
 
 const styles = StyleSheet.create({
   tab: {
-    height: 250,
+    height: height / 4,
     alignItems: 'center',
     justifyContent: 'center',
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   image: {
     width: '100%',

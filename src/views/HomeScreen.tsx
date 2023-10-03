@@ -1,11 +1,9 @@
 import React from 'react';
-import {View, StyleSheet, FlatList, ScrollView} from 'react-native';
+import {View, StyleSheet, ScrollView} from 'react-native';
 import Header from '../components/Home/Header';
 import VerticalIconNameCard from '../components/Cards/VerticalIconNameCard';
-import AdvertisementCard from '../components/Cards/AdvertisementCard';
-import ImageAndTextCard from '../components/Cards/ImageAndTextCard';
 import {useNavigation} from '@react-navigation/native';
-import { ViewPagerLazyLoadingShowcase } from '../components/ImageCarousel';
+import {ViewPagerLazyLoadingShowcase} from '../components/ImageCarousel';
 import HorizontalFlatListWithButtons from '../components/HorizontalFlatListWithButtons';
 
 const DATA = [
@@ -121,34 +119,8 @@ const HomeScreen = () => {
           />
         </View>
 
-        {/* <FlatList
-          data={DATA}
-          keyExtractor={item => item.id}
-          horizontal
-          pagingEnabled
-          style={styles.firstList}
-          renderItem={({item}) => (
-            <AdvertisementCard title={item.title} imgUrl={item.img} />
-          )}
-          ItemSeparatorComponent={() => <View style={{marginHorizontal: 10}} />}
-        /> */}
         <ViewPagerLazyLoadingShowcase images={DATA} />
         <HorizontalFlatListWithButtons data={data2} />
-        {/* <FlatList
-          data={data2}
-          keyExtractor={item => item.id}
-          horizontal
-          pagingEnabled
-          style={{marginBottom: 60}}
-          renderItem={({item}) => (
-            <ImageAndTextCard
-              text={item.text}
-              imgUrl={item.img}
-              onClick={() => console.log('Clicked')}
-            />
-          )}
-          ItemSeparatorComponent={() => <View style={{marginHorizontal: 10}} />}
-        /> */}
       </ScrollView>
     </View>
   );

@@ -1,4 +1,10 @@
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  Image,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
 import React from 'react';
 
 type VerticalIconNameCardProps = {
@@ -7,7 +13,13 @@ type VerticalIconNameCardProps = {
   onClick: () => void;
 };
 
-const VerticalIconNameCard = ({iconUrl, text, onClick}: VerticalIconNameCardProps) => {
+const {width} = Dimensions.get('screen');
+
+const VerticalIconNameCard = ({
+  iconUrl,
+  text,
+  onClick,
+}: VerticalIconNameCardProps) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onClick}>
       <Image source={iconUrl} style={styles.icon} />
@@ -23,10 +35,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 8,
-    width: 90,
+    width: width / 5 + 8,
   },
   icon: {
-    width: 34,
+    width: width / 6,
     objectFit: 'contain',
   },
   text: {
