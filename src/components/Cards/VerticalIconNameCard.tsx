@@ -13,7 +13,7 @@ type VerticalIconNameCardProps = {
   onClick: () => void;
 };
 
-const {width} = Dimensions.get('screen');
+const {width} = Dimensions.get('window');
 
 const VerticalIconNameCard = ({
   iconUrl,

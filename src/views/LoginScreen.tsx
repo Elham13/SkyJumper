@@ -12,7 +12,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useMyContext } from '../components/MyContext';
 
-const {height, width} = Dimensions.get('screen');
+const {height, width} = Dimensions.get('window');
 
 const LoginScreen = () => {
   const {data,setData} = useMyContext()

@@ -6,7 +6,7 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import IonIcon from 'react-native-vector-icons/Ionicons';
-const width = Dimensions.get('screen').width;
+const width = Dimensions.get('window').width;
 
 type CollapsibleProps = {
   title: string;

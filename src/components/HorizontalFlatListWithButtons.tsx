@@ -6,7 +6,7 @@ import {
   StyleView,
 } from '../utils/TailwindAndUIkiteCombination';
 
-const {height} = Dimensions.get('screen');
+const {height} = Dimensions.get('window');
 
 export interface Item {
   id: string;

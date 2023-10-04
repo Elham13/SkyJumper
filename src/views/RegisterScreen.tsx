@@ -12,7 +12,7 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
-const {width} = Dimensions.get('screen');
+const {width} = Dimensions.get('window');
 
 const RegisterScreen = () => {
   return (

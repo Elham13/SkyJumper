@@ -1,12 +1,12 @@
-import {StyleSheet, View, Platform, Image, Dimensions} from 'react-native';
+import {StyleSheet, View, Image, Dimensions} from 'react-native';
 import React from 'react';
 
 type PropType = {
   children: React.ReactNode;
 };
+const {height} = Dimensions.get('window');
 
 const AuthWrapper = ({children}: PropType) => {
-  const {height} = Dimensions.get('screen');
   return (
     <View style={[styles.wrapper, {height}]}>
       <View style={[styles.container, {height: height / 1.2}]}>

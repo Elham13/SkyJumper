@@ -14,9 +14,9 @@ const AuthInitPage = ({onClick}: PropType) => {
         <Text style={styles.btnTxt}>Register</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={{...styles.registerBtn, backgroundColor: 'orange'}}
+        style={[styles.registerBtn, {backgroundColor: 'orange'}]}
         onPress={() => onClick('Login')}>
-        <Text style={{...styles.btnTxt, color: '#fff'}}>Login</Text>
+        <Text style={[styles.btnTxt, {color: '#fff'}]}>Login</Text>
       </TouchableOpacity>
     </View>
   );

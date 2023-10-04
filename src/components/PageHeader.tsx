@@ -9,7 +9,7 @@ import {
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 
-const {width} = Dimensions.get('screen');
+const {width} = Dimensions.get('window');
 
 type PropType = {
   title: string;

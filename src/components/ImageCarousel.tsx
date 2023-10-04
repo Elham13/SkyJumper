@@ -12,7 +12,7 @@ type PropType = {
   images: {id: string; title: string; img: ImageSourcePropType}[];
 };
 
-const {height} = Dimensions.get('screen');
+const {height} = Dimensions.get('window');
 
 export const ViewPagerLazyLoadingShowcase = ({images}: PropType) => {
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
