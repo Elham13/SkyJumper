@@ -28,3 +28,16 @@ export const camelCaseToProperCase = (input: string) => {
 
   return result;
 };
+
+export const generateCouponCode = (length: number) => {
+  const characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const couponArray = [];
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    couponArray.push(characters.charAt(randomIndex));
+  }
+
+  return couponArray.join('');
+};
