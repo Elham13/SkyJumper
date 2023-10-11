@@ -10,16 +10,16 @@ import {
   Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { useMyContext } from '../components/MyContext';
+import {useAuth} from '../contexts/AuthProvider';
 
 const {height, width} = Dimensions.get('window');
 
 const LoginScreen = () => {
-  const {data,setData} = useMyContext()
+  const {setIsLoggedIn} = useAuth();
   const navigation = useNavigation();
   const handleLogin = () => {
-    setData(true)
-    navigation.navigate('Home' as never);
+    setIsLoggedIn(true);
+    navigation.navigate('SelectionScreen' as never);
   };
 
   return (

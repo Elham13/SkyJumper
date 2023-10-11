@@ -13,9 +13,11 @@ const today = moment().format('YYYY-MM-DD');
 
 type Props = {
   navigation: any;
+  route: any;
 };
 
-const ActivitiesScreen = ({navigation}: Props) => {
+const ActivitiesScreen = ({route, navigation}: Props) => {
+  const {params} = route;
   const [dateVisible, setDateVisible] = useState<boolean>(false);
   const [dateToAttend, setDateToAttend] = useState(
     moment().format('YYYY-MM-DD'),

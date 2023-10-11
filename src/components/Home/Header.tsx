@@ -1,10 +1,9 @@
 import {useState} from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, View, Image} from 'react-native';
 import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {Badge} from '@rneui/themed';
-import {Picker} from '@react-native-picker/picker';
 import {DrawerActions, useNavigation} from '@react-navigation/native';
 import {StyleSelect} from '../../utils/TailwindAndUIkiteCombination';
 import {IndexPath, SelectItem} from '@ui-kitten/components';
@@ -17,7 +16,7 @@ const Header = () => {
   const [value, setValue] = useState('Delhi');
   const [items, setItems] = useState([
     {label: 'Delhi', value: 'delhi'},
-    {label: 'Channai', value: 'Channai'},
+    {label: 'Chennai', value: 'Chennai'},
     {label: 'Bangalore', value: 'Bangalore'},
   ]);
 
@@ -33,15 +32,6 @@ const Header = () => {
           source={require('../../assets/icons/menu.png')}
         />
       </TouchableOpacity>
-      {/* <View style={styles.menuWraper}>
-        <Picker
-          selectedValue={value}
-          onValueChange={(itemValue, itemIndex) => setValue(itemValue)}>
-          {items.map((item, index) => (
-            <Picker.Item key={index} label={item.label} value={item.value} />
-          ))}
-        </Picker>
-      </View> */}
       <StyleSelect
         className="w-40"
         selectedIndex={selectedIndex}

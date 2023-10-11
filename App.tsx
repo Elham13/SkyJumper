@@ -9,7 +9,8 @@ import * as eva from '@eva-design/eva';
 import {ApplicationProvider, IconRegistry} from '@ui-kitten/components';
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import {myTheme} from './custom-theme';
-import {MyContextProvider} from './src/components/MyContext';
+import AuthProvider from './src/contexts/AuthProvider';
+import AppInfoProvider from './src/contexts/AppInfoProvider';
 
 function App(): JSX.Element {
   return (
@@ -17,11 +18,13 @@ function App(): JSX.Element {
       <SafeAreaProvider>
         <IconRegistry icons={EvaIconsPack} />
         <ApplicationProvider {...eva} theme={{...eva.light, ...myTheme}}>
-          <MyContextProvider>
-            <NavigationContainer>
-              <DrawerNavigation />
-            </NavigationContainer>
-          </MyContextProvider>
+          <AuthProvider>
+            <AppInfoProvider>
+              <NavigationContainer>
+                <DrawerNavigation />
+              </NavigationContainer>
+            </AppInfoProvider>
+          </AuthProvider>
         </ApplicationProvider>
       </SafeAreaProvider>
     </Provider>

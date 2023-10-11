@@ -16,22 +16,24 @@ import MainScreen from '../views/MainScreen';
 import {MainStack} from './StackNavigation';
 import NotificationsScreen from '../views/NotificationsScreen';
 import ActivityDetails from '../views/ActivityDetails';
-import {useMyContext} from '../components/MyContext';
 import LoginScreen from '../views/LoginScreen';
 import RegisterScreen from '../views/RegisterScreen';
+import SelectionScreen from '../views/SelectionScreen';
+import {useAuth} from '../contexts/AuthProvider';
 
 const {Navigator, Screen} = createDrawerNavigator();
 
 const DrawerNavigation = () => {
-  const {data, setData} = useMyContext();
+  const {isLoggedIn} = useAuth();
   return (
     <Navigator
-      initialRouteName={data ? 'Home' : 'InitialScreen'}
+      initialRouteName={isLoggedIn ? 'Home' : 'InitialScreen'}
       screenOptions={{headerShown: false}}
       drawerContent={props => (
         <DrawerContent navigation={props.navigation} state={props.state} />
       )}>
       <Screen name="InitialScreen" component={MainStack} />
+      <Screen name="SelectionScreen" component={SelectionScreen} />
       {/* <Screen name='Home' component={MainScreen} /> */}
       <Screen name="My Profile" component={MyProfileScreen} />
       <Screen name="Activities" component={ActivitiesScreen} />
