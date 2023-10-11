@@ -2,9 +2,9 @@ import React from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
 import Header from '../components/Home/Header';
 import VerticalIconNameCard from '../components/Cards/VerticalIconNameCard';
-import {useNavigation} from '@react-navigation/native';
 import {ViewPagerLazyLoadingShowcase} from '../components/ImageCarousel';
 import HorizontalFlatListWithButtons from '../components/HorizontalFlatListWithButtons';
+import {useAppInfo} from '../contexts/AppInfoProvider';
 
 const DATA = [
   {
@@ -62,62 +62,108 @@ const data2 = [
   },
 ];
 
-const HomeScreen = () => {
-  const navigation = useNavigation();
+export const trampolineMenus1 = [
+  {
+    title: 'Trampoline Jump',
+    image: require('../assets/icons/jumping-rope.png'),
+  },
+  {
+    title: 'Sky Jumper Carnival',
+    image: require('../assets/icons/jump-across.png'),
+  },
+  {
+    title: 'Sky Laser Tag',
+    image: require('../assets/icons/crossed-pistols.png'),
+  },
+  {
+    title: 'GenZ The Teen Disco',
+    image: require('../assets/icons/disc-icon.png'),
+  },
+];
 
-  const handleClick = () => {
-    navigation.navigate('Activities' as never);
+export const trampolineMenus2 = [
+  {
+    title: 'Birthday Party',
+    image: require('../assets/icons/cake.png'),
+  },
+  {
+    title: 'Corporate Event',
+    image: require('../assets/icons/party-popper.png'),
+  },
+  {
+    title: 'School Trips',
+    image: require('../assets/icons/bus-school.png'),
+  },
+  {
+    title: 'Active Kitty Party',
+    image: require('../assets/icons/celebrate-emoji.png'),
+  },
+];
+
+export const goBananaMenus = [
+  {
+    title: 'Trampoline Jump',
+    image: require('../assets/icons/jumping-rope.png'),
+  },
+  {
+    title: 'Birthday Party',
+    image: require('../assets/icons/cake.png'),
+  },
+  {
+    title: 'School Trips',
+    image: require('../assets/icons/bus-school.png'),
+  },
+];
+
+type PropTypes = {navigation: any};
+
+const HomeScreen = ({navigation}: PropTypes) => {
+  const {appInfo} = useAppInfo();
+
+  const handleClick = (selectedActivity: string) => {
+    navigation.navigate('Activities', {selectedActivity});
   };
 
   return (
     <View>
       <Header />
       <ScrollView style={styles.homeContentsWraper}>
-        <View style={styles.cardsWrapper}>
-          <VerticalIconNameCard
-            iconUrl={require('../assets/icons/jumping-rope.png')}
-            text="Trampoline Jump"
-            onClick={handleClick}
-          />
-          <VerticalIconNameCard
-            iconUrl={require('../assets/icons/jump-across.png')}
-            text="Sky Jumper Carnival"
-            onClick={handleClick}
-          />
-          <VerticalIconNameCard
-            iconUrl={require('../assets/icons/crossed-pistols.png')}
-            text="Sky Laser Tag"
-            onClick={handleClick}
-          />
-          <VerticalIconNameCard
-            iconUrl={require('../assets/icons/disc-icon.png')}
-            text="GenZ The Teen Disco"
-            onClick={handleClick}
-          />
-        </View>
+        {appInfo.selectedScreen === 'Trampoline' ? (
+          <>
+            <View style={styles.cardsWrapper}>
+              {trampolineMenus1?.map((menu, index) => (
+                <VerticalIconNameCard
+                  key={index}
+                  iconUrl={menu.image}
+                  text={menu.title}
+                  onClick={() => handleClick(menu.title)}
+                />
+              ))}
+            </View>
 
-        <View style={{...styles.cardsWrapper, marginTop: 12}}>
-          <VerticalIconNameCard
-            iconUrl={require('../assets/icons/cake.png')}
-            text="Birthday Party"
-            onClick={handleClick}
-          />
-          <VerticalIconNameCard
-            iconUrl={require('../assets/icons/party-popper.png')}
-            text="Corporate Event"
-            onClick={handleClick}
-          />
-          <VerticalIconNameCard
-            iconUrl={require('../assets/icons/bus-school.png')}
-            text="School Trips"
-            onClick={handleClick}
-          />
-          <VerticalIconNameCard
-            iconUrl={require('../assets/icons/celebrate-emoji.png')}
-            text="Active Kitty Party"
-            onClick={handleClick}
-          />
-        </View>
+            <View style={{...styles.cardsWrapper, marginTop: 12}}>
+              {trampolineMenus2?.map((menu, index) => (
+                <VerticalIconNameCard
+                  key={index}
+                  iconUrl={menu.image}
+                  text={menu.title}
+                  onClick={() => handleClick(menu.title)}
+                />
+              ))}
+            </View>
+          </>
+        ) : (
+          <View style={styles.cardsWrapper}>
+            {goBananaMenus?.map((menu, index) => (
+              <VerticalIconNameCard
+                key={index}
+                iconUrl={menu.image}
+                text={menu.title}
+                onClick={() => handleClick(menu.title)}
+              />
+            ))}
+          </View>
+        )}
 
         <ViewPagerLazyLoadingShowcase images={DATA} />
         <HorizontalFlatListWithButtons data={data2} />

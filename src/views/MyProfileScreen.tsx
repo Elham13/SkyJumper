@@ -14,7 +14,7 @@ import {
 import ProfileForm from '../components/profile/ProfileForm';
 import {useNavigation} from '@react-navigation/native';
 import PageHeader from '../components/PageHeader';
-import { useMyContext } from '../components/MyContext';
+import {useAuth} from '../contexts/AuthProvider';
 
 export interface ProfileFormDataProps {
   fullname: string;
@@ -24,7 +24,7 @@ export interface ProfileFormDataProps {
   address: string;
 }
 const MyProfileScreen = ({}) => {
-  const {data,setData} = useMyContext()
+  const {setIsLoggedIn} = useAuth();
   const navigation = useNavigation();
   const [editable, setEditable] = useState<Boolean>(false);
   const [formData, setFormData] = useState<ProfileFormDataProps>({
@@ -37,9 +37,9 @@ const MyProfileScreen = ({}) => {
   });
 
   const handleSignout = () => {
-    setData(false)
-    navigation.navigate('InitialScreen' as never)
-  }
+    setIsLoggedIn(false);
+    navigation.navigate('InitialScreen' as never);
+  };
 
   return (
     <SafeAreaView>
@@ -117,9 +117,7 @@ const MyProfileScreen = ({}) => {
             <StyleView
               className="w-full h-10 flex justify-center items-center self-end"
               level="3">
-              <TouchableOpacity
-                onPress={handleSignout}
-                style={styles.logout}>
+              <TouchableOpacity onPress={handleSignout} style={styles.logout}>
                 <Text category="label" appearance="hint">
                   SIGN OUT
                 </Text>
