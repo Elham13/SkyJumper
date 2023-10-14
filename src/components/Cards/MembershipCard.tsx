@@ -11,10 +11,10 @@ import {
 
 type MembershipCardProps = {
   title: string;
-  subtitle: string[];
-  price: string;
-  discountText: string;
-  imageTitle: string;
+  subtitle?: string[];
+  price?: string;
+  discountText?: string;
+  imageTitle?: string;
   onClick: () => void;
   style?: StyleProp<ViewStyle>;
 };
@@ -34,8 +34,8 @@ const MembershipCard = ({
         <View style={styles.details}>
           <Text style={styles.title}>{title}</Text>
           <Text>
-            <Text style={styles.subtitle1}>{subtitle[0]} </Text>
-            <Text style={styles.subtitle2}>{subtitle[1]}</Text>
+            <Text style={styles.subtitle1}>{subtitle?.[0]} </Text>
+            <Text style={styles.subtitle2}>{subtitle?.[1]}</Text>
           </Text>
           <Text>
             <Text style={styles.priceHeading}>Price </Text> {price}

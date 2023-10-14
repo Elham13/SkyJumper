@@ -7,7 +7,7 @@ type ContextType = {
 };
 
 const AppInfoContext = createContext<ContextType>({
-  appInfo: {},
+  appInfo: {activities: [], dateToAttend: new Date()},
   setAppInfo: () => {},
 });
 
@@ -16,7 +16,10 @@ type PropTypes = {
 };
 
 const AppInfoProvider = ({children}: PropTypes) => {
-  const [appInfo, setAppInfo] = useState<AppInfo>({});
+  const [appInfo, setAppInfo] = useState<AppInfo>({
+    activities: [],
+    dateToAttend: new Date(),
+  });
 
   return (
     <AppInfoContext.Provider value={{appInfo, setAppInfo}}>

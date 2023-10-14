@@ -5,6 +5,7 @@ import VerticalIconNameCard from '../components/Cards/VerticalIconNameCard';
 import {ViewPagerLazyLoadingShowcase} from '../components/ImageCarousel';
 import HorizontalFlatListWithButtons from '../components/HorizontalFlatListWithButtons';
 import {useAppInfo} from '../contexts/AppInfoProvider';
+import {activityList} from './ActivitiesScreen';
 
 const DATA = [
   {
@@ -118,10 +119,15 @@ export const goBananaMenus = [
 type PropTypes = {navigation: any};
 
 const HomeScreen = ({navigation}: PropTypes) => {
-  const {appInfo} = useAppInfo();
+  const {appInfo, setAppInfo} = useAppInfo();
 
   const handleClick = (selectedActivity: string) => {
-    navigation.navigate('Activities', {selectedActivity});
+    const foundActivity = activityList.find(
+      el => el.title === selectedActivity,
+    );
+    if (foundActivity)
+      setAppInfo(prev => ({...prev, activities: [foundActivity]}));
+    navigation.navigate('Activities');
   };
 
   return (

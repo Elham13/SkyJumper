@@ -5,47 +5,122 @@ import {ScrollView} from 'react-native';
 import CalendarPicker from 'react-native-calendar-picker';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {TouchableOpacity} from 'react-native';
-import moment from 'moment';
+import moment, {Moment} from 'moment';
 import MembershipCard from '../components/Cards/MembershipCard';
 import {insertOrRemoveFromArray} from '../utils/helpers';
+import {useAppInfo} from '../contexts/AppInfoProvider';
+import {goBananaMenus, trampolineMenus1, trampolineMenus2} from './HomeScreen';
+import {Activity} from '../types/stateTypes';
 
 const today = moment().format('YYYY-MM-DD');
 
+export const activityList: Activity[] = [
+  {
+    title: 'Trampoline Jump',
+    subTitle: ['Open', 'Jump'],
+    price: 'Rs 700/Hr',
+    discountText: '1 Child for ₹700 add-on additional children ₹500 per child',
+    imageTitle: 'Open Jump',
+  },
+  {
+    title: 'Sky Jumper Carnival',
+    subTitle: ['Open', 'Jump'],
+    price: 'Rs 700/Hr',
+    discountText: '1 Child for ₹700 add-on additional children ₹500 per child',
+    imageTitle: 'Open Jump',
+  },
+  {
+    title: 'Sky Laser Tag',
+    subTitle: ['Laser Tag', 'Gaming'],
+    price: 'Rs 1000.00/Hr',
+    discountText:
+      '1 Children for ₹1000 - add on additional children ₹500 per child',
+    imageTitle: 'Laser Tag Gaming',
+  },
+  {
+    title: 'GenZ The Teen Disco',
+    subTitle: ['Open', 'Jump'],
+    price: 'Rs 700/Hr',
+    discountText: '1 Child for ₹700 add-on additional children ₹500 per child',
+    imageTitle: 'Open Jump',
+  },
+  {
+    title: 'Birthday Party',
+    subTitle: ['Open', 'Jump'],
+    price: 'Rs 700/Hr',
+    discountText: '1 Child for ₹700 add-on additional children ₹500 per child',
+    imageTitle: 'Open Jump',
+  },
+  {
+    title: 'Corporate Event',
+    subTitle: ['Open', 'Jump'],
+    price: 'Rs 700/Hr',
+    discountText: '1 Child for ₹700 add-on additional children ₹500 per child',
+    imageTitle: 'Open Jump',
+  },
+  {
+    title: 'School Trips',
+    subTitle: ['Open', 'Jump'],
+    price: 'Rs 700/Hr',
+    discountText: '1 Child for ₹700 add-on additional children ₹500 per child',
+    imageTitle: 'Open Jump',
+  },
+  {
+    title: 'Active Kitty Party',
+    subTitle: ['Open', 'Jump'],
+    price: 'Rs 700/Hr',
+    discountText: '1 Child for ₹700 add-on additional children ₹500 per child',
+    imageTitle: 'Open Jump',
+  },
+];
+
 type Props = {
   navigation: any;
-  route: any;
 };
 
-const ActivitiesScreen = ({route, navigation}: Props) => {
-  const {params} = route;
+const ActivitiesScreen = ({navigation}: Props) => {
+  const {appInfo, setAppInfo} = useAppInfo();
   const [dateVisible, setDateVisible] = useState<boolean>(false);
-  const [dateToAttend, setDateToAttend] = useState(
-    moment().format('YYYY-MM-DD'),
-  );
   const [datesArr, setDatesArr] = useState<string[]>([]);
-  const [selected, setSelected] = useState<string[]>([]);
+  const [activities, setActivities] = useState<Activity[]>([]);
 
   const onDateChange = (date: any) => {
-    setDateToAttend(moment(date).format('YYYY-MM-DD'));
+    setAppInfo(prev => ({...prev, dateToAttend: new Date(date)}));
   };
 
   const handleProceed = () => {
-    navigation.navigate('ActivityDetails', {data: selected});
+    navigation.navigate('ActivityDetails');
   };
 
   useEffect(() => {
-    const selectedDate = moment(dateToAttend); // Get the current date
+    const selectedDate = moment(appInfo.dateToAttend); // Get the current date
     const datesArray = [];
     for (let i = 0; i <= 3; i++) {
       datesArray.push(moment(selectedDate).format('YYYY-MM-DD'));
       selectedDate.add(1, 'day'); // Move to the next day
     }
     setDatesArr(datesArray);
-  }, [dateToAttend]);
+  }, [appInfo.dateToAttend]);
 
-  // useEffect(() => {
-  //   console.log('selected: ', selected);
-  // }, [selected]);
+  useEffect(() => {
+    const tempArr: Activity[] = [];
+    if (appInfo?.selectedScreen === 'Go Banana') {
+      goBananaMenus.map(el => {
+        const found = activityList.find(acl => acl.title === el.title);
+        if (found) tempArr.push(found);
+      });
+    } else if (appInfo?.selectedScreen === 'Trampoline') {
+      [...trampolineMenus1, ...trampolineMenus2].map(el => {
+        const found = activityList.find(acl => acl.title === el.title);
+        if (found) tempArr.push(found);
+      });
+    }
+    setActivities(tempArr);
+  }, [appInfo?.selectedScreen]);
+
+  useEffect(() => {
+    console.log('appInfo.dateToAttend: ', appInfo.dateToAttend);
+  }, [appInfo.dateToAttend]);
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -67,26 +142,26 @@ const ActivitiesScreen = ({route, navigation}: Props) => {
               </TouchableOpacity>
             </View>
             <CalendarPicker onDateChange={onDateChange} />
-            {dateToAttend && (
+            {appInfo.dateToAttend && (
               <TouchableOpacity
                 style={styles.confirmBtn}
                 onPress={() => setDateVisible(false)}>
                 <Text style={styles.confirmBtnTxt}>
-                  Confirm {moment(dateToAttend).format('DD-MMM-YYYY')}
+                  Confirm {moment(appInfo.dateToAttend).format('DD-MMM-YYYY')}
                 </Text>
               </TouchableOpacity>
             )}
           </Modal>
         </View>
         <Text style={styles.selectedDate}>
-          {moment(dateToAttend).format('MMM YYYY')}
+          {moment(appInfo.dateToAttend).format('MMM YYYY')}
         </Text>
         <View style={styles.weekDaysWrapper}>
           {datesArr?.map((date, id) => {
             const isToday = moment(today).isSame(moment(date));
             return (
               <TouchableOpacity
-                onPress={() => setDateToAttend(date)}
+                onPress={() => onDateChange(date)}
                 key={id}
                 style={[
                   styles.weekDay,
@@ -114,38 +189,34 @@ const ActivitiesScreen = ({route, navigation}: Props) => {
         </View>
 
         <View style={styles.membershipView}>
-          <MembershipCard
-            title="Trampoline Jump"
-            subtitle={['Open', 'Jump']}
-            price="Rs 700/Hr"
-            discountText="1 Child for ₹700 add-on additional children ₹500 per child"
-            imageTitle="Open Jump"
-            onClick={() =>
-              setSelected([...insertOrRemoveFromArray(selected, 'trampoline')])
-            }
-            style={{
-              backgroundColor: selected.includes('trampoline')
-                ? '#FFABC9'
-                : '#FDE9D6',
-            }}
-          />
-          <MembershipCard
-            title="Sky Laser Tag"
-            subtitle={['Laser Tag', 'Gaming']}
-            price="Rs 1000.00/Hr"
-            discountText="1 Children for ₹1000 - add on additional children ₹500 per child"
-            imageTitle="Laser Tag Gaming"
-            onClick={() =>
-              setSelected([...insertOrRemoveFromArray(selected, 'laser tag')])
-            }
-            style={{
-              backgroundColor: selected.includes('laser tag')
-                ? '#FFABC9'
-                : '#FDE9D6',
-            }}
-          />
+          {activities?.length > 0 &&
+            activities.map((activity, index) => (
+              <MembershipCard
+                key={index}
+                title={activity?.title}
+                subtitle={activity?.subTitle}
+                price={activity?.price}
+                discountText={activity?.discountText}
+                imageTitle={activity?.imageTitle}
+                onClick={() =>
+                  setAppInfo(prev => ({
+                    ...prev,
+                    activities: [
+                      ...insertOrRemoveFromArray(appInfo?.activities, activity),
+                    ],
+                  }))
+                }
+                style={{
+                  backgroundColor: appInfo.activities.find(
+                    el => el.title === activity.title,
+                  )
+                    ? '#FFABC9'
+                    : '#FDE9D6',
+                }}
+              />
+            ))}
         </View>
-        {selected?.length > 0 && (
+        {appInfo.activities?.length > 0 && (
           <TouchableOpacity
             style={styles.proceedBtn}
             activeOpacity={0.6}
