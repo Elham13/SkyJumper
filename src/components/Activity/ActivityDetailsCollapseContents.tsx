@@ -11,34 +11,31 @@ import {
 import {Activity, AddOn} from '../../types/stateTypes';
 import {useAppInfo} from '../../contexts/AppInfoProvider';
 import QuantitySelect from './QuantitySelect';
-import {ActionType} from '../../views/ActivityDetails';
+import {formatLog} from '../../utils/helpers';
 
-const peopleAddOns: AddOn[] = [{type: 'Age 5+', price: 415, quantity: 0}];
+const peopleAddOns: AddOn[] = [
+  {type: 'Age 5+', price: 415, quantity: 1},
+  {type: 'Age 5+ with 1 adult', price: 700, quantity: 1},
+  {
+    type: "Age 5+ additional 2-4 year old's with 2 adult",
+    price: 1000,
+    quantity: 1,
+  },
+];
+
+const productAddOns: AddOn[] = [
+  {type: 'XXS Socks', price: 100, quantity: 1},
+  {type: 'XS Socks(UK 9-10)', price: 100, quantity: 1},
+  {type: 'Small Socks(UK 11-1)', price: 100, quantity: 1},
+  {type: 'Medium Socks(UK 2-5)', price: 100, quantity: 1},
+  {type: 'Large Socks(UK 6-9)(Adult)', price: 100, quantity: 1},
+  {type: 'X Large Socks(UK 9-12)(Adult)', price: 100, quantity: 1},
+];
 
 type Props = {
-  data: Activity;
-  setAddons: (addOn: AddOn, title: string, action: ActionType) => void;
+  activity: Activity;
+  index: number;
 };
-
-export interface SelectionProps {
-  type: string;
-  price: number;
-  count: number;
-}
-
-export interface PersonSelectionProps {
-  Age5: SelectionProps;
-  OneAdult: SelectionProps;
-  TwoAdult: SelectionProps;
-}
-export interface ProductSelectionProps {
-  XXS: SelectionProps;
-  XS: SelectionProps;
-  Small: SelectionProps;
-  Medium: SelectionProps;
-  Large: SelectionProps;
-  XLarge: SelectionProps;
-}
 
 const timesArray = [
   '12:00 PM',
@@ -53,79 +50,51 @@ const timesArray = [
 
 const today = moment().format('YYYY-MM-DD');
 
-const ActivityDetailsCollapseContents = ({data, setAddons}: Props) => {
+const ActivityDetailsCollapseContents = ({activity, index}: Props) => {
   const {appInfo, setAppInfo} = useAppInfo();
   const [dateVisible, setDateVisible] = useState<boolean>(false);
   const [datesArr, setDatesArr] = useState<string[]>([]);
 
-  const [personSelectionData, setPersonSelectionData] =
-    useState<PersonSelectionProps>({
-      Age5: {
-        type: 'Age 5+',
-        price: 415,
-        count: 0,
-      },
-      OneAdult: {
-        type: 'Age 5+ with 1 adult',
-        price: 700,
-        count: 0,
-      },
-      TwoAdult: {
-        type: "Age 5+ additional 2-4 year old's with 2 adult",
-        price: 1000,
-        count: 0,
-      },
-    });
-
-  const [productSelectionData, setProductSelectionData] =
-    useState<ProductSelectionProps>({
-      XXS: {
-        type: 'XXS Socks',
-        price: 100,
-        count: 0,
-      },
-      XS: {
-        type: 'XS Socks(UK 9-10)',
-        price: 100,
-        count: 0,
-      },
-      Small: {
-        type: 'Small Socks(UK 11-1)',
-        price: 100,
-        count: 0,
-      },
-      Medium: {
-        type: 'Medium Socks(UK 2-5)',
-        price: 100,
-        count: 0,
-      },
-      Large: {
-        type: 'Large Socks(UK 6-9)(Adult)',
-        price: 100,
-        count: 0,
-      },
-      XLarge: {
-        type: 'X Large Socks(UK 9-12)(Adult)',
-        price: 100,
-        count: 0,
-      },
-    });
-
   const handleChange = (action: 'increase' | 'decrease', addOn: AddOn) => {
-    data;
-    if (data.addOns && data.addOns?.length > 0) {
-      if (action === 'increase') addOn['quantity'] += 1;
-      if (action === 'decrease') addOn['quantity'] -= 1;
-      setAddons(addOn, data.title, action);
-    } else {
-      addOn['quantity'] += 1;
-      setAddons(addOn, data.title, 'set');
-    }
+    setAppInfo(prev => ({
+      ...prev,
+      activities: prev.activities.map((obj, ind) => {
+        if (ind === index) {
+          if (obj.addOns && obj.addOns.length > 0) {
+            if (obj.addOns?.find(el => el.type === addOn.type)) {
+              return {
+                ...obj,
+                addOns: obj.addOns.map(el => {
+                  if (el.type === addOn.type) {
+                    return {
+                      ...el,
+                      quantity:
+                        action === 'increase'
+                          ? el.quantity + 1
+                          : el.quantity - 1,
+                    };
+                  }
+                  return el;
+                }),
+              };
+            } else {
+              return {
+                ...obj,
+                addOns: [...obj.addOns, addOn],
+              };
+            }
+          } else {
+            return {...obj, addOns: [addOn]};
+          }
+        }
+        return obj;
+      }),
+    }));
   };
 
   const getQuantity = (type: string) => {
-    if (data.addOns && data.addOns?.length > 0) {
-      return data.addOns.find(el => el.type === type)?.quantity || 0;
+    if (activity.addOns && activity.addOns?.length > 0) {
+      return activity.addOns.find(el => el.type === type)?.quantity || 0;
     }
     return 0;
   };
@@ -144,14 +113,14 @@ const ActivityDetailsCollapseContents = ({data, setAddons}: Props) => {
     setDatesArr(datesArray);
   }, [appInfo.dateToAttend]);
 
-  // useEffect(() => {
-  //   console.log('data: ', appInfo.activities);
-  // }, [appInfo.activities]);
+  useEffect(() => {
+    console.log('activities: ', formatLog(appInfo.activities));
+  }, [appInfo.activities]);
 
   return (
     <View style={styles.container}>
       <Text style={styles.time}>60 MIN</Text>
-      <Text style={styles.text}>{data.discountText}</Text>
+      <Text style={styles.text}>{activity.discountText}</Text>
 
       <View style={styles.whenAttend}>
         <Text style={styles.whenAttendTxt}>Select Date</Text>
@@ -270,6 +239,17 @@ const ActivityDetailsCollapseContents = ({data, setAddons}: Props) => {
             source={require('../../assets/happyMonkey.png')}
           />
         </StyleView>
+      </StyleView>
+      <StyleView className="py-8 bg-transparent">
+        {productAddOns?.map((item, index) => (
+          <QuantitySelect
+            key={index}
+            title={item.type}
+            price={item.price}
+            quantity={getQuantity(item.type)}
+            onChange={action => handleChange(action, item)}
+          />
+        ))}
       </StyleView>
     </View>
   );

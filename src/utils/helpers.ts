@@ -42,3 +42,7 @@ export const generateCouponCode = (length: number) => {
 
   return couponArray.join('');
 };
+
+export const formatLog = (data: any) => {
+  return JSON.stringify(data, null, 2);
+};

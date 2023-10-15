@@ -15,12 +15,12 @@ type PropType = {
 
 const QuantitySelect = ({title, price, quantity, onChange}: PropType) => {
   return (
-    <StyleView className="bg-transparent flex-row items-center justify-between">
-      <StyleView className="bg-transparent">
+    <StyleView className="bg-transparent flex-row items-center justify-between mb-4">
+      <StyleView className="bg-transparent flex-1">
         <StyleText className="font-bold">{title}</StyleText>
         <StyleText className="text-sm">Rs {price} /-</StyleText>
       </StyleView>
-      <StyleView className="flex-row bg-transparent">
+      <StyleView className="flex-row bg-transparent flex-1 justify-end">
         <StyleTouchableOpacity
           onPress={() => onChange('decrease')}
           className="w-10 h-10 p-2 rounded-l-lg bg-gray-100"
