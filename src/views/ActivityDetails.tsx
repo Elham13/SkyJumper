@@ -12,9 +12,12 @@ import {
 
 import {Icon} from '@ui-kitten/components';
 import {useAppInfo} from '../contexts/AppInfoProvider';
+import {AddOn} from '../types/stateTypes';
+
+export type ActionType = 'set' | 'increase' | 'decrease';
 
 const ActivityDetails = () => {
-  const {appInfo} = useAppInfo();
+  const {appInfo, setAppInfo} = useAppInfo();
 
   return (
     <StyleView className="w-full h-full" level="1">
@@ -22,14 +25,54 @@ const ActivityDetails = () => {
       <ScrollView>
         <View style={styles.container}>
           {appInfo.activities?.length > 0
-            ? appInfo.activities.map((elem, index: number) => (
-                <Collapsible
-                  key={index}
-                  title={camelCaseToProperCase(elem.title)}
-                  content={<ActivityDetailsCollapseContents data={elem} />}
-                  defaultOpen={index === 0 ? true : false}
-                />
-              ))
+            ? appInfo.activities.map((elem, index: number) => {
+                return (
+                  <Collapsible
+                    key={index}
+                    title={elem.title}
+                    content={
+                      <ActivityDetailsCollapseContents
+                        data={elem}
+                        setAddons={(
+                          addOn: AddOn,
+                          title: string,
+                          action: ActionType,
+                        ) => {
+                          if (action === 'set') {
+                            setAppInfo(prev => ({
+                              ...prev,
+                              activities: prev.activities.map(el =>
+                                el.title === title
+                                  ? {...el, addOns: [addOn]}
+                                  : el,
+                              ),
+                            }));
+                          } else {
+                            const addonIndex = appInfo.activities
+                              .find(ac => ac.title === title)
+                              ?.addOns?.findIndex(ad => ad.type === addOn.type);
+
+                            setAppInfo(prev => ({
+                              ...prev,
+                              activities: prev.activities.map(el => {
+                                if (el.title === title) {
+                                  return {
+                                    ...el,
+                                    addOns: el.addOns?.map((obj, index) =>
+                                      index === addonIndex ? addOn : obj,
+                                    ),
+                                  };
+                                } else return el;
+                              }),
+                            }));
+                          }
+                        }}
+                      />
+                    }
+                    defaultOpen={index === 0 ? true : false}
+                  />
+                );
+              })
             : ''}
         </View>
       </ScrollView>

@@ -6,19 +6,15 @@ import {
   StyleView,
 } from '../../utils/TailwindAndUIkiteCombination';
 import {PersonSelectionProps} from './ActivityDetailsCollapseContents';
-import {useAppInfo} from '../../contexts/AppInfoProvider';
 
 type Props = {
   data: PersonSelectionProps;
-  title: string;
   setData: React.Dispatch<React.SetStateAction<PersonSelectionProps>>;
 };
 
 type ItemType = keyof PersonSelectionProps;
 
-const PersonSelection = ({data, title, setData}: Props) => {
-  const {appInfo, setAppInfo} = useAppInfo();
-
+const PersonSelection = ({data, setData}: Props) => {
   const handleDecrement = (elem: string) => {
     setData(prev => ({
       ...prev,
@@ -38,10 +34,6 @@ const PersonSelection = ({data, title, setData}: Props) => {
       },
     }));
   };
-
-  useEffect(() => {
-    console.log('data: ', data);
-  }, [data]);
 
   return (
     <StyleView className="w-full bg-transparent space-y-2 items-start p-2">

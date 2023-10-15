@@ -1,5 +1,8 @@
-import {PersonAttending} from '.';
-
+export interface AddOn {
+  type: string;
+  price: number;
+  quantity: number;
+}
 export interface Activity {
   title: string;
   subTitle?: string[];
@@ -8,5 +11,5 @@ export interface Activity {
   imageTitle?: string;
   dateToAttend: Date;
   timeToAttend?: string;
-  peopleAttending?: PersonAttending[];
+  addOns?: AddOn[];
 }

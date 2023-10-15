@@ -3,15 +3,21 @@ import React, {useState, useEffect} from 'react';
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/AntDesign';
 import CalendarPicker from 'react-native-calendar-picker';
-import {StyleView} from '../../utils/TailwindAndUIkiteCombination';
-import PersonSelection from './PersonSelection';
-import ProductsList from './ProductsList';
-import {Activity} from '../../types/stateTypes';
+import {
+  StyleImage,
+  StyleText,
+  StyleView,
+} from '../../utils/TailwindAndUIkiteCombination';
+import {Activity, AddOn} from '../../types/stateTypes';
 import {useAppInfo} from '../../contexts/AppInfoProvider';
-import {PersonAttending} from '../../types';
+import QuantitySelect from './QuantitySelect';
+import {ActionType} from '../../views/ActivityDetails';
+
+const peopleAddOns: AddOn[] = [{type: 'Age 5+', price: 415, quantity: 0}];
 
 type Props = {
   data: Activity;
+  setAddons: (addOn: AddOn, title: string, action: ActionType) => void;
 };
 
 export interface SelectionProps {
@@ -47,7 +53,7 @@ const timesArray = [
 
 const today = moment().format('YYYY-MM-DD');
 
-const ActivityDetailsCollapseContents = ({data}: Props) => {
+const ActivityDetailsCollapseContents = ({data, setAddons}: Props) => {
   const {appInfo, setAppInfo} = useAppInfo();
   const [dateVisible, setDateVisible] = useState<boolean>(false);
   const [datesArr, setDatesArr] = useState<string[]>([]);
@@ -105,11 +111,24 @@ const ActivityDetailsCollapseContents = ({data}: Props) => {
       },
     });
 
-  const [productData, setProductData] = useState({
-    name: 'Socks',
-    details:
-      'All people must wear jumps adventure trampoline socks when using the activity',
-  });
+  const handleChange = (action: 'increase' | 'decrease', addOn: AddOn) => {
+    data;
+    if (data.addOns && data.addOns?.length > 0) {
+      if (action === 'increase') addOn['quantity'] += 1;
+      if (action === 'decrease') addOn['quantity'] -= 1;
+      setAddons(addOn, data.title, action);
+    } else {
+      addOn['quantity'] += 1;
+      setAddons(addOn, data.title, 'set');
+    }
+  };
+
+  const getQuantity = (type: string) => {
+    if (data.addOns && data.addOns?.length > 0) {
+      return data.addOns.find(el => el.type === type)?.quantity || 0;
+    }
+    return 0;
+  };
 
   const onDateChange = (date: any) => {
     setAppInfo(prev => ({...prev, dateToAttend: new Date(date)}));
@@ -124,6 +143,10 @@ const ActivityDetailsCollapseContents = ({data}: Props) => {
     }
     setDatesArr(datesArray);
   }, [appInfo.dateToAttend]);
+
+  // useEffect(() => {
+  //   console.log('data: ', appInfo.activities);
+  // }, [appInfo.activities]);
 
   return (
     <View style={styles.container}>
@@ -222,19 +245,31 @@ const ActivityDetailsCollapseContents = ({data}: Props) => {
         })}
       </View>
 
-      <StyleView className="w-full py-10 bg-transparent">
-        <PersonSelection
-          data={personSelectionData}
-          title={data.title}
-          setData={setPersonSelectionData}
-        />
+      <StyleView className="py-8 bg-transparent">
+        {peopleAddOns?.map((item, index) => (
+          <QuantitySelect
+            key={index}
+            title={item.type}
+            price={item.price}
+            quantity={getQuantity(item.type)}
+            onChange={action => handleChange(action, item)}
+          />
+        ))}
       </StyleView>
-      <StyleView className="w-full py-10 bg-transparent">
-        <ProductsList
-          product={productData}
-          data={productSelectionData}
-          handleChange={setProductSelectionData}
-        />
+      <StyleView className="flex-row items-center justify-between bg-transparent">
+        <StyleView className="bg-transparent w-7/12">
+          <StyleText className="font-bold">Socks</StyleText>
+          <StyleText className="text-sm">
+            All people must wear jumps adventure trampoline socks when using the
+            activity
+          </StyleText>
+        </StyleView>
+        <StyleView className="w-4/12 h-20 bg-transparent flex flex-row justify-center p-1 items-center">
+          <StyleImage
+            className="w-full h-16 object-contain"
+            source={require('../../assets/happyMonkey.png')}
+          />
+        </StyleView>
       </StyleView>
     </View>
   );
