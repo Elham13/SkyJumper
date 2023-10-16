@@ -20,6 +20,7 @@ import LoginScreen from '../views/LoginScreen';
 import RegisterScreen from '../views/RegisterScreen';
 import SelectionScreen from '../views/SelectionScreen';
 import {useAuth} from '../contexts/AuthProvider';
+import OrderDetailScreen from '../views/OrderDetailScreen';
 
 const {Navigator, Screen} = createDrawerNavigator();
 
@@ -58,6 +59,11 @@ const DrawerNavigation = () => {
       <Screen
         name="ActivityDetails"
         component={ActivityDetails}
+        options={{headerShown: false}}
+      />
+      <Screen
+        name="OrderDetail"
+        component={OrderDetailScreen}
         options={{headerShown: false}}
       />
       {/* <Screen name='Tabs' component={MainScreen} /> */}

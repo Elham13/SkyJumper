@@ -6,10 +6,10 @@ export interface AddOn {
 export interface Activity {
   title: string;
   subTitle?: string[];
-  price?: string;
+  price: number;
   discountText?: string;
   imageTitle?: string;
   dateToAttend: Date;
-  timeToAttend?: string;
+  timeToAttend: string;
   addOns?: AddOn[];
 }

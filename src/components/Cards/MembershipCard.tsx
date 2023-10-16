@@ -12,7 +12,7 @@ import {
 type MembershipCardProps = {
   title: string;
   subtitle?: string[];
-  price?: string;
+  price?: number;
   discountText?: string;
   imageTitle?: string;
   onClick: () => void;
@@ -38,7 +38,7 @@ const MembershipCard = ({
             <Text style={styles.subtitle2}>{subtitle?.[1]}</Text>
           </Text>
           <Text>
-            <Text style={styles.priceHeading}>Price </Text> {price}
+            <Text style={styles.priceHeading}>Price </Text> RS {price}/Hr
           </Text>
           <Text style={styles.discountText}>{discountText}</Text>
         </View>

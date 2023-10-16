@@ -100,21 +100,41 @@ const ActivityDetailsCollapseContents = ({activity, index}: Props) => {
   };
 
   const onDateChange = (date: any) => {
-    setAppInfo(prev => ({...prev, dateToAttend: new Date(date)}));
+    setAppInfo(prev => ({
+      ...prev,
+      activities: prev.activities.map((obj, ind) => {
+        if (ind === index) {
+          return {...obj, dateToAttend: date};
+        }
+        return obj;
+      }),
+    }));
+  };
+
+  const handleTimeChange = (time: string) => {
+    setAppInfo(prev => ({
+      ...prev,
+      activities: prev.activities.map((obj, ind) => {
+        if (ind === index) {
+          return {...obj, timeToAttend: time};
+        }
+        return obj;
+      }),
+    }));
   };
 
   useEffect(() => {
-    const selectedDate = moment(appInfo.dateToAttend); // Get the current date
+    const selectedDate = moment(activity.dateToAttend); // Get the current date
     const datesArray = [];
     for (let i = 0; i <= 3; i++) {
       datesArray.push(moment(selectedDate).format('YYYY-MM-DD'));
       selectedDate.add(1, 'day'); // Move to the next day
     }
     setDatesArr(datesArray);
-  }, [appInfo.dateToAttend]);
+  }, [activity.dateToAttend]);
 
   useEffect(() => {
-    console.log('activities: ', formatLog(appInfo.activities));
+    console.log('activities: ', formatLog(appInfo));
   }, [appInfo.activities]);
 
   return (
@@ -140,19 +160,19 @@ const ActivityDetailsCollapseContents = ({activity, index}: Props) => {
             </TouchableOpacity>
           </View>
           <CalendarPicker onDateChange={onDateChange} />
-          {appInfo.dateToAttend && (
+          {activity.dateToAttend && (
             <TouchableOpacity
               style={styles.confirmBtn}
               onPress={() => setDateVisible(false)}>
               <Text style={styles.confirmBtnTxt}>
-                Confirm {moment(appInfo.dateToAttend).format('DD-MMM-YYYY')}
+                Confirm {moment(activity.dateToAttend).format('DD-MMM-YYYY')}
               </Text>
             </TouchableOpacity>
           )}
         </Modal>
       </View>
       <Text style={styles.selectedDate}>
-        {moment(appInfo.dateToAttend).format('MMM YYYY')}
+        {moment(activity.dateToAttend).format('MMM YYYY')}
       </Text>
       <View style={styles.weekDaysWrapper}>
         {datesArr?.map((date, id) => {
@@ -190,21 +210,19 @@ const ActivityDetailsCollapseContents = ({activity, index}: Props) => {
         <Text style={styles.whenAttendTxt}>Select Time</Text>
       </View>
       <Text style={styles.selectedDate}>
-        {moment(appInfo.dateToAttend).format('MMM YYYY')}
+        {moment(activity.dateToAttend).format('MMM YYYY')}
       </Text>
       <View style={styles.weekDaysWrapper}>
         {timesArray?.map((time, id) => {
           return (
             <TouchableOpacity
               key={id}
-              onPress={() =>
-                setAppInfo(prev => ({...prev, timeToAttend: time}))
-              }
+              onPress={() => handleTimeChange(time)}
               style={[
                 styles.weekDay,
                 {
                   backgroundColor:
-                    appInfo.timeToAttend === time ? '#F97316' : '#FEC868',
+                    activity.timeToAttend === time ? '#F97316' : '#FEC868',
                 },
               ]}
               activeOpacity={0.8}>

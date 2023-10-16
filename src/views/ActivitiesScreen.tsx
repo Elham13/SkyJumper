@@ -5,7 +5,7 @@ import {ScrollView} from 'react-native';
 import CalendarPicker from 'react-native-calendar-picker';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {TouchableOpacity} from 'react-native';
-import moment, {Moment} from 'moment';
+import moment from 'moment';
 import MembershipCard from '../components/Cards/MembershipCard';
 import {insertOrRemoveFromArray} from '../utils/helpers';
 import {useAppInfo} from '../contexts/AppInfoProvider';
@@ -18,59 +18,75 @@ export const activityList: Activity[] = [
   {
     title: 'Trampoline Jump',
     subTitle: ['Open', 'Jump'],
-    price: 'Rs 700/Hr',
+    price: 700,
     discountText: '1 Child for ₹700 add-on additional children ₹500 per child',
     imageTitle: 'Open Jump',
+    dateToAttend: new Date(),
+    timeToAttend: '04:00 PM',
   },
   {
     title: 'Sky Jumper Carnival',
     subTitle: ['Open', 'Jump'],
-    price: 'Rs 700/Hr',
+    price: 700,
     discountText: '1 Child for ₹700 add-on additional children ₹500 per child',
     imageTitle: 'Open Jump',
+    dateToAttend: new Date(),
+    timeToAttend: '04:00 PM',
   },
   {
     title: 'Sky Laser Tag',
     subTitle: ['Laser Tag', 'Gaming'],
-    price: 'Rs 1000.00/Hr',
+    price: 1000.0,
     discountText:
       '1 Children for ₹1000 - add on additional children ₹500 per child',
     imageTitle: 'Laser Tag Gaming',
+    dateToAttend: new Date(),
+    timeToAttend: '04:00 PM',
   },
   {
     title: 'GenZ The Teen Disco',
     subTitle: ['Open', 'Jump'],
-    price: 'Rs 700/Hr',
+    price: 700,
     discountText: '1 Child for ₹700 add-on additional children ₹500 per child',
     imageTitle: 'Open Jump',
+    dateToAttend: new Date(),
+    timeToAttend: '04:00 PM',
   },
   {
     title: 'Birthday Party',
     subTitle: ['Open', 'Jump'],
-    price: 'Rs 700/Hr',
+    price: 700,
     discountText: '1 Child for ₹700 add-on additional children ₹500 per child',
     imageTitle: 'Open Jump',
+    dateToAttend: new Date(),
+    timeToAttend: '04:00 PM',
   },
   {
     title: 'Corporate Event',
     subTitle: ['Open', 'Jump'],
-    price: 'Rs 700/Hr',
+    price: 700,
     discountText: '1 Child for ₹700 add-on additional children ₹500 per child',
     imageTitle: 'Open Jump',
+    dateToAttend: new Date(),
+    timeToAttend: '04:00 PM',
   },
   {
     title: 'School Trips',
     subTitle: ['Open', 'Jump'],
-    price: 'Rs 700/Hr',
+    price: 700,
     discountText: '1 Child for ₹700 add-on additional children ₹500 per child',
     imageTitle: 'Open Jump',
+    dateToAttend: new Date(),
+    timeToAttend: '04:00 PM',
   },
   {
     title: 'Active Kitty Party',
     subTitle: ['Open', 'Jump'],
-    price: 'Rs 700/Hr',
+    price: 700,
     discountText: '1 Child for ₹700 add-on additional children ₹500 per child',
     imageTitle: 'Open Jump',
+    dateToAttend: new Date(),
+    timeToAttend: '04:00 PM',
   },
 ];
 

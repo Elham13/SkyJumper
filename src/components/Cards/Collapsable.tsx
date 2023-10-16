@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     justifyContent: 'space-between',
     backgroundColor: '#F97316',
-    width: width - 40,
+    width: width - 32,
     borderTopLeftRadius: 7,
     borderTopRightRadius: 7,
     height: 40,
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   },
   collapsTitle: {paddingLeft: 10, fontWeight: '700', color: "#fff"},
   content: {
-    width: width - 40,
+    width: width - 32,
     backgroundColor: '#FDE9D6',
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
