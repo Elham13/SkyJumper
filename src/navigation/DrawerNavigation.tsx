@@ -34,7 +34,6 @@ const DrawerNavigation = () => {
         <DrawerContent navigation={props.navigation} state={props.state} />
       )}>
       <Screen name="InitialScreen" component={MainStack} />
-      <Screen name="SelectionScreen" component={SelectionScreen} />
       {/* <Screen name='Home' component={MainScreen} /> */}
       <Screen name="My Profile" component={MyProfileScreen} />
       <Screen name="Activities" component={ActivitiesScreen} />
@@ -44,13 +43,13 @@ const DrawerNavigation = () => {
       <Screen name="Contact Us" component={ContactUs} />
       <Screen name="SkyJumper Safety Video" component={SafetyVideo} />
       <Screen name="Refer a Friend" component={ReferAFriend} />
-      <Screen name="Login" component={LoginScreen} />
-      <Screen name="Register" component={RegisterScreen} />
       <Screen
         name="Feedback And Complaints"
         component={FeedbackAndComplaints}
       />
       <Screen name="Terms And Conditions" component={TermsAndConditions} />
+      <Screen name="Login" component={LoginScreen} />
+      <Screen name="Register" component={RegisterScreen} />
       <Screen
         name="Notifications"
         component={NotificationsScreen}
@@ -61,6 +60,7 @@ const DrawerNavigation = () => {
         component={ActivityDetails}
         options={{headerShown: false}}
       />
+      <Screen name="SelectionScreen" component={SelectionScreen} />
       <Screen
         name="OrderDetail"
         component={OrderDetailScreen}

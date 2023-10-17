@@ -8,6 +8,7 @@ import {
 } from '../utils/TailwindAndUIkiteCombination';
 import Geolocation from '@react-native-community/geolocation';
 import {useAppInfo} from '../contexts/AppInfoProvider';
+import {formatLog} from '../utils/helpers';
 
 type PropTypes = {
   navigation: any;
@@ -39,7 +40,7 @@ const SelectionScreen = ({navigation}: PropTypes) => {
                 altitude: position?.coords?.altitude || undefined,
               },
             })),
-          error => console.log('Geolocation error: ', error.message),
+          error => console.log('Geolocation error: ', formatLog(error.message)),
         );
       } else {
         console.log('location permission denied');

@@ -134,10 +134,6 @@ const ActivitiesScreen = ({navigation}: Props) => {
     setActivities(tempArr);
   }, [appInfo?.selectedScreen]);
 
-  useEffect(() => {
-    console.log('appInfo.dateToAttend: ', appInfo.dateToAttend);
-  }, [appInfo.dateToAttend]);
-
   return (
     <SafeAreaView style={{flex: 1}}>
       <PageHeader title="Activities" />

@@ -8,12 +8,13 @@ import {
   IconProps,
   IndexPath,
 } from '@ui-kitten/components';
-import {StyleSheet, ViewProps, ImageBackground} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {
   StyleText,
   StyleTouchableOpacity,
   StyleView,
 } from '../utils/TailwindAndUIkiteCombination';
+import {formatLog} from '../utils/helpers';
 
 interface DrawerContentProp {
   navigation: any;

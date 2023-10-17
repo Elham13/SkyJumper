@@ -133,10 +133,6 @@ const ActivityDetailsCollapseContents = ({activity, index}: Props) => {
     setDatesArr(datesArray);
   }, [activity.dateToAttend]);
 
-  useEffect(() => {
-    console.log('activities: ', formatLog(appInfo));
-  }, [appInfo.activities]);
-
   return (
     <View style={styles.container}>
       <Text style={styles.time}>60 MIN</Text>
