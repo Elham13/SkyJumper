@@ -11,6 +11,7 @@ import {insertOrRemoveFromArray} from '../utils/helpers';
 import {useAppInfo} from '../contexts/AppInfoProvider';
 import {goBananaMenus, trampolineMenus1, trampolineMenus2} from './HomeScreen';
 import {Activity} from '../types/stateTypes';
+import FloatingButton from '../components/FloatingButton';
 
 const today = moment().format('YYYY-MM-DD');
 
@@ -201,6 +202,19 @@ const ActivitiesScreen = ({navigation}: Props) => {
         </View>
 
         <View style={styles.membershipView}>
+          {appInfo.activities?.length > 0 && (
+            <TouchableOpacity
+              style={styles.proceedBtn}
+              activeOpacity={0.6}
+              onPress={handleProceed}>
+              <Text style={styles.proceedBtnText}>Proceed</Text>
+              <Icon
+                name="shoppingcart"
+                size={24}
+                style={styles.proceedBtnIcon}
+              />
+            </TouchableOpacity>
+          )}
           {activities?.length > 0 &&
             activities.map((activity, index) => (
               <MembershipCard
@@ -228,15 +242,6 @@ const ActivitiesScreen = ({navigation}: Props) => {
               />
             ))}
         </View>
-        {appInfo.activities?.length > 0 && (
-          <TouchableOpacity
-            style={styles.proceedBtn}
-            activeOpacity={0.6}
-            onPress={handleProceed}>
-            <Text style={styles.proceedBtnText}>Proceed</Text>
-            <Icon name="shoppingcart" size={24} style={styles.proceedBtnIcon} />
-          </TouchableOpacity>
-        )}
       </ScrollView>
     </SafeAreaView>
   );
@@ -253,7 +258,7 @@ const styles = StyleSheet.create({
     gap: 10,
     padding: 10,
     borderRadius: 4,
-    marginBottom: 20,
+    marginVertical: 20,
   },
   proceedBtnText: {
     fontWeight: '700',
@@ -300,6 +305,7 @@ const styles = StyleSheet.create({
   },
   membershipView: {
     paddingBottom: 30,
+    position: 'relative',
   },
   modalHeader: {
     padding: 16,

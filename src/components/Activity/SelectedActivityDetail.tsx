@@ -36,23 +36,25 @@ const SelectedActivityDetail = ({activity}: PropType) => {
 
       <StyleView className="bg-transparent">
         <StyleView className="flex-row bg-transparent mb-2">
-          <StyleText className="w-36 font-bold">Name</StyleText>
+          <StyleText className="flex-1 font-bold">Name</StyleText>
           <StyleText className="flex-1 font-bold">Quantity</StyleText>
           <StyleText className="flex-1 font-bold">Price</StyleText>
           <StyleText className="flex-1 font-bold">Total</StyleText>
         </StyleView>
-        {activity.addOns?.map((addOn, index) => (
-          <StyleView
-            key={index}
-            className="flex-row mb-2 py-2 px-1 items-center bg-orange-300">
-            <StyleText className="w-36">{addOn.type}</StyleText>
-            <StyleText className="flex-1 ml-2">{addOn.quantity}</StyleText>
-            <StyleText className="flex-1">{addOn.price}</StyleText>
-            <StyleText className="flex-1">
-              {addOn.quantity * addOn.price}
-            </StyleText>
-          </StyleView>
-        ))}
+        {activity.addOns?.map((addOn, index) => {
+          return addOn.quantity > 0 ? (
+            <StyleView
+              key={index}
+              className="flex-row mb-2 py-2 px-1 items-center bg-orange-300">
+              <StyleText className="flex-1">{addOn.type}</StyleText>
+              <StyleText className="flex-1 ml-2">{addOn.quantity}</StyleText>
+              <StyleText className="flex-1">{addOn.price}</StyleText>
+              <StyleText className="flex-1">
+                {addOn.quantity * addOn.price}
+              </StyleText>
+            </StyleView>
+          ) : null;
+        })}
       </StyleView>
 
       <StyleView className="bg-transparent flex-row justify-between">
