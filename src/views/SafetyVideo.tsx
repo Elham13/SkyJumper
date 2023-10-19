@@ -1,14 +1,17 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {StyleView} from '../utils/TailwindAndUIkiteCombination';
+import PageHeader from '../components/PageHeader';
 
 const SafetyVideo = () => {
   return (
-    <View>
+    <StyleView className="flex-1">
+      <PageHeader title="Safety Videos" />
       <Text>SafetyVideo</Text>
-    </View>
-  )
-}
+    </StyleView>
+  );
+};
 
-export default SafetyVideo
+export default SafetyVideo;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
