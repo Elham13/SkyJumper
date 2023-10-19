@@ -8,6 +8,7 @@ import {
   ListItem,
   Select,
   Text,
+  Radio,
 } from '@ui-kitten/components';
 import {styled} from 'nativewind';
 import {
@@ -32,3 +33,4 @@ export const StyleImageBackground = styled(ImageBackground);
 export const StyleScrollView = styled(ScrollView);
 export const StyleList = styled(List);
 export const StyleListItem = styled(ListItem);
+export const StyleRadio = styled(Radio);
