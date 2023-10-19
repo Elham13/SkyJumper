@@ -1,4 +1,4 @@
-import {StyleSheet, View, ScrollView} from 'react-native';
+import {StyleSheet, View, ScrollView, Dimensions} from 'react-native';
 import React, {useMemo, useRef} from 'react';
 import PageHeader from '../components/PageHeader';
 import Collapsible from '../components/Cards/Collapsable';

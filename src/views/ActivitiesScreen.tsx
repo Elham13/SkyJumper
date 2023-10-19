@@ -136,7 +136,10 @@ const ActivitiesScreen = ({navigation}: Props) => {
   }, [appInfo?.selectedScreen]);
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, position: 'relative'}}>
+      {appInfo.activities?.length > 0 && (
+        <FloatingButton onPress={handleProceed} />
+      )}
       <PageHeader title="Activities" />
       <ScrollView style={styles.contentsWrapper}>
         <View style={styles.whenAttend}>
@@ -202,19 +205,6 @@ const ActivitiesScreen = ({navigation}: Props) => {
         </View>
 
         <View style={styles.membershipView}>
-          {appInfo.activities?.length > 0 && (
-            <TouchableOpacity
-              style={styles.proceedBtn}
-              activeOpacity={0.6}
-              onPress={handleProceed}>
-              <Text style={styles.proceedBtnText}>Proceed</Text>
-              <Icon
-                name="shoppingcart"
-                size={24}
-                style={styles.proceedBtnIcon}
-              />
-            </TouchableOpacity>
-          )}
           {activities?.length > 0 &&
             activities.map((activity, index) => (
               <MembershipCard
