@@ -9,6 +9,7 @@ import {
   Select,
   Text,
   Radio,
+  CheckBox,
 } from '@ui-kitten/components';
 import {styled} from 'nativewind';
 import {
@@ -34,3 +35,4 @@ export const StyleScrollView = styled(ScrollView);
 export const StyleList = styled(List);
 export const StyleListItem = styled(ListItem);
 export const StyleRadio = styled(Radio);
+export const StyleCheckBox = styled(CheckBox);
