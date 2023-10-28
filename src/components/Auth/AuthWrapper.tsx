@@ -1,5 +1,6 @@
 import {StyleSheet, View, Image, Dimensions} from 'react-native';
 import React from 'react';
+import {useTheme} from '../../contexts/ThemProvider';
 
 type PropType = {
   children: React.ReactNode;
@@ -7,8 +8,10 @@ type PropType = {
 const {height} = Dimensions.get('window');
 
 const AuthWrapper = ({children}: PropType) => {
+  const {backgroundColor} = useTheme();
+
   return (
-    <View style={[styles.wrapper, {height}]}>
+    <View style={[styles.wrapper, {height, backgroundColor}]}>
       <View style={[styles.container, {height: height / 1.2}]}>
         <Image
           style={styles.monkey}
@@ -25,7 +28,6 @@ export default AuthWrapper;
 
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: 'orange',
     alignItems: 'center',
   },
   container: {

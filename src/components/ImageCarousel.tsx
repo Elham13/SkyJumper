@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import {ViewPager} from '@ui-kitten/components';
 import {StyleText, StyleView} from '../utils/TailwindAndUIkiteCombination';
+import {useTheme} from '../contexts/ThemProvider';
 
 type PropType = {
   images: {id: string; title: string; img: ImageSourcePropType}[];
@@ -15,6 +16,7 @@ type PropType = {
 const {height} = Dimensions.get('window');
 
 export const ViewPagerLazyLoadingShowcase = ({images}: PropType) => {
+  const {backgroundColor, color} = useTheme();
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
 
   const shouldLoadComponent = (index: number): boolean =>
@@ -49,12 +51,13 @@ export const ViewPagerLazyLoadingShowcase = ({images}: PropType) => {
           style={styles.tab}>
           <ImageBackground source={image.img} style={styles.image} />
           <StyleView
-            className="absolute bottom-0 w-full h-20 space-y-1 flex justify-center items-center bg-orange-500"
+            className="absolute bottom-0 w-full h-20 space-y-1 flex justify-center items-center"
+            style={{backgroundColor}}
             level="1">
-            <StyleText category="c1" appearance="hint" className="text-black">
+            <StyleText category="c1" appearance="hint" style={{color}}>
               Call us +918882288001
             </StyleText>
-            <StyleText category="c1" appearance="hint" className="text-black">
+            <StyleText category="c1" appearance="hint" style={{color}}>
               Email: enquirey@skyjumpertp.com
             </StyleText>
             <StyleText

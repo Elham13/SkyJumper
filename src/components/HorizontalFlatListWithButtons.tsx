@@ -5,6 +5,7 @@ import {
   StyleText,
   StyleView,
 } from '../utils/TailwindAndUIkiteCombination';
+import {useTheme} from '../contexts/ThemProvider';
 
 const {height} = Dimensions.get('window');
 
@@ -19,6 +20,7 @@ type PropType = {
 };
 
 const HorizontalFlatListWithButtons = ({data}: PropType) => {
+  const {backgroundColor, color} = useTheme();
   const flatListRef = useRef<FlatList<Item> | null>(null);
 
   const renderItem = ({item}: {item: Item}) => (
@@ -27,7 +29,8 @@ const HorizontalFlatListWithButtons = ({data}: PropType) => {
         source={item.img}
         className="w-full h-full object-contain flex justify-center items-center">
         <StyleView
-          className="p-2 w-10/12 h-5/6 bg-orange-600 opacity-50 rounded-lg flex justify-center items-center"
+          className="p-2 w-10/12 h-5/6 rounded-lg flex justify-center items-center opacity-50"
+          style={{backgroundColor}}
           level="1">
           <StyleView
             className="p-2 absolute w-full h-full bg-white rounded-lg flex justify-center items-center"

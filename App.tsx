@@ -3,14 +3,12 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import store from './src/redux/store';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {NavigationContainer} from '@react-navigation/native';
 import DrawerNavigation from './src/navigation/DrawerNavigation';
 import * as eva from '@eva-design/eva';
 import {ApplicationProvider, IconRegistry} from '@ui-kitten/components';
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import {myTheme} from './custom-theme';
-import AuthProvider from './src/contexts/AuthProvider';
-import AppInfoProvider from './src/contexts/AppInfoProvider';
+import Providers from './src/contexts/Providers';
 
 function App(): JSX.Element {
   return (
@@ -18,13 +16,9 @@ function App(): JSX.Element {
       <SafeAreaProvider>
         <IconRegistry icons={EvaIconsPack} />
         <ApplicationProvider {...eva} theme={{...eva.light, ...myTheme}}>
-          <AuthProvider>
-            <AppInfoProvider>
-              <NavigationContainer>
-                <DrawerNavigation />
-              </NavigationContainer>
-            </AppInfoProvider>
-          </AuthProvider>
+          <Providers>
+            <DrawerNavigation />
+          </Providers>
         </ApplicationProvider>
       </SafeAreaProvider>
     </Provider>

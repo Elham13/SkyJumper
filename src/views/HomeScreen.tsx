@@ -6,6 +6,7 @@ import {ViewPagerLazyLoadingShowcase} from '../components/ImageCarousel';
 import HorizontalFlatListWithButtons from '../components/HorizontalFlatListWithButtons';
 import {useAppInfo} from '../contexts/AppInfoProvider';
 import {activityList} from './ActivitiesScreen';
+import {useTheme} from '../contexts/ThemProvider';
 
 const DATA = [
   {
@@ -119,6 +120,7 @@ export const goBananaMenus = [
 type PropTypes = {navigation: any};
 
 const HomeScreen = ({navigation}: PropTypes) => {
+  const {bgLight} = useTheme();
   const {appInfo, setAppInfo} = useAppInfo();
 
   const handleClick = (selectedActivity: string) => {
@@ -136,7 +138,7 @@ const HomeScreen = ({navigation}: PropTypes) => {
       <ScrollView style={styles.homeContentsWraper}>
         {appInfo.selectedScreen === 'Trampoline' ? (
           <>
-            <View style={styles.cardsWrapper}>
+            <View style={[styles.cardsWrapper, {backgroundColor: bgLight}]}>
               {trampolineMenus1?.map((menu, index) => (
                 <VerticalIconNameCard
                   key={index}
@@ -147,7 +149,12 @@ const HomeScreen = ({navigation}: PropTypes) => {
               ))}
             </View>
 
-            <View style={{...styles.cardsWrapper, marginTop: 12}}>
+            <View
+              style={{
+                ...styles.cardsWrapper,
+                marginTop: 12,
+                backgroundColor: bgLight,
+              }}>
               {trampolineMenus2?.map((menu, index) => (
                 <VerticalIconNameCard
                   key={index}
@@ -159,7 +166,7 @@ const HomeScreen = ({navigation}: PropTypes) => {
             </View>
           </>
         ) : (
-          <View style={styles.cardsWrapper}>
+          <View style={[styles.cardsWrapper, {backgroundColor: bgLight}]}>
             {goBananaMenus?.map((menu, index) => (
               <VerticalIconNameCard
                 key={index}
@@ -185,7 +192,6 @@ const styles = StyleSheet.create({
     padding: 12,
   },
   cardsWrapper: {
-    backgroundColor: '#F691311F',
     flexDirection: 'row',
     gap: 4,
     borderRadius: 8,

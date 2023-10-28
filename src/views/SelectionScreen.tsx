@@ -9,12 +9,14 @@ import {
 import Geolocation from '@react-native-community/geolocation';
 import {useAppInfo} from '../contexts/AppInfoProvider';
 import {formatLog} from '../utils/helpers';
+import {useTheme} from '../contexts/ThemProvider';
 
 type PropTypes = {
   navigation: any;
 };
 const SelectionScreen = ({navigation}: PropTypes) => {
   const {setAppInfo} = useAppInfo();
+  const {backgroundColor} = useTheme();
 
   const requestLocationPermission = async () => {
     try {
@@ -69,6 +71,7 @@ const SelectionScreen = ({navigation}: PropTypes) => {
         </StyleText>
         <StyleButton
           className="w-full"
+          style={{backgroundColor, borderColor: backgroundColor}}
           onPress={() => handleNavigate('Trampoline')}>
           <StyleText>Skyjumper Trampoline Park</StyleText>
         </StyleButton>
@@ -81,6 +84,7 @@ const SelectionScreen = ({navigation}: PropTypes) => {
         </StyleText>
         <StyleButton
           className="w-full"
+          style={{backgroundColor, borderColor: backgroundColor}}
           onPress={() => handleNavigate('Go Banana')}>
           <StyleText>Skyjumper Go Bananas</StyleText>
         </StyleButton>

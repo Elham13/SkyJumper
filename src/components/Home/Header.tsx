@@ -7,9 +7,11 @@ import {Badge} from '@rneui/themed';
 import {DrawerActions, useNavigation} from '@react-navigation/native';
 import {StyleSelect} from '../../utils/TailwindAndUIkiteCombination';
 import {IndexPath, SelectItem} from '@ui-kitten/components';
+import {useTheme} from '../../contexts/ThemProvider';
 
 const Header = () => {
   const navigation = useNavigation();
+  const {backgroundColor} = useTheme();
   const [selectedIndex, setSelectedIndex] = React.useState<
     IndexPath | IndexPath[]
   >(new IndexPath(0));
@@ -51,7 +53,10 @@ const Header = () => {
       <TouchableOpacity
         onPress={() => navigation.navigate('Notifications')}
         style={styles.notificationBtn}>
-        <Icon name="bells" style={styles.notiIcon} />
+        <Icon
+          name="bells"
+          style={[styles.notiIcon, {color: backgroundColor}]}
+        />
         <Badge
           status="warning"
           containerStyle={{
@@ -85,7 +90,6 @@ const styles = StyleSheet.create({
     borderWidth: 0,
   },
   notiIcon: {
-    color: 'orange',
     fontSize: 26,
   },
   notificationBtn: {
