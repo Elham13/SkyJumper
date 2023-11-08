@@ -1,4 +1,4 @@
-import {StyleSheet, View, ScrollView, Dimensions} from 'react-native';
+import {StyleSheet, View, ScrollView} from 'react-native';
 import React, {useMemo, useRef} from 'react';
 import PageHeader from '../components/PageHeader';
 import Collapsible from '../components/Cards/Collapsable';
@@ -10,10 +10,12 @@ import {
 } from '../utils/TailwindAndUIkiteCombination';
 import {Icon} from '@ui-kitten/components';
 import {useAppInfo} from '../contexts/AppInfoProvider';
+import {useTheme} from '../contexts/ThemProvider';
 
 export type ActionType = 'set' | 'increase' | 'decrease';
 
 const ActivityDetails = ({navigation}: {navigation: any}) => {
+  const {backgroundColor, color} = useTheme();
   const totalPrice = useRef<number>(0);
   const {appInfo} = useAppInfo();
 
@@ -52,26 +54,28 @@ const ActivityDetails = ({navigation}: {navigation: any}) => {
             : ''}
         </View>
       </ScrollView>
-      <StyleView className="w-full h-20 flex flex-row items-center space-x-2 bg-orange-500 px-4">
+      <StyleView
+        className="w-full h-20 flex flex-row items-center space-x-2 px-4"
+        style={{backgroundColor}}>
         <StyleButton
           className="flex-1"
-          accessoryRight={
-            <Icon fill="#ffffff" name="arrow-ios-upward-outline" />
-          }
+          accessoryRight={<Icon fill={color} name="arrow-ios-upward-outline" />}
           status="control"
           appearance="outline">
-          <StyleText category="label">
+          <StyleText category="label" style={{color}}>
             View (Rs {totalPrice.current}
             /-)
           </StyleText>
         </StyleButton>
         <StyleButton
-          accessoryRight={<Icon fill="#ffffff" name="shopping-cart-outline" />}
+          accessoryRight={<Icon fill={color} name="shopping-cart-outline" />}
           className="flex-1"
           status="control"
           appearance="outline"
           onPress={() => navigation?.navigate('OrderDetail')}>
-          <StyleText category="label">Checkout</StyleText>
+          <StyleText category="label" style={{color}}>
+            Checkout
+          </StyleText>
         </StyleButton>
       </StyleView>
     </StyleView>
@@ -85,11 +89,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  bottomBtn: {
-    borderWidth: 1,
-    borderColor: 'black',
-    borderRadius: 4,
-    flex: 1,
   },
 });

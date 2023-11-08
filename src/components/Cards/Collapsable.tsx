@@ -6,15 +6,17 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import IonIcon from 'react-native-vector-icons/Ionicons';
+import {useTheme} from '../../contexts/ThemProvider';
 const width = Dimensions.get('window').width;
 
 type CollapsibleProps = {
   title: string;
   content: JSX.Element;
-  defaultOpen: boolean
+  defaultOpen: boolean;
 };
 
-const Collapsible = ({title, content,defaultOpen}: CollapsibleProps) => {
+const Collapsible = ({title, content, defaultOpen}: CollapsibleProps) => {
+  const {backgroundColor, bgLighter, color} = useTheme();
   const [isOpen, setIsOpen] = useState(defaultOpen);
   const height = useSharedValue(defaultOpen ? 500 : 0);
 
@@ -36,27 +38,32 @@ const Collapsible = ({title, content,defaultOpen}: CollapsibleProps) => {
   return (
     <View style={{flex: 1}}>
       <TouchableOpacity
-        style={styles.collapsBtn}
+        style={[styles.collapseBtn, {backgroundColor}]}
         onPress={toggleView}
         activeOpacity={0.8}>
-        <Text style={styles.collapsTitle}>{title}</Text>
+        <Text style={[styles.collapseTitle, {color}]}>{title}</Text>
         {isOpen ? (
           <IonIcon
             name="caret-up-outline"
-            style={{paddingRight: 10}}
+            style={{paddingRight: 10, color}}
             size={22}
           />
         ) : (
           <IonIcon
             name="caret-down-outline"
-            style={{paddingRight: 10}}
+            style={{paddingRight: 10, color}}
             size={22}
           />
         )}
       </TouchableOpacity>
 
       <SafeAreaView style={{flex: 1}}>
-        <Animated.ScrollView style={[styles.content, animatedStyles]}>
+        <Animated.ScrollView
+          style={[
+            styles.content,
+            animatedStyles,
+            {backgroundColor: bgLighter},
+          ]}>
           {content}
         </Animated.ScrollView>
       </SafeAreaView>
@@ -72,11 +79,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  collapsBtn: {
+  collapseBtn: {
     display: 'flex',
     marginTop: 20,
     justifyContent: 'space-between',
-    backgroundColor: '#F97316',
     width: width - 32,
     borderTopLeftRadius: 7,
     borderTopRightRadius: 7,
@@ -84,10 +90,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
-  collapsTitle: {paddingLeft: 10, fontWeight: '700', color: "#fff"},
+  collapseTitle: {paddingLeft: 10, fontWeight: '700'},
   content: {
     width: width - 32,
-    backgroundColor: '#FDE9D6',
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
   },

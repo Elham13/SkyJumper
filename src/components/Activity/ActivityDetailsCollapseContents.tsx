@@ -12,6 +12,7 @@ import {Activity, AddOn} from '../../types/stateTypes';
 import {useAppInfo} from '../../contexts/AppInfoProvider';
 import QuantitySelect from './QuantitySelect';
 import {formatLog} from '../../utils/helpers';
+import {useTheme} from '../../contexts/ThemProvider';
 
 const peopleAddOns: AddOn[] = [
   {type: 'Age 5+', price: 415, quantity: 1},
@@ -51,7 +52,8 @@ const timesArray = [
 const today = moment().format('YYYY-MM-DD');
 
 const ActivityDetailsCollapseContents = ({activity, index}: Props) => {
-  const {appInfo, setAppInfo} = useAppInfo();
+  const {backgroundColor, color, bgLight} = useTheme();
+  const {setAppInfo} = useAppInfo();
   const [dateVisible, setDateVisible] = useState<boolean>(false);
   const [datesArr, setDatesArr] = useState<string[]>([]);
 
@@ -135,15 +137,17 @@ const ActivityDetailsCollapseContents = ({activity, index}: Props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.time}>60 MIN</Text>
+      <Text style={[styles.time, {backgroundColor, color}]}>60 MIN</Text>
       <Text style={styles.text}>{activity.discountText}</Text>
 
       <View style={styles.whenAttend}>
-        <Text style={styles.whenAttendTxt}>Select Date</Text>
+        <Text style={[styles.whenAttendTxt, {color: backgroundColor}]}>
+          Select Date
+        </Text>
         <TouchableOpacity
           onPress={() => setDateVisible(true)}
           activeOpacity={0.8}>
-          <Icon name="calendar" size={40} style={{color: 'black'}} />
+          <Icon name="calendar" size={40} style={{color: backgroundColor}} />
         </TouchableOpacity>
         <Modal
           animationType="slide"
@@ -158,9 +162,9 @@ const ActivityDetailsCollapseContents = ({activity, index}: Props) => {
           <CalendarPicker onDateChange={onDateChange} />
           {activity.dateToAttend && (
             <TouchableOpacity
-              style={styles.confirmBtn}
+              style={[styles.confirmBtn, {backgroundColor}]}
               onPress={() => setDateVisible(false)}>
-              <Text style={styles.confirmBtnTxt}>
+              <Text style={[styles.confirmBtnTxt, {color}]}>
                 Confirm {moment(activity.dateToAttend).format('DD-MMM-YYYY')}
               </Text>
             </TouchableOpacity>
@@ -180,14 +184,14 @@ const ActivityDetailsCollapseContents = ({activity, index}: Props) => {
               style={[
                 styles.weekDay,
                 {
-                  backgroundColor: id === 0 ? '#F97316' : '#FEC868',
+                  backgroundColor: id === 0 ? backgroundColor : bgLight,
                 },
               ]}
               activeOpacity={0.8}>
               <Text
                 style={{
                   fontWeight: '700',
-                  color: 'black',
+                  color: isToday ? color : 'black',
                   fontSize: isToday ? 18 : 12,
                 }}>
                 {isToday ? 'Today' : moment(date).format('ddd')}
@@ -203,7 +207,9 @@ const ActivityDetailsCollapseContents = ({activity, index}: Props) => {
       </View>
 
       <View style={[styles.whenAttend, {marginTop: 30}]}>
-        <Text style={styles.whenAttendTxt}>Select Time</Text>
+        <Text style={[styles.whenAttendTxt, {color: backgroundColor}]}>
+          Select Time
+        </Text>
       </View>
       <Text style={styles.selectedDate}>
         {moment(activity.dateToAttend).format('MMM YYYY')}
@@ -218,11 +224,17 @@ const ActivityDetailsCollapseContents = ({activity, index}: Props) => {
                 styles.weekDay,
                 {
                   backgroundColor:
-                    activity.timeToAttend === time ? '#F97316' : '#FEC868',
+                    activity.timeToAttend === time ? backgroundColor : bgLight,
                 },
               ]}
               activeOpacity={0.8}>
-              <Text style={styles.timeText}>{time}</Text>
+              <Text
+                style={[
+                  styles.timeText,
+                  {color: activity.timeToAttend === time ? color : 'black'},
+                ]}>
+                {time}
+              </Text>
             </TouchableOpacity>
           );
         })}
@@ -277,7 +289,6 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
   time: {
-    backgroundColor: 'orange',
     alignSelf: 'flex-start',
     paddingHorizontal: 8,
     paddingVertical: 4,
@@ -292,7 +303,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   whenAttendTxt: {
-    color: 'orange',
     fontWeight: '700',
     fontSize: 20,
   },
@@ -310,14 +320,12 @@ const styles = StyleSheet.create({
     color: 'red',
   },
   confirmBtn: {
-    backgroundColor: 'darkorange',
     alignSelf: 'center',
     marginTop: 22,
     padding: 12,
     borderRadius: 8,
   },
   confirmBtnTxt: {
-    color: 'white',
     fontWeight: '700',
     fontSize: 16,
   },
@@ -342,7 +350,6 @@ const styles = StyleSheet.create({
   },
   timeText: {
     fontWeight: '700',
-    color: 'black',
     fontSize: 12,
   },
 });

@@ -71,7 +71,6 @@ const SelectionScreen = ({navigation}: PropTypes) => {
         </StyleText>
         <StyleButton
           className="w-full"
-          style={{backgroundColor, borderColor: backgroundColor}}
           onPress={() => handleNavigate('Trampoline')}>
           <StyleText>Skyjumper Trampoline Park</StyleText>
         </StyleButton>
@@ -84,7 +83,6 @@ const SelectionScreen = ({navigation}: PropTypes) => {
         </StyleText>
         <StyleButton
           className="w-full"
-          style={{backgroundColor, borderColor: backgroundColor}}
           onPress={() => handleNavigate('Go Banana')}>
           <StyleText>Skyjumper Go Bananas</StyleText>
         </StyleButton>

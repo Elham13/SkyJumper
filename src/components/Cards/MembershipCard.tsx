@@ -8,6 +8,7 @@ import {
   ViewStyle,
   StyleProp,
 } from 'react-native';
+import {useTheme} from '../../contexts/ThemProvider';
 
 type MembershipCardProps = {
   title: string;
@@ -28,6 +29,8 @@ const MembershipCard = ({
   onClick,
   style,
 }: MembershipCardProps) => {
+  const {backgroundColor, color} = useTheme();
+
   return (
     <TouchableOpacity activeOpacity={0.8} onPress={onClick}>
       <View style={[styles.container, style]}>
@@ -53,10 +56,9 @@ const MembershipCard = ({
               style={styles.monkey}
             />
           </View>
-          <View style={styles.bottom}>
+          <View style={[styles.bottom, {backgroundColor}]}>
             <View style={styles.titleWrapper}>
-              <Text
-                style={{...styles.txt, color: 'black', textAlign: 'center'}}>
+              <Text style={{...styles.txt, color, textAlign: 'center'}}>
                 {imageTitle}
               </Text>
             </View>
@@ -134,7 +136,6 @@ const styles = StyleSheet.create({
   },
   monkey: {height: 40, objectFit: 'contain', marginTop: 8},
   bottom: {
-    backgroundColor: 'orange',
     justifyContent: 'center',
     padding: 10,
     position: 'relative',

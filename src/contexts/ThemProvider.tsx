@@ -3,6 +3,7 @@ import {createContext, useContext, useRef} from 'react';
 interface ThemeContextType {
   backgroundColor: string;
   bgLight: string;
+  bgLighter: string;
   color: string;
 }
 
@@ -13,6 +14,7 @@ type PropTypes = {
 const ThemeContext = createContext<ThemeContextType>({
   backgroundColor: '',
   bgLight: '',
+  bgLighter: '',
   color: '',
 });
 
@@ -20,6 +22,7 @@ const ThemeProvider = ({children}: PropTypes) => {
   const theme = useRef<ThemeContextType>({
     backgroundColor: 'green',
     bgLight: '#c6f6d5',
+    bgLighter: '#e7f6e6',
     color: '#fff',
   });
 
@@ -28,6 +31,7 @@ const ThemeProvider = ({children}: PropTypes) => {
       value={{
         backgroundColor: theme.current?.backgroundColor,
         bgLight: theme.current?.bgLight,
+        bgLighter: theme.current?.bgLighter,
         color: theme.current.color,
       }}>
       {children}

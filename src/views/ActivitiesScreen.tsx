@@ -12,6 +12,7 @@ import {useAppInfo} from '../contexts/AppInfoProvider';
 import {goBananaMenus, trampolineMenus1, trampolineMenus2} from './HomeScreen';
 import {Activity} from '../types/stateTypes';
 import FloatingButton from '../components/FloatingButton';
+import {useTheme} from '../contexts/ThemProvider';
 
 const today = moment().format('YYYY-MM-DD');
 
@@ -96,6 +97,7 @@ type Props = {
 };
 
 const ActivitiesScreen = ({navigation}: Props) => {
+  const {backgroundColor, color, bgLight, bgLighter} = useTheme();
   const {appInfo, setAppInfo} = useAppInfo();
   const [dateVisible, setDateVisible] = useState<boolean>(false);
   const [datesArr, setDatesArr] = useState<string[]>([]);
@@ -160,9 +162,9 @@ const ActivitiesScreen = ({navigation}: Props) => {
             <CalendarPicker onDateChange={onDateChange} />
             {appInfo.dateToAttend && (
               <TouchableOpacity
-                style={styles.confirmBtn}
+                style={[styles.confirmBtn, {backgroundColor}]}
                 onPress={() => setDateVisible(false)}>
-                <Text style={styles.confirmBtnTxt}>
+                <Text style={[styles.confirmBtnTxt, {color}]}>
                   Confirm {moment(appInfo.dateToAttend).format('DD-MMM-YYYY')}
                 </Text>
               </TouchableOpacity>
@@ -182,20 +184,24 @@ const ActivitiesScreen = ({navigation}: Props) => {
                 style={[
                   styles.weekDay,
                   {
-                    backgroundColor: id === 0 ? '#F97316' : '#FEC868',
+                    backgroundColor: id === 0 ? backgroundColor : bgLight,
                   },
                 ]}>
                 <Text
                   style={{
                     fontWeight: '700',
-                    color: 'black',
+                    color: id === 0 ? color : 'black',
                     fontSize: isToday ? 18 : 12,
                   }}>
                   {isToday ? 'Today' : moment(date).format('ddd')}
                 </Text>
                 {!isToday && (
                   <Text
-                    style={{fontWeight: '700', fontSize: 20, color: 'black'}}>
+                    style={{
+                      fontWeight: '700',
+                      fontSize: 20,
+                      color: id === 0 ? color : 'black',
+                    }}>
                     {moment(date).format('D')}
                   </Text>
                 )}
@@ -226,8 +232,8 @@ const ActivitiesScreen = ({navigation}: Props) => {
                   backgroundColor: appInfo.activities.find(
                     el => el.title === activity.title,
                   )
-                    ? '#FFABC9'
-                    : '#FDE9D6',
+                    ? bgLight
+                    : bgLighter,
                 }}
               />
             ))}
@@ -308,14 +314,12 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   confirmBtn: {
-    backgroundColor: 'darkorange',
     alignSelf: 'center',
     marginTop: 22,
     padding: 12,
     borderRadius: 8,
   },
   confirmBtnTxt: {
-    color: 'white',
     fontWeight: '700',
     fontSize: 16,
   },

@@ -3,18 +3,19 @@ import {
   Divider,
   Drawer,
   DrawerItem,
+  DrawerItemProps,
   Icon,
   IconElement,
   IconProps,
   IndexPath,
 } from '@ui-kitten/components';
-import {StyleSheet} from 'react-native';
 import {
   StyleText,
   StyleTouchableOpacity,
   StyleView,
 } from '../utils/TailwindAndUIkiteCombination';
-import {formatLog} from '../utils/helpers';
+import {useTheme} from '../contexts/ThemProvider';
+import {TouchableOpacity} from 'react-native';
 
 interface DrawerContentProp {
   navigation: any;
@@ -43,20 +44,16 @@ const BookingIcon = (props: IconProps): IconElement => (
 );
 
 const DrawerContent = ({navigation, state}: DrawerContentProp) => {
+  const {bgLight} = useTheme();
   const closeDrawer = () => {
-    // Use navigation or a reference to the drawer to close it
-    // Assuming you're using React Navigation's navigation prop
     navigation.closeDrawer();
   };
 
   const Header = () => (
     <>
-      {/* <ImageBackground
-        style={[props.style, styles.header]}
-        source={require('../assets/happyMonkey.png')}
-        > */}
-
-      <StyleView className="w-full h-32 p-2 bg-orange-100  flex flex-row justify-between items-center">
+      <StyleView
+        className="w-full h-32 p-2 flex flex-row justify-between items-center"
+        style={{backgroundColor: bgLight}}>
         <StyleView className="bg-transparent flex justify-center items-start">
           <StyleText category="h6">Muzamil Shah Quraishi</StyleText>
           <StyleText category="c2">Bogal, Delhi, india</StyleText>
@@ -67,7 +64,6 @@ const DrawerContent = ({navigation, state}: DrawerContentProp) => {
           <Icon name="menu-arrow-outline" />
         </StyleTouchableOpacity>
       </StyleView>
-      {/* </ImageBackground> */}
       <Divider />
     </>
   );
@@ -137,14 +133,3 @@ const DrawerContent = ({navigation, state}: DrawerContentProp) => {
 };
 
 export default DrawerContent;
-
-const styles = StyleSheet.create({
-  header: {
-    height: 150,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    objectFit: 'cover',
-  },
-});

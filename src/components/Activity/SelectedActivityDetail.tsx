@@ -3,12 +3,14 @@ import {View, Text} from 'react-native';
 import {Activity} from '../../types/stateTypes';
 import {StyleText, StyleView} from '../../utils/TailwindAndUIkiteCombination';
 import moment from 'moment';
+import {useTheme} from '../../contexts/ThemProvider';
 
 type PropType = {
   activity: Activity;
 };
 
 const SelectedActivityDetail = ({activity}: PropType) => {
+  const {bgLight} = useTheme();
   const getAddOnsTotal = () => {
     let addOnsTotal = 0;
     if (activity.addOns && activity.addOns?.length > 0)
@@ -45,7 +47,8 @@ const SelectedActivityDetail = ({activity}: PropType) => {
           return addOn.quantity > 0 ? (
             <StyleView
               key={index}
-              className="flex-row mb-2 py-2 px-1 items-center bg-orange-300">
+              className="flex-row mb-2 py-2 px-1 items-center"
+              style={{backgroundColor: bgLight}}>
               <StyleText className="flex-1">{addOn.type}</StyleText>
               <StyleText className="flex-1 ml-2">{addOn.quantity}</StyleText>
               <StyleText className="flex-1">{addOn.price}</StyleText>
