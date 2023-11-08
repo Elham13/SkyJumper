@@ -29,11 +29,11 @@ const MembershipCard = ({
   onClick,
   style,
 }: MembershipCardProps) => {
-  const {backgroundColor, color} = useTheme();
+  const {backgroundColor, color, bgLighter} = useTheme();
 
   return (
     <TouchableOpacity activeOpacity={0.8} onPress={onClick}>
-      <View style={[styles.container, style]}>
+      <View style={[styles.container, style, {backgroundColor: bgLighter}]}>
         <View style={styles.details}>
           <Text style={styles.title}>{title}</Text>
           <Text>
@@ -74,7 +74,6 @@ export default MembershipCard;
 const styles = StyleSheet.create({
   container: {
     marginTop: 20,
-    backgroundColor: '#FDE9D6',
     borderRadius: 8,
     overflow: 'hidden',
     position: 'relative',

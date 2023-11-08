@@ -7,10 +7,12 @@ import CalendarPicker from 'react-native-calendar-picker';
 import moment from 'moment';
 import MembershipCard from '../components/Cards/MembershipCard';
 import {useNavigation} from '@react-navigation/native';
+import {useTheme} from '../contexts/ThemProvider';
 
 const today = moment().format('YYYY-MM-DD');
 
 const MembershipScreen = () => {
+  const {backgroundColor, bgLighter, bgLight, color} = useTheme();
   const navigation = useNavigation();
   const [dateVisible, setDateVisible] = useState<boolean>(false);
   const [dateToAttend, setDateToAttend] = useState(
@@ -61,9 +63,9 @@ const MembershipScreen = () => {
             <CalendarPicker onDateChange={onDateChange} />
             {dateToAttend && (
               <TouchableOpacity
-                style={styles.confirmBtn}
+                style={[styles.confirmBtn, {backgroundColor}]}
                 onPress={() => setDateVisible(false)}>
-                <Text style={styles.confirmBtnTxt}>
+                <Text style={[styles.confirmBtnTxt, {color}]}>
                   Confirm {moment(dateToAttend).format('DD-MMM-YYYY')}
                 </Text>
               </TouchableOpacity>
@@ -81,12 +83,12 @@ const MembershipScreen = () => {
                 key={id}
                 style={[
                   styles.weekDay,
-                  {backgroundColor: id === 0 ? '#F97316' : '#FEC868'},
+                  {backgroundColor: id === 0 ? backgroundColor : bgLight},
                 ]}>
                 <Text
                   style={{
                     fontWeight: '700',
-                    color: 'black',
+                    color: isToday ? color : 'black',
                     fontSize: isToday ? 18 : 12,
                   }}>
                   {isToday ? 'Today' : moment(date).format('ddd')}
@@ -105,7 +107,7 @@ const MembershipScreen = () => {
           <MembershipCard
             title="Monthly Membership"
             subtitle={['Monthly', 'Membership']}
-            price="Rs 1000/Month"
+            price={1000}
             discountText="With 10% discount All Activities"
             imageTitle="Membership"
             onClick={goToDetailsPage}
@@ -113,7 +115,7 @@ const MembershipScreen = () => {
           <MembershipCard
             title="Yearly Membership"
             subtitle={['Monthly', 'Membership']}
-            price="Rs 18000/Month"
+            price={18000}
             discountText="With 10% discount All Activities"
             imageTitle="Membership"
             onClick={goToDetailsPage}
@@ -173,14 +175,12 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   confirmBtn: {
-    backgroundColor: 'darkorange',
     alignSelf: 'center',
     marginTop: 22,
     padding: 12,
     borderRadius: 8,
   },
   confirmBtnTxt: {
-    color: 'white',
     fontWeight: '700',
     fontSize: 16,
   },

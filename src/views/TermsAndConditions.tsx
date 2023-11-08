@@ -3,8 +3,11 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/Entypo';
 import {StyleText, StyleView} from '../utils/TailwindAndUIkiteCombination';
 import PageHeader from '../components/PageHeader';
+import {useTheme} from '../contexts/ThemProvider';
 
 const TermsAndConditions = () => {
+  const {backgroundColor} = useTheme();
+
   return (
     <StyleView className="flex-1">
       <PageHeader title="Terms and Conditions" />
@@ -23,7 +26,10 @@ const TermsAndConditions = () => {
           2014.
         </StyleText>
 
-        <StyleText category="label" className="text-lg color-orange-500 mb-2">
+        <StyleText
+          category="label"
+          className="text-lg mb-2"
+          style={{color: backgroundColor}}>
           What We Collect
         </StyleText>
         <StyleText category="label" className="text-base mb-2">
@@ -66,7 +72,10 @@ const TermsAndConditions = () => {
           to SkyJumper is completely up to you.
         </StyleText>
 
-        <StyleText category="label" className="text-lg color-orange-500 mb-2">
+        <StyleText
+          category="label"
+          className="text-lg mb-2"
+          style={{color: backgroundColor}}>
           What we do with the information we gather:
         </StyleText>
         <StyleText category="label" className="text-base my-4">
@@ -97,7 +106,10 @@ const TermsAndConditions = () => {
         <StyleText category="label" className="text-base my-4">
           You can unsubscribe from our mailing list at anytime.
         </StyleText>
-        <StyleText category="label" className="text-lg color-orange-500 mb-2">
+        <StyleText
+          category="label"
+          className="text-lg mb-2"
+          style={{color: backgroundColor}}>
           Credit Card details:
         </StyleText>
         <StyleText category="label" className="text-base my-4">
@@ -107,7 +119,10 @@ const TermsAndConditions = () => {
           security of your information.
         </StyleText>
 
-        <StyleText category="label" className="text-lg color-orange-500 mb-2">
+        <StyleText
+          category="label"
+          className="text-lg mb-2"
+          style={{color: backgroundColor}}>
           Security:
         </StyleText>
         <StyleText category="label" className="text-base my-4">
@@ -130,7 +145,10 @@ const TermsAndConditions = () => {
           negligent or willful act, or omission, or that of our employees or
           agents.
         </StyleText>
-        <StyleText category="label" className="text-lg color-orange-500 mb-2">
+        <StyleText
+          category="label"
+          className="text-lg mb-2"
+          style={{color: backgroundColor}}>
           How we use cookies:
         </StyleText>
         <StyleText category="label" className="text-base my-4">
@@ -161,7 +179,10 @@ const TermsAndConditions = () => {
           setting to decline cookies if you prefer. This may prevent you from
           taking full advantage of the website
         </StyleText>
-        <StyleText category="label" className="text-lg color-orange-500 mb-2">
+        <StyleText
+          category="label"
+          className="text-lg mb-2"
+          style={{color: backgroundColor}}>
           Links to other websites:
         </StyleText>
         <StyleText category="label" className="text-base my-4">
@@ -174,7 +195,10 @@ const TermsAndConditions = () => {
           caution and look at the privacy statement applicable to the website in
           question.
         </StyleText>
-        <StyleText category="label" className="text-lg color-orange-500 mb-2">
+        <StyleText
+          category="label"
+          className="text-lg mb-2"
+          style={{color: backgroundColor}}>
           Controlling your personal information:
         </StyleText>
         <StyleText category="label" className="text-base my-4">
@@ -190,7 +214,7 @@ const TermsAndConditions = () => {
           f you have previously agreed to us using your personal information for
           direct marketing purposes, you may change your mind at any time by
           emailing us at{' '}
-          <StyleText className="text-orange-500">
+          <StyleText style={{color: backgroundColor}}>
             enquiry_ggn@skyjumpertp.com.
           </StyleText>
         </StyleText>
@@ -208,7 +232,7 @@ const TermsAndConditions = () => {
           You may request details of personal information which we hold about
           you. If you believe that any information we are holding is incorrect
           or incomplete, please send an update email to us at{' '}
-          <StyleText className="text-orange-500">
+          <StyleText style={{color: backgroundColor}}>
             enquiry_ggn@skyjumpertp.com
           </StyleText>
           . We will promptly update your information.
@@ -231,7 +255,7 @@ const TermsAndConditions = () => {
         </StyleText>
         <StyleText category="label" className="text-base my-4 mb-12">
           Email:{' '}
-          <StyleText className="text-orange-500">
+          <StyleText style={{color: backgroundColor}}>
             enquiry_ggn@skyjumpertp.com
           </StyleText>
         </StyleText>

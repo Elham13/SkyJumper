@@ -1,8 +1,5 @@
-import {Text, View, TouchableOpacity, SafeAreaView} from 'react-native';
+import {SafeAreaView} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {RootStackParamList} from '../types/navigation';
 import {StyleFlatList, StyleView} from '../utils/TailwindAndUIkiteCombination';
 import PageHeader from '../components/PageHeader';
 import OffersItem from '../components/Offers/OffersItem';
@@ -15,7 +12,6 @@ export interface OffersProps {
 }
 
 const HotOffers = () => {
-  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const [offersData, setOffersData] = useState<OffersProps[]>([]);
   const renderItem = ({item}: {item: OffersProps}) => (
     <OffersItem

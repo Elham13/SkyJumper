@@ -8,8 +8,10 @@ import {
   StyleText,
   StyleView,
 } from '../utils/TailwindAndUIkiteCombination';
+import {useTheme} from '../contexts/ThemProvider';
 
 const FeedbackAndComplaints = () => {
+  const {backgroundColor, bgLight, bgLighter, color} = useTheme();
   const [values, setValues] = useState({
     name: '',
     age: '',
@@ -20,15 +22,19 @@ const FeedbackAndComplaints = () => {
   return (
     <StyleView className="flex-1">
       <PageHeader title="Feedback and Complaint" />
-      <StyleView className="w-full h-[92%] bg-orange-100 justify-center items-center space-y-9 p-2">
-        <StyleView className="w-full h-40 bg-orange-500 rounded-3xl p-2 justify-center items-center">
-          <StyleText category="h5" status="control">
+      <StyleView
+        className="w-full h-[92%] justify-center items-center space-y-9 p-2"
+        style={{backgroundColor: bgLighter}}>
+        <StyleView
+          className="w-full h-40 rounded-3xl p-2 justify-center items-center"
+          style={{backgroundColor}}>
+          <StyleText category="h5" style={{color}}>
             We are here for support
           </StyleText>
-          <StyleText category="s1" status="control">
+          <StyleText category="s1" style={{color}}>
             email : skyjumping@gmail.com
           </StyleText>
-          <StyleText category="s1" status="control">
+          <StyleText category="s1" style={{color}}>
             Phone : +91 9512222222 | 9511111111
           </StyleText>
         </StyleView>
@@ -72,7 +78,9 @@ const FeedbackAndComplaints = () => {
             placeholder="Enter your Feedback"
           />
           <StyleButton className="z-10">Submit</StyleButton>
-          <StyleView className="w-40 h-40 rounded-full justify-end items-center overflow-hidden  absolute -top-24 translate-x-1 bg-orange-100 z-0">
+          <StyleView
+            className="w-40 h-40 rounded-full justify-end items-center overflow-hidden  absolute -top-24 translate-x-1 z-0"
+            style={{backgroundColor: bgLight}}>
             <StyleImage
               className="w-20 h-20 "
               source={require('./../assets/monkey.png')}
