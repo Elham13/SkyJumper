@@ -11,11 +11,13 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useAuth} from '../contexts/AuthProvider';
+import {useTheme} from '../contexts/ThemProvider';
 
 const {height, width} = Dimensions.get('window');
 
 const LoginScreen = () => {
   const {setIsLoggedIn} = useAuth();
+  const {backgroundColor, color} = useTheme();
   const navigation = useNavigation();
   const handleLogin = () => {
     setIsLoggedIn(true);
@@ -23,7 +25,7 @@ const LoginScreen = () => {
   };
 
   return (
-    <View style={[styles.wrapper, {height}]}>
+    <View style={[styles.wrapper, {height, backgroundColor}]}>
       <View style={[styles.container, {height: height / 1.2}]}>
         <Image
           style={[styles.monkey, {width: width / 2.5, bottom: -40}]}
@@ -56,7 +58,7 @@ const LoginScreen = () => {
 
           <View style={styles.inputsWrapper}>
             <View style={styles.inputWrapper}>
-              <Icon name="phone" size={24} style={styles.icon} />
+              <Icon name="phone" size={24} style={{color: backgroundColor}} />
               <TextInput
                 style={styles.input}
                 placeholder="Phone number"
@@ -64,20 +66,22 @@ const LoginScreen = () => {
               />
             </View>
             <View style={styles.inputWrapper}>
-              <Icon name="lock" size={24} style={styles.icon} />
+              <Icon name="lock" size={24} style={{color: backgroundColor}} />
               <TextInput
                 style={styles.input}
                 placeholder="OTP"
                 placeholderTextColor="#aaa"
               />
-              <TouchableOpacity style={styles.send}>
-                <Text>Send</Text>
+              <TouchableOpacity style={[styles.send, {backgroundColor}]}>
+                <Text style={{color}}>Send</Text>
               </TouchableOpacity>
             </View>
           </View>
 
-          <TouchableOpacity style={styles.login} onPress={handleLogin}>
-            <Text style={styles.loginTxt}>Login</Text>
+          <TouchableOpacity
+            style={[styles.login, {backgroundColor}]}
+            onPress={handleLogin}>
+            <Text style={[styles.loginTxt, {color}]}>Login</Text>
           </TouchableOpacity>
 
           <View style={styles.autBtnWrapper}>
@@ -108,7 +112,6 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: 'orange',
     alignItems: 'center',
   },
   container: {
@@ -164,9 +167,6 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     width: 280,
   },
-  icon: {
-    color: 'orange',
-  },
   input: {
     padding: 4,
     paddingHorizontal: 10,
@@ -175,13 +175,11 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   send: {
-    backgroundColor: 'orange',
     borderRadius: 6,
     paddingVertical: 6,
     paddingHorizontal: 16,
   },
   login: {
-    backgroundColor: 'orange',
     width: 280,
     borderRadius: 6,
     marginTop: 30,

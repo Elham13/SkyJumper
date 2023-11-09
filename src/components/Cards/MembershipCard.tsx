@@ -8,13 +8,14 @@ import {
   ViewStyle,
   StyleProp,
 } from 'react-native';
+import {useTheme} from '../../contexts/ThemProvider';
 
 type MembershipCardProps = {
   title: string;
-  subtitle: string[];
-  price: string;
-  discountText: string;
-  imageTitle: string;
+  subtitle?: string[];
+  price?: number;
+  discountText?: string;
+  imageTitle?: string;
   onClick: () => void;
   style?: StyleProp<ViewStyle>;
 };
@@ -28,17 +29,19 @@ const MembershipCard = ({
   onClick,
   style,
 }: MembershipCardProps) => {
+  const {backgroundColor, color, bgLighter} = useTheme();
+
   return (
     <TouchableOpacity activeOpacity={0.8} onPress={onClick}>
-      <View style={[styles.container, style]}>
+      <View style={[styles.container, style, {backgroundColor: bgLighter}]}>
         <View style={styles.details}>
           <Text style={styles.title}>{title}</Text>
           <Text>
-            <Text style={styles.subtitle1}>{subtitle[0]} </Text>
-            <Text style={styles.subtitle2}>{subtitle[1]}</Text>
+            <Text style={styles.subtitle1}>{subtitle?.[0]} </Text>
+            <Text style={styles.subtitle2}>{subtitle?.[1]}</Text>
           </Text>
           <Text>
-            <Text style={styles.priceHeading}>Price </Text> {price}
+            <Text style={styles.priceHeading}>Price </Text> RS {price}/Hr
           </Text>
           <Text style={styles.discountText}>{discountText}</Text>
         </View>
@@ -53,10 +56,9 @@ const MembershipCard = ({
               style={styles.monkey}
             />
           </View>
-          <View style={styles.bottom}>
+          <View style={[styles.bottom, {backgroundColor}]}>
             <View style={styles.titleWrapper}>
-              <Text
-                style={{...styles.txt, color: 'black', textAlign: 'center'}}>
+              <Text style={{...styles.txt, color, textAlign: 'center'}}>
                 {imageTitle}
               </Text>
             </View>
@@ -72,7 +74,6 @@ export default MembershipCard;
 const styles = StyleSheet.create({
   container: {
     marginTop: 20,
-    backgroundColor: '#FDE9D6',
     borderRadius: 8,
     overflow: 'hidden',
     position: 'relative',
@@ -134,7 +135,6 @@ const styles = StyleSheet.create({
   },
   monkey: {height: 40, objectFit: 'contain', marginTop: 8},
   bottom: {
-    backgroundColor: 'orange',
     justifyContent: 'center',
     padding: 10,
     position: 'relative',

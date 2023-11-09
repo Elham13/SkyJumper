@@ -1,12 +1,13 @@
+import {Activity} from '../types/stateTypes';
+
 export const insertOrRemoveFromArray = (
-  array: string[],
-  element: string,
-): string[] => {
+  array: Activity[],
+  element: Activity,
+): Activity[] => {
   const tempArr = array;
-  const index = tempArr.indexOf(element);
+  const index = tempArr.findIndex(el => el.title === element.title);
   if (index !== -1) tempArr.splice(index, 1);
   else tempArr.push(element);
-  console.log('tremp: ', tempArr);
   return tempArr;
 };
 
@@ -40,4 +41,8 @@ export const generateCouponCode = (length: number) => {
   }
 
   return couponArray.join('');
+};
+
+export const formatLog = (data: any) => {
+  return JSON.stringify(data, null, 2);
 };

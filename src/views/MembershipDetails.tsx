@@ -12,6 +12,7 @@ const MembershipDetails = () => {
         <SafeAreaView style={styles.container}>
           <Collapsible
             title="Monthly Membership"
+            defaultOpen={true}
             content={<MembershipDetailsCollapsContent />}
           />
         </SafeAreaView>

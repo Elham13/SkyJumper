@@ -7,15 +7,19 @@ import HomeScreen from './HomeScreen';
 import ActivitiesScreen from './ActivitiesScreen';
 import MembershipScreen from './MembershipScreen';
 import HotOffers from './HotOffers';
+import {useTheme} from '../contexts/ThemProvider';
+import {StyleText} from '../utils/TailwindAndUIkiteCombination';
 
 const Tab = createBottomTabNavigator();
 
 const MainScreen = () => {
+  const {backgroundColor, color: textColor} = useTheme();
+
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
         headerShown: false,
-        tabBarStyle: {backgroundColor: 'orange'},
+        tabBarStyle: {backgroundColor, height: 60, paddingVertical: 10},
         tabBarIcon: ({focused, color, size}) => {
           if (route.name === 'Home') {
             return (
@@ -23,8 +27,7 @@ const MainScreen = () => {
                 name="home"
                 size={25}
                 style={{
-                  color: focused ? '#ffffff' : '#2D2C2C',
-                  marginTop: 6,
+                  color: focused ? textColor : '#2D2C2C',
                 }}
               />
             );
@@ -34,8 +37,7 @@ const MainScreen = () => {
                 name="stats-chart"
                 size={25}
                 style={{
-                  color: focused ? '#ffffff' : '#2D2C2C',
-                  marginTop: 6,
+                  color: focused ? textColor : '#2D2C2C',
                 }}
               />
             );
@@ -45,8 +47,7 @@ const MainScreen = () => {
                 name="wallet-membership"
                 size={28}
                 style={{
-                  color: focused ? '#ffffff' : '#2D2C2C',
-                  marginTop: 6,
+                  color: focused ? textColor : '#2D2C2C',
                 }}
               />
             );
@@ -56,12 +57,20 @@ const MainScreen = () => {
                 name="brightness-percent"
                 size={28}
                 style={{
-                  color: focused ? '#ffffff' : '#2D2C2C',
-                  marginTop: 6,
+                  color: focused ? textColor : '#2D2C2C',
                 }}
               />
             );
           }
+        },
+        tabBarLabel: ({focused, color}) => {
+          return (
+            <StyleText
+              className="text-xs"
+              style={{color: focused ? textColor : '#000'}}>
+              {route?.name}
+            </StyleText>
+          );
         },
       })}>
       <Tab.Screen name="Home" component={HomeScreen} />

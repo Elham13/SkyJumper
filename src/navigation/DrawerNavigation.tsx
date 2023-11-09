@@ -1,4 +1,5 @@
 import React from 'react';
+import * as eva from '@eva-design/eva';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import ActivitiesScreen from '../views/ActivitiesScreen';
 import MyWalletScreen from '../views/MyWalletScreen';
@@ -11,8 +12,6 @@ import FeedbackAndComplaints from '../views/FeedbackAndComplaints';
 import TermsAndConditions from '../views/TermsAndConditions';
 import DrawerContent from './DrawerContent';
 import MyProfileScreen from '../views/MyProfileScreen';
-import HomeScreen from '../views/HomeScreen';
-import MainScreen from '../views/MainScreen';
 import {MainStack} from './StackNavigation';
 import NotificationsScreen from '../views/NotificationsScreen';
 import ActivityDetails from '../views/ActivityDetails';
@@ -20,11 +19,16 @@ import LoginScreen from '../views/LoginScreen';
 import RegisterScreen from '../views/RegisterScreen';
 import SelectionScreen from '../views/SelectionScreen';
 import {useAuth} from '../contexts/AuthProvider';
+import OrderDetailScreen from '../views/OrderDetailScreen';
+import {useTheme} from '../contexts/ThemProvider';
+import {ApplicationProvider} from '@ui-kitten/components';
+import {myTheme} from '../../custom-theme';
 
 const {Navigator, Screen} = createDrawerNavigator();
 
-const DrawerNavigation = () => {
+const DrawerNavigationComponent = () => {
   const {isLoggedIn} = useAuth();
+
   return (
     <Navigator
       initialRouteName={isLoggedIn ? 'Home' : 'InitialScreen'}
@@ -33,7 +37,6 @@ const DrawerNavigation = () => {
         <DrawerContent navigation={props.navigation} state={props.state} />
       )}>
       <Screen name="InitialScreen" component={MainStack} />
-      <Screen name="SelectionScreen" component={SelectionScreen} />
       {/* <Screen name='Home' component={MainScreen} /> */}
       <Screen name="My Profile" component={MyProfileScreen} />
       <Screen name="Activities" component={ActivitiesScreen} />
@@ -43,13 +46,13 @@ const DrawerNavigation = () => {
       <Screen name="Contact Us" component={ContactUs} />
       <Screen name="SkyJumper Safety Video" component={SafetyVideo} />
       <Screen name="Refer a Friend" component={ReferAFriend} />
-      <Screen name="Login" component={LoginScreen} />
-      <Screen name="Register" component={RegisterScreen} />
       <Screen
         name="Feedback And Complaints"
         component={FeedbackAndComplaints}
       />
       <Screen name="Terms And Conditions" component={TermsAndConditions} />
+      <Screen name="Login" component={LoginScreen} />
+      <Screen name="Register" component={RegisterScreen} />
       <Screen
         name="Notifications"
         component={NotificationsScreen}
@@ -60,8 +63,32 @@ const DrawerNavigation = () => {
         component={ActivityDetails}
         options={{headerShown: false}}
       />
+      <Screen name="SelectionScreen" component={SelectionScreen} />
+      <Screen
+        name="OrderDetail"
+        component={OrderDetailScreen}
+        options={{headerShown: false}}
+      />
       {/* <Screen name='Tabs' component={MainScreen} /> */}
     </Navigator>
+  );
+};
+
+const DrawerNavigation = () => {
+  const {backgroundColor} = useTheme();
+
+  return (
+    <ApplicationProvider
+      {...eva}
+      theme={{
+        ...eva.light,
+        ...{
+          ...myTheme,
+          'color-primary-500': backgroundColor,
+        },
+      }}>
+      <DrawerNavigationComponent />
+    </ApplicationProvider>
   );
 };
 

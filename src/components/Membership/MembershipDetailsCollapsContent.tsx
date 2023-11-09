@@ -1,9 +1,12 @@
 import {StyleSheet, Text, View, Image, Dimensions} from 'react-native';
 import React from 'react';
+import {useTheme} from '../../contexts/ThemProvider';
 
 const width = Dimensions.get('window').width;
 
 const MembershipDetailsCollapsContent = () => {
+  const {backgroundColor, color} = useTheme();
+
   return (
     <View>
       <Text style={{marginLeft: 10, marginTop: 10}}>
@@ -24,9 +27,9 @@ const MembershipDetailsCollapsContent = () => {
             style={styles.monkey}
           />
         </View>
-        <View style={styles.bottom}>
+        <View style={[styles.bottom, {backgroundColor}]}>
           <View style={styles.titleWrapper}>
-            <Text style={{...styles.txt, color: 'black', textAlign: 'center'}}>
+            <Text style={[styles.txt, {color, textAlign: 'center'}]}>
               Membership
             </Text>
           </View>
@@ -75,7 +78,6 @@ const styles = StyleSheet.create({
   bottom: {
     display: 'flex',
     flexDirection: 'row',
-    backgroundColor: 'orange',
     justifyContent: 'center',
     padding: 10,
     position: 'relative',

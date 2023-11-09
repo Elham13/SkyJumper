@@ -11,12 +11,23 @@ import {
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {useTheme} from '../contexts/ThemProvider';
 
 const {width} = Dimensions.get('window');
 
-const RegisterScreen = () => {
+type PropTypes = {navigation: any};
+
+const RegisterScreen = ({navigation}: PropTypes) => {
+  const {backgroundColor, color} = useTheme();
+
+  const handleRegister = () => {
+    navigation.navigate('SelectionScreen');
+  };
+
+  const iconColor = {color: backgroundColor};
+
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{backgroundColor: '#fff', flex: 1}}>
       <ScrollView>
         <View style={styles.container}>
           <Image style={styles.logo} source={require('../assets/logo.png')} />
@@ -30,27 +41,27 @@ const RegisterScreen = () => {
             <View style={styles.inputsWrapper}>
               <View style={styles.inputWrapper}>
                 <TextInput style={styles.input} placeholder="Your name" />
-                <Icon name="user" size={24} style={styles.icon} />
+                <Icon name="user" size={24} style={iconColor} />
               </View>
               <View style={styles.inputWrapper}>
                 <TextInput style={styles.input} placeholder="Phone number" />
-                <Icon name="phone" size={24} style={styles.icon} />
+                <Icon name="phone" size={24} style={iconColor} />
               </View>
               <View style={styles.inputWrapper}>
                 <TextInput style={styles.input} placeholder="Email" />
-                <Icon name="at" size={24} style={styles.icon} />
+                <Icon name="at" size={24} style={iconColor} />
               </View>
               <View style={styles.inputWrapper}>
                 <TextInput style={styles.input} placeholder="DOB" />
-                <Icon name="calendar" size={24} style={styles.icon} />
+                <Icon name="calendar" size={24} style={iconColor} />
               </View>
               <View style={styles.inputWrapper}>
                 <TextInput style={styles.input} placeholder="City" />
-                <Icon name="map-pin" size={24} style={styles.icon} />
+                <Icon name="map-pin" size={24} style={iconColor} />
               </View>
               <View style={styles.inputWrapper}>
                 <TextInput style={styles.input} placeholder="Pin Code" />
-                <Icon name="lock" size={24} style={styles.icon} />
+                <Icon name="lock" size={24} style={iconColor} />
               </View>
             </View>
 
@@ -73,11 +84,15 @@ const RegisterScreen = () => {
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity style={styles.alreadyBtn}>
+            <TouchableOpacity
+              style={styles.alreadyBtn}
+              onPress={() => navigation.navigate('Login')}>
               <Text style={styles.alreadyBtnTxt}>Already have an account</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.registerBtn}>
-              <Text style={styles.registerBtnTxt}>Register</Text>
+            <TouchableOpacity
+              style={[styles.registerBtn, {backgroundColor}]}
+              onPress={handleRegister}>
+              <Text style={[styles.registerBtnTxt, {color}]}>Register</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -129,9 +144,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderRadius: 8,
   },
-  icon: {
-    color: 'orange',
-  },
   input: {
     padding: 4,
     fontSize: 16,
@@ -147,7 +159,6 @@ const styles = StyleSheet.create({
   },
   registerBtn: {
     width: 280,
-    backgroundColor: 'orange',
     borderRadius: 8,
     padding: 10,
   },
