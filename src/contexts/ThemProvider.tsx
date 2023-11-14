@@ -20,9 +20,9 @@ const ThemeContext = createContext<ThemeContextType>({
 
 const ThemeProvider = ({children}: PropTypes) => {
   const theme = useRef<ThemeContextType>({
-    backgroundColor: 'green',
-    bgLight: '#c6f6d5',
-    bgLighter: '#e7f6e6',
+    backgroundColor: '#FF6C22',
+    bgLight: '#F9B572',
+    bgLighter: '#F6FDC3',
     color: '#fff',
   });
 

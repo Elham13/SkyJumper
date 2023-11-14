@@ -33,7 +33,7 @@ const MembershipCard = ({
 
   return (
     <TouchableOpacity activeOpacity={0.8} onPress={onClick}>
-      <View style={[styles.container, style, {backgroundColor: bgLighter}]}>
+      <View style={[styles.container, style]}>
         <View style={styles.details}>
           <Text style={styles.title}>{title}</Text>
           <Text>

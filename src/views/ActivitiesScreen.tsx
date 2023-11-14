@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import {TouchableOpacity} from 'react-native';
 import moment from 'moment';
 import MembershipCard from '../components/Cards/MembershipCard';
-import {insertOrRemoveFromArray} from '../utils/helpers';
+import {formatLog, insertOrRemoveFromArray} from '../utils/helpers';
 import {useAppInfo} from '../contexts/AppInfoProvider';
 import {goBananaMenus, trampolineMenus1, trampolineMenus2} from './HomeScreen';
 import {Activity} from '../types/stateTypes';
@@ -212,31 +212,35 @@ const ActivitiesScreen = ({navigation}: Props) => {
 
         <View style={styles.membershipView}>
           {activities?.length > 0 &&
-            activities.map((activity, index) => (
-              <MembershipCard
-                key={index}
-                title={activity?.title}
-                subtitle={activity?.subTitle}
-                price={activity?.price}
-                discountText={activity?.discountText}
-                imageTitle={activity?.imageTitle}
-                onClick={() =>
-                  setAppInfo(prev => ({
-                    ...prev,
-                    activities: [
-                      ...insertOrRemoveFromArray(appInfo?.activities, activity),
-                    ],
-                  }))
-                }
-                style={{
-                  backgroundColor: appInfo.activities.find(
-                    el => el.title === activity.title,
-                  )
-                    ? bgLight
-                    : bgLighter,
-                }}
-              />
-            ))}
+            activities.map((activity, index) => {
+              const found = appInfo.activities.find(
+                el => el.title === activity.title,
+              );
+              return (
+                <MembershipCard
+                  key={index}
+                  title={activity?.title}
+                  subtitle={activity?.subTitle}
+                  price={activity?.price}
+                  discountText={activity?.discountText}
+                  imageTitle={activity?.imageTitle}
+                  onClick={() =>
+                    setAppInfo(prev => ({
+                      ...prev,
+                      activities: [
+                        ...insertOrRemoveFromArray(
+                          appInfo?.activities,
+                          activity,
+                        ),
+                      ],
+                    }))
+                  }
+                  style={{
+                    backgroundColor: !!found ? bgLight : bgLighter,
+                  }}
+                />
+              );
+            })}
         </View>
       </ScrollView>
     </SafeAreaView>
