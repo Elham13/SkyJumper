@@ -51,7 +51,7 @@ export const ViewPagerLazyLoadingShowcase = ({images}: PropType) => {
           style={styles.tab}>
           <ImageBackground source={image.img} style={styles.image} />
           <StyleView
-            className="absolute bottom-0 w-full h-20 space-y-1 flex justify-center items-center"
+            className="absolute bottom-0 w-full h-20 space-y-1 flex justify-center items-center opacity-50"
             style={{backgroundColor}}
             level="1">
             <StyleText category="c1" appearance="hint" style={{color}}>

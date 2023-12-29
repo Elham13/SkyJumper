@@ -17,22 +17,22 @@ const DATA = [
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
     title: 'Second Item',
-    img: require('../assets/TrampolinPark.jpg'),
+    img: require('../assets/banners2.webp'),
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
     title: 'Third Item',
-    img: require('../assets/TrampolinPark.jpg'),
+    img: require('../assets/banners1.webp'),
   },
   {
     id: '2',
     title: 'Third Item',
-    img: require('../assets/TrampolinPark.jpg'),
+    img: require('../assets/banner1.webp'),
   },
   {
     id: '3',
     title: 'Third Item',
-    img: require('../assets/TrampolinPark.jpg'),
+    img: require('../assets/banner3.webp'),
   },
   {
     id: '4',
