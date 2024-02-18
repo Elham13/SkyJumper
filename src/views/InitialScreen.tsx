@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React, {createContext} from 'react';
 import AuthWrapper from '../components/Auth/AuthWrapper';
 import AuthInitPage from '../components/Auth/AuthInitPage';
 import {useNavigation} from '@react-navigation/native';

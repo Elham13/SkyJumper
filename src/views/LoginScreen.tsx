@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   StyleSheet,
@@ -12,10 +12,18 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useAuth} from '../contexts/AuthProvider';
 import {useTheme} from '../contexts/ThemProvider';
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withRepeat,
+  withTiming,
+} from 'react-native-reanimated';
 
 const {height, width} = Dimensions.get('window');
 
 const LoginScreen = () => {
+  const scale = useSharedValue(0.8);
   const {setIsLoggedIn} = useAuth();
   const {backgroundColor, color} = useTheme();
   const navigation = useNavigation();
@@ -24,11 +32,38 @@ const LoginScreen = () => {
     navigation.navigate('SelectionScreen' as never);
   };
 
+  const animationConfig = {
+    duration: 1000,
+    easing: Easing.inOut(Easing.ease),
+  };
+
+  const startPulseAnimation = () => {
+    scale.value = withRepeat(
+      withTiming(1.2, animationConfig),
+      -1,
+      true, // Infinite loop
+    );
+  };
+
+  useEffect(() => {
+    startPulseAnimation();
+  }, []);
+
+  const pulseAnimatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{scale: scale.value}],
+    };
+  });
+
   return (
     <View style={[styles.wrapper, {height, backgroundColor}]}>
       <View style={[styles.container, {height: height / 1.2}]}>
-        <Image
-          style={[styles.monkey, {width: width / 2.5, bottom: -40}]}
+        <Animated.Image
+          style={[
+            styles.monkey,
+            {width: width / 2.5, bottom: -40},
+            pulseAnimatedStyle,
+          ]}
           source={require('../assets/happyMonkey.png')}
         />
         <Image style={styles.logo} source={require('../assets/logo.png')} />
