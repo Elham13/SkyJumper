@@ -7,6 +7,7 @@ import HorizontalFlatListWithButtons from '../components/HorizontalFlatListWithB
 import {useAppInfo} from '../contexts/AppInfoProvider';
 import {activityList} from './ActivitiesScreen';
 import {useTheme} from '../contexts/ThemProvider';
+import ImageSlider from '../components/Home/ImageSlider';
 
 const DATA = [
   {
@@ -178,8 +179,10 @@ const HomeScreen = ({navigation}: PropTypes) => {
           </View>
         )}
 
+        <ImageSlider data={DATA} />
+
         <ViewPagerLazyLoadingShowcase images={DATA} />
-        <HorizontalFlatListWithButtons data={data2} />
+        {/* <HorizontalFlatListWithButtons data={data2} /> */}
       </ScrollView>
     </View>
   );
@@ -190,6 +193,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   homeContentsWraper: {
     padding: 12,
+    marginBottom: 60,
   },
   cardsWrapper: {
     flexDirection: 'row',

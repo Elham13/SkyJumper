@@ -8,13 +8,11 @@ import {DrawerActions, useNavigation} from '@react-navigation/native';
 import {StyleSelect} from '../../utils/TailwindAndUIkiteCombination';
 import {IndexPath, SelectItem} from '@ui-kitten/components';
 import {useTheme} from '../../contexts/ThemProvider';
+import Dropdown from 'react-native-input-select';
 
 const Header = () => {
   const navigation = useNavigation();
   const {backgroundColor} = useTheme();
-  const [selectedIndex, setSelectedIndex] = React.useState<
-    IndexPath | IndexPath[]
-  >(new IndexPath(0));
   const [value, setValue] = useState('Delhi');
   const [items, setItems] = useState([
     {label: 'Delhi', value: 'delhi'},
@@ -34,24 +32,22 @@ const Header = () => {
           source={require('../../assets/icons/menu.png')}
         />
       </TouchableOpacity>
-      <StyleSelect
-        className="w-40"
-        selectedIndex={selectedIndex}
-        onSelect={index => {
-          setSelectedIndex(index);
-          setValue(items[selectedIndex.row].label);
+      <Dropdown
+        placeholder="Select a city"
+        options={items}
+        placeholderStyle={{fontSize: 14, color: '#aaa'}}
+        dropdownIconStyle={{padding: 0}}
+        onValueChange={(value: string) => setValue(value)}
+        primaryColor={'green'}
+        selectedValue={value}
+        dropdownStyle={{backgroundColor: 'transparent', borderWidth: 0}}
+        dropdownContainerStyle={{
+          flex: 1,
+          marginTop: 22,
         }}
-        value={value}>
-        {items.map((item, i) => (
-          <SelectItem
-            key={i}
-            className="bg-yellow-500 text-red-500"
-            title={item.label}
-          />
-        ))}
-      </StyleSelect>
+      />
       <TouchableOpacity
-        onPress={() => navigation.navigate('Notifications')}
+        onPress={() => navigation.navigate('Notifications' as never)}
         style={styles.notificationBtn}>
         <Icon
           name="bells"
@@ -85,7 +81,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   menuIcon: {},
-  menuWraper: {minWidth: 120},
+  // menuWraper: {minWidth: 120},
   menu: {
     borderWidth: 0,
   },
@@ -96,8 +92,5 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     width: 36,
-  },
-  selectItem: {
-    color: '#000000', // Set text color to gray
   },
 });
